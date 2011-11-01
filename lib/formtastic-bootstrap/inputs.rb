@@ -1,0 +1,36 @@
+require "formtastic-bootstrap/inputs/base"
+require "formtastic-bootstrap/inputs/string_input"
+require "formtastic-bootstrap/inputs/text_input"
+
+module FormtasticBootstrap
+  module Inputs
+
+    include Base
+
+    # autoload :Base
+    # autoload :Basic
+    # autoload :BooleanInput
+    # autoload :CheckBoxesInput
+    # autoload :CountryInput
+    # autoload :DateInput
+    # autoload :DatetimeInput
+    # autoload :EmailInput
+    # autoload :FileInput
+    # autoload :HiddenInput
+    # autoload :NumberInput
+    # autoload :NumericInput
+    # autoload :PasswordInput
+    # autoload :PhoneInput
+    # autoload :RadioInput
+    # autoload :RangeInput
+    # autoload :SearchInput
+    # autoload :SelectInput
+    # autoload :StringInput
+    # autoload :TextInput -- done
+    # autoload :TimeInput
+    # autoload :TimeZoneInput
+    # autoload :Timeish
+    # autoload :UrlInput
+  end
+end
+
