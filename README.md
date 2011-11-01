@@ -16,6 +16,26 @@ Two great tastes in one: Formtastic and the Twitter Bootstrap framework.
 
 ## To Do
 * Field Types
+** :select
+** :check_boxes
+** :radio
+** :time_zone
+** :password
+** :text
+** :date
+** :datetime
+** :time
+** :boolean
+** :string
+** :number
+** :file
+** :country
+** :email
+** :url
+** :phone
+** :search
+** :hidden
+** :range
 
 * Errors
 * Hints
