@@ -17,7 +17,7 @@ module CustomMacros
     # This is one of the things we move for Bootstrap.  In vanilla Formtastic
     # it's located on the outer wrapper.  We move it to the inner wrapper.
     def it_should_have_input_class_in_the_right_place
-      it "should not have 'input' class in the right place" do
+      it "should have 'input' class in the right place" do
         output_buffer.should have_tag("form div.clearfix div.input")
         output_buffer.should_not have_tag("form div.clearfix.input")
       end

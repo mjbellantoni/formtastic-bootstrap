@@ -43,10 +43,8 @@ Tried to mimic its code structure as much as possible.
    * :datetime
    * :time
    * :boolean
-   * :number
    * :file
    * :country
-   * :range
  * Fancy Bootstrap
   * Multiple Select (or is this covered?)
   * Date Range

@@ -26,6 +26,12 @@ module FormtasticBootstrap
         super(method, input_html_options)
       end
     end
+    
+    def number_field(method, input_html_options)
+      bootstrap_input_wrapper do
+        super(method, input_html_options)
+      end
+    end
 
     def password_field(method, input_html_options)
       bootstrap_input_wrapper do
@@ -34,6 +40,12 @@ module FormtasticBootstrap
     end
 
     def phone_field(method, input_html_options)
+      bootstrap_input_wrapper do
+        super(method, input_html_options)
+      end
+    end
+
+    def range_field(method, input_html_options)
       bootstrap_input_wrapper do
         super(method, input_html_options)
       end
