@@ -10,7 +10,18 @@ Tried to mimic its code structure as much as possible.
 
 ## Getting Started
 
-## Major Difference in Behavior
+## Formtastic vs. Formtastic Bootstrap
+
+### Major Difference in Behavior
+
+* No "label" class on labels because Bootstrap uses this label for something else.
+* 'input' label is in a different place because it makes Bootstrap behave correctly.
+* Data and DateTime These are a series of dropdowns in Formtastic, but are just test fields in Bootstrap.
+
+### Other
+
+* Some of this was done in a pretty mechanical matter to get the tests to pass.  If you don't think the right thing is happening, let me know.
+* Formtastic does more than Bootstrap lays out.  There were situations where I didn't know what to do (nested controls for example.)
 
 ## Contributing to formtastic-bootstrap
  
@@ -25,7 +36,6 @@ Tried to mimic its code structure as much as possible.
 ## To Do
 * Field Types
  * Basic Formtastic
-   * :select
    * :check_boxes
    * :radio
    * :time_zone
@@ -38,6 +48,8 @@ Tried to mimic its code structure as much as possible.
    * :country
    * :range
  * Fancy Bootstrap
+  * Multiple Select (or is this covered?)
+  * Date Range
   * Prepend Text
   * Prepend Checkbox
   * Appended Checkbox

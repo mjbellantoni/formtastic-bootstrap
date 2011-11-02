@@ -81,7 +81,7 @@ module CustomMacros
 
     def it_should_have_select_with_id(element_id)
       it "should have a select box with id '#{element_id}'" do
-        output_buffer.should have_tag("form li select##{element_id}")
+        output_buffer.should have_tag("form div.clearfix div.input select##{element_id}")
       end
     end
 
@@ -282,7 +282,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:author, :as => as, :collection => @authors))
           end)
-          output_buffer.should have_tag("form li.#{as} #{countable}", :count => @authors.size + (as == :select ? 1 : 0))
+          output_buffer.should have_tag("form div.#{as} #{countable}", :count => @authors.size + (as == :select ? 1 : 0))
         end
 
         describe 'and the :collection is an array of strings' do
@@ -296,8 +296,8 @@ module CustomMacros
             end)
 
             @categories.each do |value|
-              output_buffer.should have_tag("form li.#{as}", /#{value}/)
-              output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{value}']")
+              output_buffer.should have_tag("form div.#{as}", /#{value}/)
+              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value}']")
             end
           end
 
@@ -329,8 +329,8 @@ module CustomMacros
             end)
 
             @categories.each do |label, value|
-              output_buffer.should have_tag("form li.#{as}", /#{label}/)
-              output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{value}']")
+              output_buffer.should have_tag("form div.#{as}", /#{label}/)
+              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value}']")
             end
           end
         end
@@ -347,9 +347,9 @@ module CustomMacros
 
             @categories.each do |text, value|
               label = as == :select ? :option : :label
-              output_buffer.should have_tag("form li.#{as} #{label}", /#{text}/i)
-              output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{value.to_s}']")
-              output_buffer.should have_tag("form li.#{as} #{countable}#post_category_name_#{value.to_s}") if as == :radio
+              output_buffer.should have_tag("form div.#{as} #{label}", /#{text}/i)
+              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value.to_s}']")
+              output_buffer.should have_tag("form div.#{as} #{countable}#post_category_name_#{value.to_s}") if as == :radio
             end
           end
         end
@@ -365,8 +365,8 @@ module CustomMacros
                 concat(builder.input(:category_name, :as => as, :collection => @choices))
               end)
 
-              output_buffer.should have_tag("form li.#{as} #{countable}#post_category_name_true")
-              output_buffer.should have_tag("form li.#{as} #{countable}#post_category_name_false")
+              output_buffer.should have_tag("form div.#{as} #{countable}#post_category_name_true")
+              output_buffer.should have_tag("form div.#{as} #{countable}#post_category_name_false")
             end
           end
         end
@@ -383,8 +383,8 @@ module CustomMacros
 
             @categories.each do |value|
               label = as == :select ? :option : :label
-              output_buffer.should have_tag("form li.#{as} #{label}", /#{value}/i)
-              output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{value.to_s}']")
+              output_buffer.should have_tag("form div.#{as} #{label}", /#{value}/i)
+              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value.to_s}']")
             end
           end
         end
@@ -400,8 +400,8 @@ module CustomMacros
             end)
 
             @categories.each do |label, value|
-              output_buffer.should have_tag("form li.#{as}", /#{label}/)
-              output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{value}']")
+              output_buffer.should have_tag("form div.#{as}", /#{label}/)
+              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value}']")
             end
           end
 
@@ -418,7 +418,7 @@ module CustomMacros
 
             it 'should have options with text content from the specified method' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as}", /#{author.login}/)
+                output_buffer.should have_tag("form div.#{as}", /#{author.login}/)
               end
             end
           end
@@ -432,7 +432,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as}", /#{author.login.reverse}/)
+                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
               end
             end
           end
@@ -449,7 +449,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as}", /#{author.login.reverse}/)
+                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
               end
             end
           end
@@ -470,7 +470,7 @@ module CustomMacros
 
               it "should render the options with #{label_method} as the label" do
                 ::Author.all.each do |author|
-                  output_buffer.should have_tag("form li.#{as}", /The Label Text/)
+                  output_buffer.should have_tag("form div.#{as}", /The Label Text/)
                 end
               end
             end
@@ -489,7 +489,7 @@ module CustomMacros
 
             it 'should have options with values from specified method' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{author.login}']")
+                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login}']")
               end
             end
           end
@@ -503,7 +503,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each value' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{author.login.reverse}']")
+                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
               end
             end
           end
@@ -520,7 +520,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each value' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{author.login.reverse}']")
+                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
               end
             end
           end
@@ -539,7 +539,7 @@ module CustomMacros
 
             it 'should have options with text content from the specified method' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as}", /#{author.login}/)
+                output_buffer.should have_tag("form div.#{as}", /#{author.login}/)
               end
             end
           end
@@ -556,7 +556,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as}", /#{author.login.reverse}/)
+                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
               end
             end
           end
@@ -575,7 +575,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as}", /#{author.login.reverse}/)
+                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
               end
             end
           end
@@ -598,7 +598,7 @@ module CustomMacros
 
               it "should render the options with #{label_method} as the label" do
                 ::Author.all.each do |author|
-                  output_buffer.should have_tag("form li.#{as}", /The Label Text/)
+                  output_buffer.should have_tag("form div.#{as}", /The Label Text/)
                 end
               end
             end
@@ -619,7 +619,7 @@ module CustomMacros
 
             it 'should have options with values from specified method' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{author.login}']")
+                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login}']")
               end
             end
           end
@@ -635,7 +635,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each value' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{author.login.reverse}']")
+                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
               end
             end
           end
@@ -654,7 +654,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each value' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form li.#{as} #{countable}[@value='#{author.login.reverse}']")
+                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
               end
             end
           end

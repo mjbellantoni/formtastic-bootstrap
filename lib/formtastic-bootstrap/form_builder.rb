@@ -15,6 +15,12 @@ module FormtasticBootstrap
       end
     end
 
+    def grouped_collection_select(method, collection, group_method, group_label_method, option_key_method, option_value_method, options, html_options)
+      bootstrap_input_wrapper do
+        super(method, collection, group_method, group_label_method, option_key_method, option_value_method, options, html_options)
+      end
+    end
+
     def hidden_field(method, input_html_options)
       bootstrap_input_wrapper do
         super(method, input_html_options)
@@ -36,6 +42,12 @@ module FormtasticBootstrap
     def search_field(method, input_html_options)
       bootstrap_input_wrapper do
         super(method, input_html_options)
+      end
+    end
+
+    def select(input_name, collection, input_options, input_html_options)
+      bootstrap_input_wrapper do
+        super(input_name, collection, input_options, input_html_options)
       end
     end
 
