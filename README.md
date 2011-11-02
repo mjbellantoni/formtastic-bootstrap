@@ -35,7 +35,6 @@ Tried to mimic its code structure as much as possible.
    * :datetime
    * :time
    * :boolean
-   * :string
    * :number
    * :file
    * :country
