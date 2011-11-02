@@ -37,7 +37,6 @@ Tried to mimic its code structure as much as possible.
    * :number
    * :file
    * :country
-   * :email
    * :url
    * :phone
    * :search
