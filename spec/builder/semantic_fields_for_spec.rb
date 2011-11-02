@@ -121,10 +121,9 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
     it "should only render one hidden input (my one)" do
       output_buffer.should have_tag 'input#author_posts_attributes_0_id', :count => 1
     end
-    
-    it "should render the hidden input inside an li.hidden" do
-      pending "Still using list-based rendering."
-      output_buffer.should have_tag 'li.hidden input#author_posts_attributes_0_id'
+
+    it "should render the hidden input inside an div.hidden" do
+      output_buffer.should have_tag 'div.hidden div.input input#author_posts_attributes_0_id'
     end
   end
 

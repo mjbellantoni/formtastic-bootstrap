@@ -39,7 +39,6 @@ Tried to mimic its code structure as much as possible.
    * :country
    * :url
    * :search
-   * :hidden
    * :range
  * Fancy Bootstrap
 * Errors
