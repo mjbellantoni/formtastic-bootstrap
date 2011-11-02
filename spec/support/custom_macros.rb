@@ -54,6 +54,7 @@ module CustomMacros
       it "should have a label for ##{element_id}" do
         # output_buffer.should have_tag("form div label.label[@for='#{element_id}']")
         output_buffer.should have_tag("form div.clearfix label[@for='#{element_id}']")
+        output_buffer.should_not have_tag("form div.clearfix label.label")
       end
     end
     
