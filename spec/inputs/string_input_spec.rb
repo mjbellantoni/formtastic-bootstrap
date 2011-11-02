@@ -17,10 +17,11 @@ describe 'string input' do
         concat(builder.input(:title, :as => :string))
       end)
     end
-    
+
     it_should_have_input_wrapper_with_class(:string)
     it_should_have_input_wrapper_with_class(:clearfix)
     it_should_have_input_wrapper_with_class(:stringish)
+    it_should_have_input_class_in_the_right_place
     it_should_have_input_wrapper_with_id("post_title_input")
     it_should_have_label_with_text(/Title/)
     it_should_have_label_for("post_title")
