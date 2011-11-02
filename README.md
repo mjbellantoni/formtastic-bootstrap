@@ -38,7 +38,6 @@ Tried to mimic its code structure as much as possible.
    * :file
    * :country
    * :url
-   * :phone
    * :search
    * :hidden
    * :range
