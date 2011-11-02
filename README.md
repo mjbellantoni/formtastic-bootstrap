@@ -2,7 +2,15 @@
 
 Two great tastes in one: Formtastic and the Twitter Bootstrap framework.
 
+
+# About the Implementation
+
+Way too much code copied from Formtastic (behavior and classes.)
+Tried to mimic its code structure as much as possible.
+
 ## Getting Started
+
+## Major Difference in Behavior
 
 ## Contributing to formtastic-bootstrap
  
@@ -16,26 +24,28 @@ Two great tastes in one: Formtastic and the Twitter Bootstrap framework.
 
 ## To Do
 * Field Types
- * :select
- * :check_boxes
- * :radio
- * :time_zone
- * :password
- * :text
- * :date
- * :datetime
- * :time
- * :boolean
- * :string
- * :number
- * :file
- * :country
- * :email
- * :url
- * :phone
- * :search
- * :hidden
- * :range
+ * Basic Formtastic
+   * :select
+   * :check_boxes
+   * :radio
+   * :time_zone
+   * :password
+   * :text
+   * :date
+   * :datetime
+   * :time
+   * :boolean
+   * :string
+   * :number
+   * :file
+   * :country
+   * :email
+   * :url
+   * :phone
+   * :search
+   * :hidden
+   * :range
+ * Fancy Bootstrap
 * Errors
  * List
  * Field
