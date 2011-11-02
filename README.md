@@ -29,7 +29,6 @@ Tried to mimic its code structure as much as possible.
    * :check_boxes
    * :radio
    * :time_zone
-   * :text
    * :date
    * :datetime
    * :time

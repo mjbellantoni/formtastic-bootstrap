@@ -99,13 +99,13 @@ module CustomMacros
 
     def it_should_have_textarea_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form li textarea[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.clearfix div.input textarea[@name=\"#{name}\"]")
       end
     end
 
     def it_should_have_textarea_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form li textarea##{element_id}")
+        output_buffer.should have_tag("form div.clearfix div.input textarea##{element_id}")
       end
     end
 
