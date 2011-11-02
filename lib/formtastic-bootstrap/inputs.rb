@@ -5,6 +5,7 @@ require "formtastic-bootstrap/inputs/password_input"
 require "formtastic-bootstrap/inputs/phone_input"
 require "formtastic-bootstrap/inputs/string_input"
 require "formtastic-bootstrap/inputs/text_input"
+require "formtastic-bootstrap/inputs/url_input"
 
 module FormtasticBootstrap
   module Inputs
