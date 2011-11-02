@@ -40,6 +40,9 @@ Tried to mimic its code structure as much as possible.
    * :search
    * :range
  * Fancy Bootstrap
+  * Prepend Text
+  * Prepend Checkbox
+  * Appended Checkbox
 * Errors
  * List
  * Field
