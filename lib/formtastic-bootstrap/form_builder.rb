@@ -38,6 +38,12 @@ module FormtasticBootstrap
       end
     end
 
+    def search_field(method, input_html_options)
+      template.content_tag(:div, :class => "input") do 
+        super(method, input_html_options)
+      end
+    end
+
     def url_field(method, input_html_options)
       template.content_tag(:div, :class => "input") do 
         super(method, input_html_options)
