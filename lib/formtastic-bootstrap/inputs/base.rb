@@ -1,12 +1,13 @@
 require "formtastic-bootstrap/inputs/base/hints"
 require "formtastic-bootstrap/inputs/base/labelling"
+require "formtastic-bootstrap/inputs/base/stringish"
 require "formtastic-bootstrap/inputs/base/wrapping"
 
 module FormtasticBootstrap
   module Inputs
     module Base
 
-      include Hints
+      # include Hints
       include Labelling
       include Wrapping
 

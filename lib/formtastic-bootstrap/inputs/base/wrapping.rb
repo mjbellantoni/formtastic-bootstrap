@@ -7,7 +7,7 @@ module FormtasticBootstrap
 
         def input_wrapping(&block)
           template.content_tag(:div, wrapper_html_options) do
-            [template.capture(&block), error_html, hint_html].join("\n").html_safe, 
+            [template.capture(&block), error_html, hint_html].join("\n").html_safe 
           end
         end
 
