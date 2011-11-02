@@ -20,6 +20,12 @@ module FormtasticBootstrap
       end
     end
 
+    def email_field(method, input_html_options)
+      template.content_tag(:div, :class => "input") do 
+        super(method, input_html_options)
+      end
+    end
+
     include FormtasticBootstrap::Helpers::InputHelper
     include FormtasticBootstrap::Helpers::InputsHelper
     include FormtasticBootstrap::Helpers::ButtonsHelper
