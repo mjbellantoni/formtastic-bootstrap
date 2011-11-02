@@ -22,6 +22,8 @@ Tried to mimic its code structure as much as possible.
 
 * Some of this was done in a pretty mechanical matter to get the tests to pass.  If you don't think the right thing is happening, let me know.
 * Formtastic does more than Bootstrap lays out.  There were situations where I didn't know what to do (nested controls for example.)
+* I've inferred what :boolean should do since there's no example of a single checkbox given.
+* In some places the markup is tortuous (:boolean.)  Hopefully as Bootstrap evolves these can get simplified.
 
 ## Contributing to formtastic-bootstrap
  
@@ -42,9 +44,9 @@ Tried to mimic its code structure as much as possible.
    * :date
    * :datetime
    * :time
-   * :boolean
    * :file
    * :country
+   * Groups of radio buttons
  * Fancy Bootstrap
   * Multiple Select (or is this covered?)
   * Date Range

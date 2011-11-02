@@ -1,4 +1,5 @@
 require "formtastic-bootstrap/inputs/base"
+require "formtastic-bootstrap/inputs/boolean_input"
 require "formtastic-bootstrap/inputs/email_input"
 require "formtastic-bootstrap/inputs/hidden_input"
 require "formtastic-bootstrap/inputs/number_input"
