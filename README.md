@@ -38,7 +38,6 @@ Tried to mimic its code structure as much as possible.
 ## To Do
 * Field Types
  * Basic Formtastic
-   * :check_boxes
    * :time_zone
    * :date
    * :datetime

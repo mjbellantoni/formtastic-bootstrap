@@ -28,7 +28,7 @@ describe 'radio input' do
     it_should_apply_error_logic_for_input_type(:radio)
     it_should_use_the_collection_when_provided(:radio, 'input')
 
-    it 'should generate a legend containing a label with text for the input' do
+    it 'should generate a \'legend\' containing a label with text for the input' do
       output_buffer.should have_tag('form div.clearfix label')
       output_buffer.should have_tag('form div.clearfix label', /Author/)
     end

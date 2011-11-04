@@ -14,7 +14,7 @@ module FormtasticBootstrap
         end
 
         def choices_wrapping_html_options
-          # Call the Formtastic one explicity and append?
+          # TODO Call the Formtastic one explicity and append?
           { :class => "choices input" }
         end
 
@@ -27,14 +27,6 @@ module FormtasticBootstrap
 
         def choices_group_wrapping_html_options
           { :class => "choices-group inputs-list" }
-        end
-
-        def choice_html(choice)        
-          template.content_tag(:label, label_html_options.merge(:for => choice_input_dom_id(choice), :class => nil)) do
-            builder.radio_button(input_name, choice_value(choice), input_html_options.merge(choice_html_options(choice)).merge(:required => false)) << 
-
-            choice_label(choice)
-          end
         end
 
         def choice_label(choice)
