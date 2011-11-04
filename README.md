@@ -39,14 +39,13 @@ Tried to mimic its code structure as much as possible.
 * Field Types
  * Basic Formtastic
    * :check_boxes
-   * :radio
    * :time_zone
    * :date
    * :datetime
    * :time
    * :file
    * :country
-   * Groups of radio buttons
+   * Fieldsets
  * Fancy Bootstrap
   * Multiple Select (or is this covered?)
   * Date Range
@@ -59,6 +58,7 @@ Tried to mimic its code structure as much as possible.
 * Hints
 * More tests
 * Documentation
+* Refactor :boolean, :radio, :check_boxes to use common "choices" code.
 
 
 ## Copyright

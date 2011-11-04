@@ -47,9 +47,27 @@ module CustomMacros
       end
     end
     
+    def it_should_have_a_nested_div
+      it "should have a nested div" do
+        output_buffer.should have_tag("form div.clearfix div")
+      end
+    end
+
+    def it_should_have_a_nested_div_with_class(klass)
+      it "should have a nested div with class #{klass}" do
+        output_buffer.should have_tag("form div.clearfix div.#{klass}")
+      end
+    end
+    
     def it_should_have_a_nested_ordered_list_with_class(klass)
       it "should have a nested fieldset with class #{klass}" do
         output_buffer.should have_tag("form li ol.#{klass}")
+      end
+    end
+
+    def it_should_have_a_nested_unordered_list_with_class(klass)
+      it "should have a nested unordered list with class #{klass}" do
+        output_buffer.should have_tag("form div.clearfix div ul.#{klass}")
       end
     end
 
@@ -310,10 +328,10 @@ module CustomMacros
                 end
                 concat(fields)
               end)
-              output_buffer.should have_tag("form li fieldset ol li label[@for='post_author_category_name_general']")
-              output_buffer.should have_tag("form li fieldset ol li label[@for='post_author_category_name_design']")
-              output_buffer.should have_tag("form li fieldset ol li label[@for='post_author_category_name_development']")
-              output_buffer.should have_tag("form li fieldset ol li label[@for='post_author_category_name_quasi-serious_inventions']")
+              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_general']")
+              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_design']")
+              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_development']")
+              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_quasi-serious_inventions']")
             end
           end
         end
