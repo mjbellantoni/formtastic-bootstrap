@@ -1,3 +1,4 @@
+require "formtastic-bootstrap/inputs/base/choices"
 require "formtastic-bootstrap/inputs/base/hints"
 require "formtastic-bootstrap/inputs/base/labelling"
 require "formtastic-bootstrap/inputs/base/stringish"
