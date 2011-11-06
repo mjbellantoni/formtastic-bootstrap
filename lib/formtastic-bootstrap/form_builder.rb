@@ -15,6 +15,12 @@ module FormtasticBootstrap
       end
     end
 
+    def file_field(method, input_html_options)
+      bootstrap_input_wrapping do
+        super(method, input_html_options)
+      end
+    end
+
     def grouped_collection_select(method, collection, group_method, group_label_method, option_key_method, option_value_method, options, html_options)
       bootstrap_input_wrapping do
         super(method, collection, group_method, group_label_method, option_key_method, option_value_method, options, html_options)
