@@ -14,15 +14,18 @@ Tried to mimic its code structure as much as possible.
 
 ### Major Difference in Behavior
 
-* No "label" class on labels because Bootstrap uses this label for something else.
+* No "label" class on labels because Bootstrap uses this label for another purpose (highlighting arbitrary text.)
 * 'input' label is in a different place because it makes Bootstrap behave correctly.
-* Data and DateTime These are a series of dropdowns in Formtastic, but are just test fields in Bootstrap.
+* :date, :datetime and :time. These are a series of dropdowns in Formtastic, but are just test fields in Bootstrap.  You lose some of the automagic that (apparently) gets done.  [See if I can come up with a recommendation.]
+  * Also, date at al are tagged with the 'stringish' class.
+  * Don't have hidden fields for date.
 
 ### Other
 
 * Some of this was done in a pretty mechanical matter to get the tests to pass.  If you don't think the right thing is happening, let me know.
 * Formtastic does more than Bootstrap lays out.  There were situations where I didn't know what to do (nested controls for example.)
 * I've inferred what :boolean should do since there's no example of a single checkbox given.
+* I've inferred what :datetime should do since there's not example of a single :datetime
 * In some places the markup is tortuous (:boolean.)  Hopefully as Bootstrap evolves these can get simplified.
 
 ## Contributing to formtastic-bootstrap
@@ -38,14 +41,13 @@ Tried to mimic its code structure as much as possible.
 ## To Do
 * Field Types
  * Basic Formtastic
-   * :time_zone
-   * :date
    * :datetime
+   * :date
    * :time
-   * :file
-   * :country
    * Fieldsets
- * Fancy Bootstrap
+   * :country
+   * :time_zone
+ * Fancy Bootstrap Fields
   * Multiple Select (or is this covered?)
   * Date Range
   * Prepend Text
@@ -55,9 +57,13 @@ Tried to mimic its code structure as much as possible.
  * List
  * Field
 * Hints
-* More tests
+* Is there a way to make :datetime, :time, :date work better?
+* Disabled inputs
+* Tests
+ * Refactor
+ * More -- See if I'm making sure the Bootstrap classes are present.
 * Documentation
-* Refactor :boolean, :radio, :check_boxes to use common "choices" code.
+* Refactor :boolean to use common "choices" code (if possible.)
 
 
 ## Copyright
