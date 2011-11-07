@@ -19,7 +19,7 @@ Tried to mimic its code structure as much as possible.
 * :date, :datetime and :time. These are a series of dropdowns in Formtastic, but are just test fields in Bootstrap.  You lose some of the automagic that (apparently) gets done.  [See if I can come up with a recommendation.]
   * Also, date at al are tagged with the 'stringish' class.
   * Don't have hidden fields for date.
-
+* Fieldsets are simply nested.  List (li) elements are not inserted.
 ### Other
 
 * Some of this was done in a pretty mechanical matter to get the tests to pass.  If you don't think the right thing is happening, let me know.
@@ -64,6 +64,8 @@ Tried to mimic its code structure as much as possible.
  * More -- See if I'm making sure the Bootstrap classes are present.
 * Documentation
 * Refactor :boolean to use common "choices" code (if possible.)
+* Boostrap
+  * Ask why they use 'inline-inputs' class instead of a fieldset tag.
 
 
 ## Copyright
