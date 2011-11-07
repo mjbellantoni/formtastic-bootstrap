@@ -12,6 +12,7 @@ module FormtasticSpecHelper
   include ActionView::Helpers::ActiveRecordHelper if defined?(ActionView::Helpers::ActiveRecordHelper)
   include ActionView::Helpers::ActiveModelHelper if defined?(ActionView::Helpers::ActiveModelHelper)
   include ActionView::Helpers::DateHelper
+  include ActionView::Helpers::TextFieldDateHelper # I added this!
   include ActionView::Helpers::CaptureHelper
   include ActionView::Helpers::AssetTagHelper
   include ActiveSupport

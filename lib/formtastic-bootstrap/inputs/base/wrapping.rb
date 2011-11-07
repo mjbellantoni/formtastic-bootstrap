@@ -11,6 +11,18 @@ module FormtasticBootstrap
           end
         end
 
+        def inline_inputs_wrapping(&block)
+          template.content_tag(:div, :class => "inline-inputs") do
+            yield
+          end
+        end
+
+        def bootstrap_input_wrapping
+          template.content_tag(:div, :class => "input") do 
+            yield
+          end
+        end
+
         def wrapper_html_options
           opts = options[:wrapper_html] || {}
           opts[:class] ||= []

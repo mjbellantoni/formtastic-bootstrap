@@ -41,14 +41,9 @@ Tried to mimic its code structure as much as possible.
 ## To Do
 * Field Types
  * Basic Formtastic
-   * :datetime
-   * :date
-   * :time
-   * Fieldsets
    * :country
    * :time_zone
  * Fancy Bootstrap Fields
-  * Multiple Select (or is this covered?)
   * Date Range
   * Prepend Text
   * Prepend Checkbox
@@ -57,7 +52,9 @@ Tried to mimic its code structure as much as possible.
  * List
  * Field
 * Hints
-* Is there a way to make :datetime, :time, :date work better?
+* :datetime, :date, :time
+ * As rich functionally as their Rails counterparts.
+ * Extract into a standalone gem.
 * Disabled inputs
 * Tests
  * Refactor

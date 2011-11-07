@@ -93,7 +93,8 @@ module CustomMacros
 
     def it_should_have_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.clearfix div.input input##{element_id}")
+        # output_buffer.should have_tag("form div.clearfix div.input input##{element_id}")
+        output_buffer.should have_tag("form div.clearfix div.input input[@id=\"#{element_id}\"]")
       end
     end
 
