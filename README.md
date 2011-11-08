@@ -135,10 +135,10 @@ In particular:
    * :country
    * :time_zone
  * Fancy Bootstrap Fields
-  * Date Range
-  * Prepend Text
-  * Prepend Checkbox
-  * Appended Checkbox
+   * Date Range
+   * Prepend Text
+   * Prepend Checkbox
+   * Appended Checkbox
 * :datetime, :date, :time
  * As rich functionally as their Rails counterparts.
  * Extract into a standalone gem.
