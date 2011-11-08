@@ -18,8 +18,8 @@ And install it with <tt>bundle install</tt>.
 
 You will then need to add the following line to your Formtastic initialization file:
 
-  # config/initializers/formtastic.rb
-  Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    # config/initializers/formtastic.rb
+    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
 
 ## Formtastic vs. Formtastic Bootstrap
 
