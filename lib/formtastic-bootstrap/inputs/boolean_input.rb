@@ -5,10 +5,10 @@ module FormtasticBootstrap
       include Base
 
       def to_html
-        input_wrapping do
+        clearfix_div_wrapping do
           empty_label <<
           hidden_field_html <<
-          template.content_tag(:div, :class => "input") do
+          input_div_wrapping(:block) do
             template.content_tag(:ul, :class => "inputs-list") do
               template.content_tag(:li) do
                 label_with_nested_checkbox

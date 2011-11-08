@@ -23,7 +23,7 @@ describe 'check_boxes input' do
     it_should_have_a_nested_div
     it_should_have_a_nested_div_with_class('choices.input')
     it_should_have_a_nested_unordered_list_with_class('choices-group.inputs-list')
-    it_should_apply_error_logic_for_input_type(:check_boxes)
+    it_should_apply_error_logic_for_input_type(:check_boxes, :block)
     it_should_call_find_on_association_class_when_no_collection_is_provided(:check_boxes)
     it_should_use_the_collection_when_provided(:check_boxes, 'input[@type="checkbox"]')
 

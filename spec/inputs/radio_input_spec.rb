@@ -25,7 +25,7 @@ describe 'radio input' do
     it_should_have_a_nested_div
     it_should_have_a_nested_div_with_class('choices.input')
     it_should_have_a_nested_unordered_list_with_class('choices-group.inputs-list')
-    it_should_apply_error_logic_for_input_type(:radio)
+    it_should_apply_error_logic_for_input_type(:radio, :block)
     it_should_use_the_collection_when_provided(:radio, 'input')
 
     it 'should generate a \'legend\' containing a label with text for the input' do

@@ -141,7 +141,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.clearfix div.input input[@size='#{Formtastic::FormBuilder.default_text_field_size}']")
+          output_buffer.should have_tag("form div.clearfix div.input input[@size='#{FormtasticBootstrap::FormBuilder.default_text_field_size}']")
         end
       end
     end
@@ -196,9 +196,10 @@ module CustomMacros
       end
     end
 
-    def it_should_apply_error_logic_for_input_type(type)
+    def it_should_apply_error_logic_for_input_type(type, inline_or_block = :inline)
       describe 'when there are errors on the object for this method' do
-        before do
+
+        before(:each) do
           @title_errors = ['must not be blank', 'must be longer than 10 characters', 'must be awesome']
           @errors = mock('errors')
           @errors.stub!(:[]).with(:title).and_return(@title_errors)
@@ -206,6 +207,16 @@ module CustomMacros
             @errors.stub!(:[]).with("title_#{suffix}".to_sym).and_return(nil)
           end
           @new_post.stub!(:errors).and_return(@errors)
+
+          @orig_inline_errors      = FormtasticBootstrap::FormBuilder.inline_errors
+          @orig_inline_error_class = FormtasticBootstrap::FormBuilder.default_inline_error_class
+          @orig_error_list_class   = FormtasticBootstrap::FormBuilder.default_error_list_class
+        end
+
+        after(:each) do
+          FormtasticBootstrap::FormBuilder.inline_errors              = @orig_inline_errors
+          FormtasticBootstrap::FormBuilder.default_inline_error_class = @orig_inline_error_class
+          FormtasticBootstrap::FormBuilder.default_error_list_class   = @orig_error_list_class
         end
 
         it 'should apply an errors class to the list item' do
@@ -223,15 +234,20 @@ module CustomMacros
         end
 
         it 'should render a paragraph for the errors' do
-          Formtastic::FormBuilder.inline_errors = :sentence
+          FormtasticBootstrap::FormBuilder.inline_errors = :sentence
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => type))
           end)
-          output_buffer.should have_tag('form div.error p.inline-errors')
+          # output_buffer.should have_tag('form div.error p.inline-errors')
+          if inline_or_block == :inline
+            output_buffer.should have_tag('form div.error span.help-inline')
+          else
+            output_buffer.should have_tag('form div.error span.help-block')
+          end
         end
 
         it 'should not display an error list' do
-          Formtastic::FormBuilder.inline_errors = :list
+          FormtasticBootstrap::FormBuilder.inline_errors = :list
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => type))
           end)
@@ -251,7 +267,8 @@ module CustomMacros
         end
 
         it 'should not render a paragraph for the errors' do
-          output_buffer.should_not have_tag('form div.error p.inline-errors')
+          # output_buffer.should_not have_tag('form div.error p.inline-errors')
+          output_buffer.should_not have_tag('form div.error span.help-inline')
         end
 
         it 'should not display an error list' do
@@ -271,7 +288,8 @@ module CustomMacros
         end
 
         it 'should not render a paragraph for the errors' do
-          output_buffer.should_not have_tag('form div.error p.inline-errors')
+          # output_buffer.should_not have_tag('form div.error p.inline-errors')
+          output_buffer.should_not have_tag('form div.error span.help-inline')
         end
 
         it 'should not display an error list' do

@@ -373,10 +373,10 @@ module FormtasticSpecHelper
   end
 
   def with_config(config_method_name, value, &block)
-    old_value = Formtastic::FormBuilder.send(config_method_name)
-    Formtastic::FormBuilder.send(:"#{config_method_name}=", value)
+    old_value = FormtasticBootstrap::FormBuilder.send(config_method_name)
+    FormtasticBootstrap::FormBuilder.send(:"#{config_method_name}=", value)
     yield
-    Formtastic::FormBuilder.send(:"#{config_method_name}=", old_value)
+    FormtasticBootstrap::FormBuilder.send(:"#{config_method_name}=", old_value)
   end
 
 end

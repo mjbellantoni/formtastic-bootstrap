@@ -6,11 +6,8 @@ module FormtasticBootstrap
       include Base::Timeish
 
       def to_html
-        input_wrapping do
-          label_html <<
-          bootstrap_input_wrapping do
-            date_input_html
-          end
+        generic_input_wrapping do
+          date_input_html
         end
       end
 

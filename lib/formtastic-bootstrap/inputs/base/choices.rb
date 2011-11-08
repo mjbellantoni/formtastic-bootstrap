@@ -3,13 +3,9 @@ module FormtasticBootstrap
     module Base
       module Choices
 
-        ####################
-        # Below is stuff derived from "choices.rb"
-        # Create that file if there's enough schtuff.
-        #
-        def choices_wrapping(&block)
+        def input_div_wrapping(&block)
           template.content_tag(:div, choices_wrapping_html_options) do
-            template.capture(&block)
+            [yield, error_html(:block), hint_html].join("\n").html_safe  
           end
         end
 

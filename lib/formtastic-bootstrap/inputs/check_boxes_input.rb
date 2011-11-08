@@ -5,10 +5,10 @@ module FormtasticBootstrap
       include Base::Choices
 
       def to_html
-        input_wrapping do
+        clearfix_div_wrapping do
           legend_html <<
           hidden_field_for_all <<
-          choices_wrapping do
+          input_div_wrapping do
             choices_group_wrapping do
               collection.map { |choice|
                 choice_wrapping(choice_wrapping_html_options(choice)) do

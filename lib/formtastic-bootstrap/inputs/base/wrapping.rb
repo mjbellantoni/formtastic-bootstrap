@@ -5,20 +5,29 @@ module FormtasticBootstrap
 
         include Formtastic::Inputs::Base::Wrapping
 
-        def input_wrapping(&block)
-          template.content_tag(:div, wrapper_html_options) do
-            [template.capture(&block), error_html, hint_html].join("\n").html_safe 
+        def generic_input_wrapping(&block)
+          clearfix_div_wrapping do
+            label_html <<
+            input_div_wrapping do
+              yield
+            end
           end
         end
 
-        def inline_inputs_wrapping(&block)
-          template.content_tag(:div, :class => "inline-inputs") do
+        def clearfix_div_wrapping(&block)
+          template.content_tag(:div, wrapper_html_options) do
             yield
           end
         end
 
-        def bootstrap_input_wrapping
+        def input_div_wrapping(inline_or_block_errors = :inline)
           template.content_tag(:div, :class => "input") do 
+            [yield, error_html(inline_or_block_errors), hint_html].join("\n").html_safe  
+          end
+        end
+
+        def inline_inputs_div_wrapping(&block)
+          template.content_tag(:div, :class => "inline-inputs") do
             yield
           end
         end

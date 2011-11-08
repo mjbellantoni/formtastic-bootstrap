@@ -27,6 +27,7 @@ Tried to mimic its code structure as much as possible.
 * I've inferred what :boolean should do since there's no example of a single checkbox given.
 * I've inferred what :datetime should do since there's not example of a single :datetime
 * In some places the markup is tortuous (:boolean.)  Hopefully as Bootstrap evolves these can get simplified.
+* Different html classes for sentence-based inline/block error messages.
 
 ## Contributing to formtastic-bootstrap
  
@@ -49,8 +50,10 @@ Tried to mimic its code structure as much as possible.
   * Prepend Checkbox
   * Appended Checkbox
 * Errors
+ * Inline
  * List
- * Field
+ * First
+ * None
 * Hints
 * :datetime, :date, :time
  * As rich functionally as their Rails counterparts.

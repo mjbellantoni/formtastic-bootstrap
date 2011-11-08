@@ -1,5 +1,7 @@
 require "formtastic-bootstrap/inputs/base/choices"
+require "formtastic-bootstrap/inputs/base/errors"
 require "formtastic-bootstrap/inputs/base/hints"
+require "formtastic-bootstrap/inputs/base/html"
 require "formtastic-bootstrap/inputs/base/labelling"
 require "formtastic-bootstrap/inputs/base/stringish"
 require "formtastic-bootstrap/inputs/base/timeish"
@@ -10,6 +12,8 @@ module FormtasticBootstrap
     module Base
 
       # include Hints
+      include Errors
+      include Html
       include Labelling
       include Wrapping
       

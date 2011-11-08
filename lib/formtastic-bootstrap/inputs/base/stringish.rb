@@ -5,6 +5,8 @@ module FormtasticBootstrap
     module Base
       module Stringish
         
+        include Formtastic::Inputs::Base::Stringish
+
         def wrapper_html_options
           new_class = [super[:class], "stringish"].compact.join(" ")
           super.merge(:class => new_class)
