@@ -5,7 +5,7 @@ module FormtasticBootstrap
 
         def input_div_wrapping(&block)
           template.content_tag(:div, choices_wrapping_html_options) do
-            [yield, error_html(:block), hint_html].join("\n").html_safe  
+            [yield, error_html(:block), hint_html(:block)].join("\n").html_safe  
           end
         end
 

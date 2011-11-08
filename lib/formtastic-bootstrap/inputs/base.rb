@@ -11,8 +11,8 @@ module FormtasticBootstrap
   module Inputs
     module Base
 
-      # include Hints
       include Errors
+      include Hints
       include Html
       include Labelling
       include Wrapping
