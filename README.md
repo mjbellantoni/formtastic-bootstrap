@@ -8,21 +8,85 @@ A [Formtastic](https://github.com/justinfrench/formtastic) form builder that cre
 
 Formtastic Bootstrap has only been tested with Ruby 1.9.2, Rails 3.1, Formtastic 2.0 and Twitter Bootstrap 1.3.
 
-### Installation
+#### Installation
 
-Install the gem with <tt>gem install formtastic-bootstrap</tt> or add it to your Gemfile:
+Install the gem with 
+
+    gem install formtastic-bootstrap
+
+Or add it to your Gemfile:
 
     gem 'formtastic-bootstrap'
 
 And install it with <tt>bundle install</tt>.
+
+#### Configuration
 
 You will then need to add the following line to your Formtastic initialization file:
 
     # config/initializers/formtastic.rb
     Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
 
+Make sure you've already downloaded and installed Formtastic!
+
+
 ## Formtastic vs. Formtastic Bootstrap
 
+
+### Overview
+
+In general, Formtastic creates very verbose HTML whereas Bootstrap expects simpler HTML.  Every attempt has been
+made to generate the HTML expected by Bootstrap while still generating the rich HTML provided by Bootstrap.  Here's a pretty typical (simplified) example of what Formtastic generates and what Formtastic Bootstrap generates.
+
+#### ERB
+
+    <%= semantic_form_for @post do |f| %>
+      <%= f.semantic_errors %>
+      <%= f.inputs do %>
+        <%= f.input :title, :hint => "This is the title!" %>
+      <% end %>
+      <%= f.buttons do %>
+        <%= f.commit_button %>
+      <% end %>
+    <% end %>
+
+#### Formtastic
+
+    <form accept-charset="UTF-8" action="/posts" class="formtastic post" id="new_post" method="post">
+      <fieldset class="inputs">
+        <ol>
+          <li class="string input optional stringish" id="post_title_input">
+            <label class=" label" for="post_title">Title</label>
+            <input id="post_title" maxlength="255" name="post[title]" type="text" value="" />
+            <p class="inline-hints">This is the title!</p>
+          </li>
+        </ol>
+      </fieldset>
+      <fieldset class="buttons">
+        <ol>
+          <li class="commit button">
+            <input class="create" name="commit" type="submit" value="Create Post" />
+          </li>
+        </ol>
+      </fieldset>
+    </form>
+
+#### Formtastic Bootstrap
+
+    <form accept-charset="UTF-8" action="/posts" class="formtastic post" id="new_post" method="post">
+      <fieldset class="inputs">
+        <div class="string clearfix optional stringish" id="post_title_input">
+          <label class="" for="post_title">Title</label>
+          <div class="input">
+            <input id="post_title" maxlength="255" name="post[title]" type="text" value="" />
+            <span class="help-inline">This is the title!</span>
+          </div>
+        </div>
+      </fieldset>
+      <div class="actions">
+        <input class="btn create" name="commit" type="submit" value="Create Post" />
+      </div>
+    </form>
 
 ### Major Difference in Behavior
 
