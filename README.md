@@ -90,20 +90,32 @@ made to generate the HTML expected by Bootstrap while still generating the rich 
 
 ### Major Difference in Behavior
 
-* No "label" class on labels because Bootstrap uses this label for another purpose (highlighting arbitrary text.)
-* 'input' label is in a different place because it makes Bootstrap behave correctly.
-* :date, :datetime and :time. These are a series of dropdowns in Formtastic, but are just test fields in Bootstrap.  You lose some of the automagic that (apparently) gets done.  [See if I can come up with a recommendation.]
-  * Also, date at al are tagged with the 'stringish' class.
-  * Don't have hidden fields for date.
-* Fieldsets are simply nested.  List (li) elements are not inserted.
+* Fortastic Bootstrap omits the <tt>label</tt> class on label tags since Twitter Bootstrap uses this tag in another context (and it makes bad things happen.)
+* Fortastic Bootstrap puts the <tt>input</tt> label in a different place because it makes Bootstrap behave correctly.
+* Fortastic Bootstrap renders <tt>:date</tt>, <tt>:datetime</tt> and <tt>:time</tt> as text fields since this is how Twitter Bootstrap presents these data types  (Formtastic renders them as dropdowns.) Some Rails magic may have been lost here.  Additionally:
+  * <tt>:date</tt> et al are tagged with the <tt>stringish</tt> class.
+  * Hidden fields are not generated.
+* Fieldsets are simply nested.
+
+Bootstrap is somewhat incomplete, and in a few cases an inference needed to be drawn to determine a course of action.  If you disagree with any of these choices, feel free to let me know.
+
 ### Other
 
-* Some of this was done in a pretty mechanical matter to get the tests to pass.  If you don't think the right thing is happening, let me know.
-* Formtastic does more than Bootstrap lays out.  There were situations where I didn't know what to do (nested controls for example.)
-* I've inferred what :boolean should do since there's no example of a single checkbox given.
-* I've inferred what :datetime should do since there's not example of a single :datetime
-* In some places the markup is tortuous (:boolean.)  Hopefully as Bootstrap evolves these can get simplified.
-* Different html classes for sentence-based inline/block error messages.
+A lot of the code (especially the test suite) was copied over from Formtastic and then beaten into submission.  I'm sure you'll find some ugliness in there.  In general, I mimicked the Formtastic code structure as much as possible.
+
+In particular:
+
+* Bootstrap doesn't say anything about nested <tt>formfields</tt>.
+* Bootstrap doesn't explicitly lay out a <tt>:boolean</tt> control.
+* Bootstrap doesn't explicitly say everything that needs to be said about <tt>:datetime</tt>, <tt>:date</tt>, and <tt>:time</tt>.
+* I've inferred what <tt>:datetime</tt> should do since there's not example of a single <tt>:datetime</tt>.
+* In some places the markup is tortuous (e.g. <tt>:boolean</tt>.)  Hopefully as Bootstrap evolves these can get simplified!
+* Bootstrap uses different HTML classes for sentence-based inline/block error messages.
+
+### What's Missing
+
+* Formtastic's <tt>:country</tt> and <tt>:time_zone</tt> have not yet been implemented.
+* Twitter Bootstrap's Date Range, Prepend Text, Prepend Checkbox and Appended Checkbox controls have not yet been implemented.
 
 ## Contributing to formtastic-bootstrap
  
@@ -115,11 +127,9 @@ made to generate the HTML expected by Bootstrap while still generating the rich 
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-## About the Implementation
-
-A lot of the code (especially the test suite) was copied over from Formtastic and then beaten into submission.  I'm sure you'll find some ugliness in there.  In general, I mimicked the Formtastic code structure as much as possible.
 
 ### To Do
+
 * Field Types
  * Basic Formtastic
    * :country
