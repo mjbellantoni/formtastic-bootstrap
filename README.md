@@ -36,7 +36,7 @@ Make sure you've already downloaded and installed Formtastic!
 ### Overview
 
 In general, Formtastic creates very verbose HTML whereas Bootstrap expects simpler HTML.  Every attempt has been
-made to generate the HTML expected by Bootstrap while still generating the rich HTML provided by Bootstrap.  Here's a pretty typical (simplified) example of what Formtastic generates and what Formtastic Bootstrap generates.
+made to generate the HTML expected by Bootstrap while still generating the rich HTML provided by Formtastic.  Here's a pretty typical (simplified) example of what Formtastic generates and what Formtastic Bootstrap generates.
 
 #### ERB
 
