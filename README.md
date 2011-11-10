@@ -90,9 +90,9 @@ made to generate the HTML expected by Bootstrap while still generating the rich 
 
 ### Major Difference in Behavior
 
-* Fortastic Bootstrap omits the <tt>label</tt> class on label tags since Twitter Bootstrap uses this tag in another context (and it makes bad things happen.)
-* Fortastic Bootstrap puts the <tt>input</tt> label in a different place because it makes Bootstrap behave correctly.
-* Fortastic Bootstrap renders <tt>:date</tt>, <tt>:datetime</tt> and <tt>:time</tt> as text fields since this is how Twitter Bootstrap presents these data types  (Formtastic renders them as dropdowns.) Some Rails magic may have been lost here.  Additionally:
+* Formtastic Bootstrap omits the <tt>label</tt> class on label tags since Twitter Bootstrap uses this tag in another context (and it makes bad things happen.)
+* Formtastic Bootstrap puts the <tt>input</tt> label in a different place because it makes Bootstrap behave correctly.
+* Formtastic Bootstrap renders <tt>:date</tt>, <tt>:datetime</tt> and <tt>:time</tt> as text fields since this is how Twitter Bootstrap presents these data types  (Formtastic renders them as dropdowns.) Some Rails magic may have been lost here.  Additionally:
   * <tt>:date</tt> et al are tagged with the <tt>stringish</tt> class.
   * Hidden fields are not generated.
 * Fieldsets are simply nested.
