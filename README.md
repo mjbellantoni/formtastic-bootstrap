@@ -2,6 +2,8 @@
 
 A [Formtastic](https://github.com/justinfrench/formtastic) form builder that creates markup suitable for the [Twitter Bootstrap](http://twitter.github.com/bootstrap/) framework.  In theory, it should just work.  Two great tastes in one!
 
+You can follow [FormBoot on twitter](http://twitter.com/FormBoot) for update announcements and other relevant info.
+
 ## Getting Started
 
 ### Dependencies
