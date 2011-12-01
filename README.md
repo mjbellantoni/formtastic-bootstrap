@@ -86,7 +86,7 @@ made to generate the HTML expected by Bootstrap while still generating the rich 
         </div>
       </fieldset>
       <div class="actions">
-        <input class="btn create" name="commit" type="submit" value="Create Post" />
+        <input class="btn create commit" name="commit" type="submit" value="Create Post" />
       </div>
     </form>
 
@@ -98,8 +98,11 @@ made to generate the HTML expected by Bootstrap while still generating the rich 
   * <tt>:date</tt> et al are tagged with the <tt>stringish</tt> class.
   * Hidden fields are not generated.
 * Fieldsets are simply nested.
+* <tt>f.buttons :name</tt> is not supported.  This generates a <tt>fieldset</tt> and <tt>legend</tt> tag which will cause the wrong thing to happen in Bootstrap.
 
 Bootstrap is somewhat incomplete, and in a few cases an inference needed to be drawn to determine a course of action.  If you disagree with any of these choices, feel free to let me know.
+
+(At some point, this gem may also provide some additional CSS to cover cases left unaddressed by Bootstrap, but its obvious what should be done.  That's not going to happen any time soon though!)
 
 ### Other
 
@@ -121,6 +124,16 @@ In particular:
 
 ## Contributing to formtastic-bootstrap
  
+### Submitting Issues
+
+If you're filing a bug, thank you!  Secondly, in the report please include:
+
+* The version of Formtastic you're using.
+* The version of Twitter Bootstrap you're using.
+* The code for your form.
+* Anything else you think will help!
+
+### Source Contributions
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
