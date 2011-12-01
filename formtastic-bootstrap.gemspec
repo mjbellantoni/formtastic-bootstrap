@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "formtastic-bootstrap"
-  s.version = "1.0.1"
+  s.version = "1.0.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthew Bellantoni"]
-  s.date = "2011-11-11"
+  s.date = "2011-12-01"
   s.description = "Formtastic form builder to generate Twitter Bootstrap-friendly markup."
   s.email = "mjbellantoni@yahoo.com"
   s.extra_rdoc_files = [
@@ -64,6 +64,7 @@ Gem::Specification.new do |s|
     "lib/formtastic-bootstrap/inputs/url_input.rb",
     "spec/builder/errors_spec.rb",
     "spec/builder/semantic_fields_for_spec.rb",
+    "spec/helpers/buttons_helper_spec.rb",
     "spec/helpers/input_helper_spec.rb",
     "spec/helpers/inputs_helper_spec.rb",
     "spec/inputs/boolean_input_spec.rb",
