@@ -24,10 +24,15 @@ And install it with <tt>bundle install</tt>.
 
 #### Configuration
 
-You will then need to add the following line to your Formtastic initialization file:
+Add the following line to your Formtastic initialization file:
 
     # config/initializers/formtastic.rb
     Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+
+Add the following line to the top of your <tt>application.css</tt> file:
+
+    # app/assets/stylesheets/application.css
+    *= require formtastic-bootstrap
 
 Make sure you've already downloaded and installed Formtastic!
 
