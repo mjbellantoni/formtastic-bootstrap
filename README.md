@@ -102,7 +102,7 @@ made to generate the HTML expected by Bootstrap while still generating the rich 
 
 Bootstrap is somewhat incomplete, and in a few cases an inference needed to be drawn to determine a course of action.  If you disagree with any of these choices, feel free to let me know.
 
-(At some point, this gem may also provide some additional CSS to cover cases left unaddressed by Bootstrap, but its obvious what should be done.  That's not going to happen any time soon though!)
+The gem also provides some "shim" CSS where Bootstrap is missing styles provided Formtastic.
 
 ### Other
 
@@ -139,7 +139,7 @@ If you're filing a bug, thank you!  Secondly, in the report please include:
 * Fork the project
 * Start a feature/bugfix branch
 * Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Make sure to add tests for it and to run the test suite.  **If you don't have tests, I won't accept the pull.**  If you need help with this, please ask.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 
