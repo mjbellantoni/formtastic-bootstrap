@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "formtastic-bootstrap"
-  s.version = "1.0.2"
+  s.version = "1.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthew Bellantoni"]
-  s.date = "2011-12-01"
+  s.date = "2011-12-08"
   s.description = "Formtastic form builder to generate Twitter Bootstrap-friendly markup."
   s.email = "mjbellantoni@yahoo.com"
   s.extra_rdoc_files = [
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "formtastic-bootstrap.gemspec",
     "lib/action_view/helpers/text_field_date_helper.rb",
     "lib/formtastic-bootstrap.rb",
+    "lib/formtastic-bootstrap/engine.rb",
     "lib/formtastic-bootstrap/form_builder.rb",
     "lib/formtastic-bootstrap/helpers.rb",
     "lib/formtastic-bootstrap/helpers/buttons_helper.rb",
@@ -88,7 +89,8 @@ Gem::Specification.new do |s|
     "spec/spec_helper.rb",
     "spec/support/custom_macros.rb",
     "spec/support/depracation.rb",
-    "spec/support/formtastic_spec_helper.rb"
+    "spec/support/formtastic_spec_helper.rb",
+    "vendor/assets/stylesheets/formtastic-bootstrap.css"
   ]
   s.homepage = "http://github.com/mjbellantoni/formtastic-bootstrap"
   s.licenses = ["MIT"]
