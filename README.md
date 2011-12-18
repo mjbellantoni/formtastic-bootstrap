@@ -124,11 +124,17 @@ In particular:
 
 ### What's Missing
 
-* Formtastic's <tt>:country</tt> and <tt>:time_zone</tt> have not yet been implemented.
+Contributions are welcome!
+
+* Formtastic's <tt>:country</tt> has not yet been implemented.
 * Twitter Bootstrap's Date Range, Prepend Text, Prepend Checkbox and Appended Checkbox controls have not yet been implemented.
 
-## Contributing to formtastic-bootstrap
+## Contributing
  
+### Contributors
+
+A big thank you [to all contributors](https://github.com/mjbellantoni/formtastic-bootstrap/contributors)!
+
 ### Submitting Issues
 
 If you're filing a bug, thank you!  Secondly, in the report please include:
