@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
-gem 'formtastic', :path => "../formtastic"
-gem 'rails', '~> 3.1'
+gem 'formtastic'
+gem 'rails', '~> 3.1.0'
 
 group :development, :test do
   gem "rspec"
