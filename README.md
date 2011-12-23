@@ -131,8 +131,8 @@ Contributions are welcome!
 
 ## Usage
 
-#### Prepend Text
-To create a Prepend Text field, use the ```:prepend``` option.  This works on any text field input type, like ```:url```, ```:search```, and of course ```:string```
+#### Prepended Text
+To create a Prepended Text field, use the ```:prepend``` option.  This works on any text field input type, like ```:url```, ```:search```, and of course ```:string```
 
     <%= semantic_form_for @user do |f| %>
       <%= f.inputs do %>
