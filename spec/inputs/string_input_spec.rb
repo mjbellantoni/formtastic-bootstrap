@@ -178,5 +178,22 @@ describe 'string input' do
 
   end
 
+  describe "with string prepended", :now => true do
+    
+    before do
+      concat(semantic_form_for(:user) do |builder|
+        concat(builder.input(:handle, :as => :string, :prepend => '@'))
+      end)
+    end
+    
+    it "should generate span with desired prepend string" do
+      output_buffer.should have_tag('form div.input div.input-prepend span.add-on', '@')
+    end
+    
+    it "should wrap input in div.input-prepend" do
+      output_buffer.should have_tag('form div.input div.input-prepend input[name="user[handle]"]')
+    end
+  end
+
 end
 
