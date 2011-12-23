@@ -127,7 +127,18 @@ In particular:
 Contributions are welcome!
 
 * Formtastic's <tt>:country</tt> has not yet been implemented.
-* Twitter Bootstrap's Date Range, Prepend Text, Prepend Checkbox and Appended Checkbox controls have not yet been implemented.
+* Twitter Bootstrap's Date Range, Prepend Checkbox and Appended Checkbox controls have not yet been implemented.
+
+## Usage
+
+#### Prepend Text
+To create a Prepend Text field, use the ```:prepend``` option.  This works on any text field input type, like ```:url```, ```:search```, and of course ```:string```
+
+    <%= semantic_form_for @user do |f| %>
+      <%= f.inputs do %>
+        <%= f.input :handle, :prepend => '@' %>
+      <% end %>
+    <% end %>
 
 ## Contributing
  
@@ -162,7 +173,6 @@ If you're filing a bug, thank you!  Secondly, in the report please include:
    * :time_zone
  * Fancy Bootstrap Fields
    * Date Range
-   * Prepend Text
    * Prepend Checkbox
    * Appended Checkbox
 * :datetime, :date, :time
