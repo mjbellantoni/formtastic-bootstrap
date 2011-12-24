@@ -36,7 +36,16 @@ Add the following line to the top of your <tt>application.css</tt> file:
 
 Make sure you've already downloaded and installed Formtastic!
 
+### Extra Configuration for SASS / compass_twitter_bootstrap
 
+Add the following lines to <tt>config/application.rb</tt>
+
+    # config/application.rb
+    class Application < Rails::Application
+      config.sass.load_paths <<
+        (Gem.loaded_specs['formtastic-bootstrap'].full_gem_path +
+          "/vendor/assets/stylesheets")
+        
 ## Formtastic vs. Formtastic Bootstrap
 
 
