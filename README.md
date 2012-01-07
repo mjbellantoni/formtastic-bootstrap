@@ -178,7 +178,6 @@ If you're filing a bug, thank you!  Secondly, in the report please include:
 * :datetime, :date, :time
  * As rich functionally as their Rails counterparts.
  * Extract into a standalone gem.
-* Disabled inputs
 * Tests
  * Refactor
  * More -- See if I'm making sure the Bootstrap classes are present.
