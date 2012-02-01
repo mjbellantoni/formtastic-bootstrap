@@ -563,61 +563,6 @@ module CustomMacros
           end
         end
 
-        describe 'when the deprecated :label_method option is provided' do
-
-          describe 'as a symbol' do
-            before do
-              with_deprecation_silenced do
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :label_method => :login))
-                end)
-              end
-            end
-
-            it 'should have options with text content from the specified method' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login}/)
-              end
-            end
-          end
-
-          describe 'as a proc' do
-
-            before do
-              with_deprecation_silenced do
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :label_method => Proc.new {|a| a.login.reverse }))
-                end)
-              end
-            end
-
-            it 'should have options with the proc applied to each' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
-              end
-            end
-          end
-
-          describe 'as a method object' do
-            before do
-              def reverse_login(a)
-                a.login.reverse
-              end
-              with_deprecation_silenced do
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :label_method => method(:reverse_login)))
-                end)
-              end
-            end
-
-            it 'should have options with the proc applied to each' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
-              end
-            end
-          end
-        end
-
         describe 'when the deprecated :label_method option is not provided' do
           Formtastic::FormBuilder.collection_label_methods.each do |label_method|
 
@@ -640,60 +585,6 @@ module CustomMacros
               end
             end
 
-          end
-        end
-
-        describe 'when the deprecated :value_method option is provided' do
-
-          describe 'as a symbol' do
-            before do
-              with_deprecation_silenced do
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :value_method => :login))
-                end)
-              end
-            end
-
-            it 'should have options with values from specified method' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login}']")
-              end
-            end
-          end
-
-          describe 'as a proc' do
-            before do
-              with_deprecation_silenced do
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :value_method => Proc.new {|a| a.login.reverse }))
-                end)
-              end
-            end
-
-            it 'should have options with the proc applied to each value' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
-              end
-            end
-          end
-
-          describe 'as a method object' do
-            before do
-              def reverse_login(a)
-                a.login.reverse
-              end
-              with_deprecation_silenced do
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :value_method => method(:reverse_login)))
-                end)
-              end
-            end
-
-            it 'should have options with the proc applied to each value' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
-              end
-            end
           end
         end
 
