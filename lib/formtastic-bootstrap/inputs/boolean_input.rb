@@ -5,7 +5,7 @@ module FormtasticBootstrap
       include Base
 
       def to_html
-        clearfix_div_wrapping do
+        control_group_div_wrapping do
           empty_label <<
           hidden_field_html <<
           input_div_wrapping(:block) do

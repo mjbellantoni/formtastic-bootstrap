@@ -5,13 +5,13 @@ module FormtasticBootstrap
 
         def input_div_wrapping(&block)
           template.content_tag(:div, choices_wrapping_html_options) do
-            [yield, error_html(:block), hint_html(:block)].join("\n").html_safe  
+            [yield, error_html(:block), hint_html(:block)].join("\n").html_safe
           end
         end
 
         def choices_wrapping_html_options
           # TODO Call the Formtastic one explicity and append?
-          { :class => "choices input" }
+          { :class => "choices controls" }
         end
 
         def choices_group_wrapping(&block)

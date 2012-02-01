@@ -23,20 +23,20 @@ describe 'time input' do
     #       concat(builder.input(:publish_at, :as => :time, :ignore_date => true))
     #     end)
     #   end
-    # 
+    #
     #   it 'should not have hidden inputs for day, month and year' do
     #     output_buffer.should_not have_tag('input#post_publish_at_1i')
     #     output_buffer.should_not have_tag('input#post_publish_at_2i')
     #     output_buffer.should_not have_tag('input#post_publish_at_3i')
     #   end
-    # 
+    #
     #   it 'should have an input for hour and minute' do
     #     output_buffer.should have_tag('select#post_publish_at_4i')
     #     output_buffer.should have_tag('select#post_publish_at_5i')
     #   end
-    # 
+    #
     # end
-    # 
+    #
     # describe "with :ignore_date => false" do
     #   before do
     #     @new_post.stub(:publish_at).and_return(Time.parse('2010-11-07'))
@@ -44,7 +44,7 @@ describe 'time input' do
     #       concat(builder.input(:publish_at, :as => :time, :ignore_date => false))
     #     end)
     #   end
-    # 
+    #
     #   it 'should have a hidden input for day, month and year' do
     #     output_buffer.should have_tag('input#post_publish_at_1i')
     #     output_buffer.should have_tag('input#post_publish_at_2i')
@@ -53,12 +53,12 @@ describe 'time input' do
     #     output_buffer.should have_tag('input#post_publish_at_2i[@value="11"]')
     #     output_buffer.should have_tag('input#post_publish_at_3i[@value="7"]')
     #   end
-    # 
+    #
     #   it 'should have an select for hour and minute' do
     #     output_buffer.should have_tag('select#post_publish_at_4i')
     #     output_buffer.should have_tag('select#post_publish_at_5i')
     #   end
-    # 
+    #
     # end
 
     describe "without seconds" do
@@ -69,7 +69,7 @@ describe 'time input' do
       end
 
       it_should_have_input_wrapper_with_class("time")
-      it_should_have_input_wrapper_with_class(:clearfix)
+      it_should_have_input_wrapper_with_class("control-group")
       it_should_have_input_wrapper_with_class(:stringish)
       it_should_have_input_class_in_the_right_place
       it_should_have_input_wrapper_with_id("post_publish_at_input")
@@ -77,17 +77,17 @@ describe 'time input' do
       it_should_apply_error_logic_for_input_type(:time)
 
       it 'should have a legend and label with the label text inside the fieldset' do
-        output_buffer.should have_tag('form div.clearfix.time label', /Publish at/)
+        output_buffer.should have_tag('form div.control-group.time label', /Publish at/)
       end
 
       # TODO Is this right?
       it 'should (sort of) associate the label with the input' do
-        output_buffer.should have_tag('form div.clearfix.time label[@for="post_publish_at"]')
-        output_buffer.should have_tag('form div.clearfix.time div.input input[@id="post_publish_at[time]"]')
+        output_buffer.should have_tag('form div.control-group.time label[@for="post_publish_at"]')
+        output_buffer.should have_tag('form div.control-group.time div.controls input[@id="post_publish_at[time]"]')
       end
 
       it 'should have an text input inside the div' do
-        output_buffer.should have_tag('form div.clearfix.time div.input input[@type="text"]')
+        output_buffer.should have_tag('form div.control-group.time div.controls input[@type="text"]')
       end
 
       # it 'should have five labels for hour and minute' do
@@ -95,7 +95,7 @@ describe 'time input' do
       #   output_buffer.should have_tag('form li.time fieldset ol li label', /hour/i)
       #   output_buffer.should have_tag('form li.time fieldset ol li label', /minute/i)
       # end
-      # 
+      #
       # it 'should have two selects for hour and minute' do
       #   output_buffer.should have_tag('form li.time fieldset ol li', :count => 2)
       # end
@@ -127,7 +127,7 @@ describe 'time input' do
       # end
     end
   end
-  
+
   # Ignore these since we only create the main label.
 
   # describe ':labels option' do
@@ -143,7 +143,7 @@ describe 'time input' do
   #         output_buffer.should have_tag('form li.time fieldset ol li label', f == field ? /another #{f} label/i : /#{f}/i)
   #       end
   #     end
-  # 
+  #
   #     it "should not display the label for the #{field} field when :labels[:#{field}] is blank" do
   #       output_buffer.replace ''
   #       concat(semantic_form_for(@new_post) do |builder|
@@ -154,8 +154,8 @@ describe 'time input' do
   #         output_buffer.should have_tag('form li.time fieldset ol li label', /#{f}/i) unless field == f
   #       end
   #     end
-  #     
-  #     it "should not render the label when :labels[:#{field}] is false" do 
+  #
+  #     it "should not render the label when :labels[:#{field}] is false" do
   #       output_buffer.replace ''
   #       concat(semantic_form_for(@new_post) do |builder|
   #         concat(builder.input(:created_at, :as => :time, :include_seconds => true, :labels => { field => false }))
@@ -165,15 +165,15 @@ describe 'time input' do
   #         output_buffer.should have_tag('form li.time fieldset ol li label', /#{f}/i) unless field == f
   #       end
   #     end
-  #     
-  #     it "should not render unsafe HTML when :labels[:#{field}] is false" do 
+  #
+  #     it "should not render unsafe HTML when :labels[:#{field}] is false" do
   #       output_buffer.replace ''
   #       concat(semantic_form_for(@new_post) do |builder|
   #         concat(builder.input(:created_at, :as => :time, :include_seconds => true, :labels => { field => false }))
   #       end)
   #       output_buffer.should_not include("&gt;")
   #     end
-  #     
+  #
   #   end
   # end
 
@@ -192,7 +192,7 @@ describe 'time input' do
 
   describe "when required" do
     it "should add the required attribute to the input's html options" do
-      with_config :use_required_attribute, true do 
+      with_config :use_required_attribute, true do
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => :time, :required => true))
         end)
