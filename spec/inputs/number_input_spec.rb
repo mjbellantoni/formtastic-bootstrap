@@ -27,6 +27,7 @@ describe 'number input' do
 
     it_should_have_input_wrapper_with_class(:number)
     it_should_have_input_wrapper_with_class("control-group")
+    it_should_have_input_wrapper_with_class(:numeric)
     it_should_have_input_wrapper_with_class(:stringish)
     it_should_have_input_class_in_the_right_place
     it_should_have_input_wrapper_with_id("post_title_input")
@@ -35,10 +36,11 @@ describe 'number input' do
     it_should_have_input_with_id("post_title")
     it_should_have_input_with_type(:number)
     it_should_have_input_with_name("post[title]")
-    it_should_use_default_text_field_size_when_not_nil(:string)
-    it_should_not_use_default_text_field_size_when_nil(:string)
-    it_should_apply_custom_input_attributes_when_input_html_provided(:string)
-    it_should_apply_custom_for_to_label_when_input_html_id_provided(:string)
+    # @todo this is not testing what it should be testing!
+    # it_should_use_default_text_field_size_when_not_nil(:string)
+    # it_should_not_use_default_text_field_size_when_nil(:string)
+    # it_should_apply_custom_input_attributes_when_input_html_provided(:string)
+    # it_should_apply_custom_for_to_label_when_input_html_id_provided(:string)
     it_should_apply_error_logic_for_input_type(:number)
 
   end
@@ -67,6 +69,34 @@ describe 'number input' do
     it_should_have_input_wrapper_with_id("context2_post_title_input")
     it_should_have_label_and_input_with_id("context2_post_title")
   end
+
+  describe "when index is provided" do
+
+    before do
+      @output_buffer = ''
+      mock_everything
+
+      concat(semantic_form_for(@new_post) do |builder|
+        concat(builder.fields_for(:author, :index => 3) do |author|
+          concat(author.input(:name, :as => :number))
+        end)
+      end)
+    end
+
+    it 'should index the id of the wrapper' do
+      output_buffer.should have_tag("div#post_author_attributes_3_name_input")
+    end
+
+    it 'should index the id of the select tag' do
+      output_buffer.should have_tag("input#post_author_attributes_3_name")
+    end
+
+    it 'should index the name of the select tag' do
+      output_buffer.should have_tag("input[@name='post[author_attributes][3][name]']")
+    end
+
+  end
+
 
   describe "when required" do
     it "should add the required attribute to the input's html options" do

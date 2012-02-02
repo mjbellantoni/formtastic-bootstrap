@@ -27,7 +27,7 @@ module FormtasticBootstrap
           end
 
           # out = template.content_tag(:li, out, :class => "input") if wrap_it
-          @already_in_an_inputs_block = false
+          @already_in_an_inputs_block = wrap_it
           out
         end
 

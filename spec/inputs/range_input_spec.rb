@@ -1,6 +1,5 @@
 # encoding: utf-8
 require 'spec_helper'
-require 'active_record'
 
 describe 'range input' do
 
@@ -21,7 +20,8 @@ describe 'range input' do
 
     it_should_have_input_wrapper_with_class(:range)
     it_should_have_input_wrapper_with_class("control-group")
-    it_should_have_input_wrapper_with_class(:stringish) # might be removed
+    it_should_have_input_wrapper_with_class(:numeric)
+    it_should_have_input_wrapper_with_class(:stringish)
     it_should_have_input_class_in_the_right_place
     it_should_have_input_wrapper_with_id("author_age_input")
     it_should_have_label_with_text(/Age/)
@@ -44,6 +44,34 @@ describe 'range input' do
     it_should_have_label_and_input_with_id("context2_author_age")
 
   end
+
+  describe "when index is provided" do
+
+    before do
+      @output_buffer = ''
+      mock_everything
+
+      concat(semantic_form_for(@new_post) do |builder|
+        concat(builder.fields_for(:author, :index => 3) do |author|
+          concat(author.input(:name, :as => :range))
+        end)
+      end)
+    end
+
+    it 'should index the id of the wrapper' do
+      output_buffer.should have_tag("div#post_author_attributes_3_name_input")
+    end
+
+    it 'should index the id of the select tag' do
+      output_buffer.should have_tag("input#post_author_attributes_3_name")
+    end
+
+    it 'should index the name of the select tag' do
+      output_buffer.should have_tag("input[@name='post[author_attributes][3][name]']")
+    end
+
+  end
+
 
   describe "when validations require a minimum value (:greater_than)" do
     before do

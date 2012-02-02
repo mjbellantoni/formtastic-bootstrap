@@ -76,6 +76,16 @@ describe 'select input' do
         end
       end
     end
+
+    describe 'using a nil name' do
+      before do
+        concat(semantic_form_for(@new_post) do |builder|
+          concat(builder.input(:title, :as => :select, :collection => [], :input_html => {:name => nil}))
+        end)
+      end
+
+      it_should_have_select_with_name("post[title]")
+    end
   end
 
   describe 'for boolean columns' do
@@ -91,6 +101,7 @@ describe 'select input' do
     #   end
     #
     #   after do
+    #     ::I18n.load_path = []
     #     ::I18n.backend.store_translations :en, {}
     #   end
     #
@@ -153,6 +164,10 @@ describe 'select input' do
 
     it 'should not create a multi-select' do
       output_buffer.should_not have_tag('form div.control-group div.controls select[@multiple]')
+    end
+
+    it 'should not add a hidden input' do
+      output_buffer.should_not have_tag("form div.control-group div.controls input[@type='hidden']")
     end
 
     it 'should create a select without size' do
@@ -324,6 +339,10 @@ describe 'select input' do
       output_buffer.should have_tag('form div.control-group div.controls select[@multiple="multiple"][@name="author[post_ids][]"]')
     end
 
+    it 'should have a hidden field' do
+      output_buffer.should have_tag('form div.control-group div.controls input[@type="hidden"][@name="author[post_ids][]"]')
+    end
+
     it 'should have a select option for each Post' do
       output_buffer.should have_tag('form div.control-group div.controls select option', :count => ::Post.all.size)
       ::Post.all.each do |post|
@@ -424,8 +443,8 @@ describe 'select input' do
       output_buffer.should have_tag("form div.control-group div.controls select option[@value='']", /choose author/, :count => 1)
     end
 
-    it 'should not have a blank select option' do
-      output_buffer.should_not have_tag("form div.control-group div.controls select option[@value='']", "")
+    it 'should not have a second blank select option' do
+      output_buffer.should have_tag("form div.control-group div.controls select option[@value='']", :count => 1)
     end
   end
 
@@ -551,6 +570,33 @@ describe 'select input' do
     it_should_have_input_wrapper_with_id("context2_post_authors_input")
     it_should_have_select_with_id("context2_post_author_ids")
     it_should_have_label_for("context2_post_author_ids")
+  end
+
+  describe "when index is provided" do
+
+    before do
+      @output_buffer = ''
+      mock_everything
+
+      concat(semantic_form_for(@new_post) do |builder|
+        concat(builder.fields_for(:author, :index => 3) do |author|
+          concat(author.input(:name, :as => :select))
+        end)
+      end)
+    end
+
+    it 'should index the id of the wrapper' do
+      output_buffer.should have_tag("div#post_author_attributes_3_name_input")
+    end
+
+    it 'should index the id of the select tag' do
+      output_buffer.should have_tag("select#post_author_attributes_3_name")
+    end
+
+    it 'should index the name of the select' do
+      output_buffer.should have_tag("select[@name='post[author_attributes][3][name]']")
+    end
+
   end
 
   context "when required" do

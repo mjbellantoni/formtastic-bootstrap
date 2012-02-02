@@ -116,6 +116,12 @@ module CustomMacros
       end
     end
 
+    def it_should_have_select_with_name(name)
+      it "should have an input named #{name}" do
+        output_buffer.should have_tag("form div.control-group div.controls select[@name=\"#{name}\"]")
+      end
+    end
+
     def it_should_have_textarea_with_name(name)
       it "should have an input named #{name}" do
         output_buffer.should have_tag("form div.control-group div.controls textarea[@name=\"#{name}\"]")
@@ -560,31 +566,6 @@ module CustomMacros
                 output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
               end
             end
-          end
-        end
-
-        describe 'when the deprecated :label_method option is not provided' do
-          Formtastic::FormBuilder.collection_label_methods.each do |label_method|
-
-            describe "when the collection objects respond to #{label_method}" do
-              before do
-                @fred.stub!(:respond_to?).and_return { |m| m.to_s == label_method || m.to_s == 'id' }
-                ::Author.all.each { |a| a.stub!(label_method).and_return('The Label Text') }
-
-                with_deprecation_silenced do
-                  concat(semantic_form_for(@new_post) do |builder|
-                    concat(builder.input(:author, :as => as))
-                  end)
-                end
-              end
-
-              it "should render the options with #{label_method} as the label" do
-                ::Author.all.each do |author|
-                  output_buffer.should have_tag("form div.#{as}", /The Label Text/)
-                end
-              end
-            end
-
           end
         end
 

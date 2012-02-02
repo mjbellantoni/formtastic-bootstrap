@@ -14,12 +14,14 @@ describe 'Formtastic::FormBuilder#buttons' do
   describe 'with a block' do
     describe 'when no options are provided' do
       before do
-        concat(semantic_form_for(@new_post) do |builder|
-          buttons = builder.buttons do
-            concat('hello')
-          end
-          concat(buttons)
-        end)
+        with_deprecation_silenced do
+          concat(semantic_form_for(@new_post) do |builder|
+            buttons = builder.buttons do
+              concat('hello')
+            end
+            concat(buttons)
+          end)
+        end
       end
 
       it 'should render a div inside the form, with a class of "form-actions"' do
@@ -44,10 +46,12 @@ describe 'Formtastic::FormBuilder#buttons' do
         @id_option = 'advanced'
         @class_option = 'wide'
 
-        concat(semantic_form_for(@new_post) do |builder|
-          builder.buttons :id => @id_option, :class => @class_option do
-          end
-        end)
+        with_deprecation_silenced do
+          concat(semantic_form_for(@new_post) do |builder|
+            builder.buttons :id => @id_option, :class => @class_option do
+            end
+          end)
+        end
       end
       it 'should pass the options into the div tag as attributes' do
         output_buffer.should have_tag("form div##{@id_option}")
@@ -62,9 +66,11 @@ describe 'Formtastic::FormBuilder#buttons' do
     describe 'with no args (default buttons)' do
 
       before do
-        concat(semantic_form_for(@new_post) do |builder|
-          concat(builder.buttons)
-        end)
+        with_deprecation_silenced do
+          concat(semantic_form_for(@new_post) do |builder|
+            concat(builder.buttons)
+          end)
+        end
       end
 
       it 'should render a form' do
@@ -92,9 +98,11 @@ describe 'Formtastic::FormBuilder#buttons' do
     describe 'with button names as args' do
 
       before do
-        concat(semantic_form_for(@new_post) do |builder|
-          concat(builder.buttons(:commit))
-        end)
+        with_deprecation_silenced do
+          concat(semantic_form_for(@new_post) do |builder|
+            concat(builder.buttons(:commit))
+          end)
+        end
       end
 
       it 'should render a form with a div containing an input for each button arg' do
@@ -107,7 +115,7 @@ describe 'Formtastic::FormBuilder#buttons' do
     describe 'with :names' do
 
       before do
-        ActiveSupport::Deprecation.should_receive(:warn)
+        ActiveSupport::Deprecation.should_receive(:warn).exactly(3).times
         concat(
           semantic_form_for(@new_post) do |builder|
             concat(builder.buttons(:commit, :name => "Now click a button"))
@@ -125,11 +133,13 @@ describe 'Formtastic::FormBuilder#buttons' do
     describe 'with button names and an options hash' do
 
       before do
-        concat(
-          semantic_form_for(@new_post) do |builder|
-            concat(builder.buttons(:commit, :id => "my-id"))
-          end
-        )
+        with_deprecation_silenced do
+          concat(
+            semantic_form_for(@new_post) do |builder|
+              concat(builder.buttons(:commit, :id => "my-id"))
+            end
+          )
+        end
       end
 
       it 'should render a form with a div containing a input for each button arg' do
