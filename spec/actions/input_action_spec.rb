@@ -16,7 +16,7 @@ describe 'InputAction', 'when submitting' do
   end
 
   it 'should render a submit type of input' do
-    output_buffer.should have_tag('input[@type="submit"].action.input_action.btn.primary')
+    output_buffer.should have_tag('input[@type="submit"].action.input_action.btn.btn-primary')
   end
 
 end
@@ -39,7 +39,7 @@ describe 'InputAction', 'when resetting' do
   end
 
   it 'should not be primary' do
-    output_buffer.should_not have_tag('input[@type="reset"].action.input_action.btn.primary')
+    output_buffer.should_not have_tag('input[@type="reset"].action.input_action.btn.btn-primary')
   end
 
 end

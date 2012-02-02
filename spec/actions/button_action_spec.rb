@@ -16,7 +16,7 @@ describe 'ButtonAction', 'when submitting' do
   end
 
   it 'should render a submit type of button' do
-    output_buffer.should have_tag('button[@type="submit"].action.button_action.btn.primary')
+    output_buffer.should have_tag('button[@type="submit"].action.button_action.btn.btn-primary')
   end
 
 end
@@ -39,7 +39,7 @@ describe 'ButtonAction', 'when resetting' do
   end
 
   it 'should not be primary' do
-    output_buffer.should_not have_tag('button[@type="reset"].action.button_action.btn.primary', :text => "Reset Post")
+    output_buffer.should_not have_tag('button[@type="reset"].action.button_action.btn.btn-primary', :text => "Reset Post")
   end
 
   it 'should not render a value attribute' do
