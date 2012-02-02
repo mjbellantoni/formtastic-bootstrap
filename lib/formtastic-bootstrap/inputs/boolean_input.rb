@@ -19,11 +19,6 @@ module FormtasticBootstrap
         super.merge(:class => new_class)
       end
 
-      def label_text_with_embedded_checkbox
-        # That newline matters!  Why, I do no not know.
-        check_box_html << "\n" << template.content_tag(:span) do label_text end
-      end
-
       # Need this for formatting to work.
       def empty_label
         template.content_tag(:label) do end
