@@ -9,13 +9,14 @@ module FormtasticBootstrap
           empty_label <<
           hidden_field_html <<
           input_div_wrapping(:block) do
-            template.content_tag(:ul, :class => "inputs-list") do
-              template.content_tag(:li) do
-                label_with_nested_checkbox
-              end
-            end
+            label_with_nested_checkbox
           end
         end
+      end
+
+      def label_html_options
+        new_class = [super[:class], "checkbox"].compact.join(" ")
+        super.merge(:class => new_class)
       end
 
       def label_text_with_embedded_checkbox
