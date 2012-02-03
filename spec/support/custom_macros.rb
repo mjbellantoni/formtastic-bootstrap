@@ -31,7 +31,7 @@ module CustomMacros
 
     def it_should_not_have_a_label
       it "should not have a label" do
-        output_buffer.should_not have_tag("form li label")
+        output_buffer.should_not have_tag("form div.control-group label")
       end
     end
 
