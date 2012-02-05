@@ -131,6 +131,10 @@ Contributions are welcome!
 
 ## Usage
 
+In general, the usage should be identical to Formtastic's.  Some changes have been introduced in order to support Bootstrap-specific controls.
+
+### Bootstrap-specific Controls
+
 #### Prepended Text
 To create a Prepended Text field, use the ```:prepend``` option.  This works on any text field input type, like ```:url```, ```:search```, and of course ```:string```
 
@@ -156,6 +160,9 @@ If you're filing a bug, thank you!  Secondly, in the report please include:
 * Anything else you think will help!
 
 ### Source Contributions
+
+Source contributions are very welcome!  Most of the recent work on this package has been done by the community.
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
 * Fork the project
