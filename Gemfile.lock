@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    formtastic-bootstrap (1.1.2)
+      formtastic
+      rails (>= 3.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -112,8 +119,8 @@ PLATFORMS
 DEPENDENCIES
   bundler
   formtastic
+  formtastic-bootstrap!
   jeweler
-  rails (~> 3.1.0)
   rcov
   rspec
   rspec_tag_matchers
