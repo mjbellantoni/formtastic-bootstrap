@@ -17,6 +17,7 @@ describe 'time_zone input' do
 
   it_should_have_input_wrapper_with_class("time_zone")
   it_should_have_input_wrapper_with_class(:clearfix)
+  it_should_have_input_wrapper_with_class("control-group")
   it_should_have_input_wrapper_with_id("post_time_zone_input")
   it_should_apply_error_logic_for_input_type(:time_zone)
 

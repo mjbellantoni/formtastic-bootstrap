@@ -18,6 +18,7 @@ describe 'check_boxes input' do
 
     it_should_have_input_wrapper_with_class("check_boxes")
     it_should_have_input_wrapper_with_class(:clearfix)
+    it_should_have_input_wrapper_with_class("control-group")
     it_should_have_input_class_in_the_right_place
     it_should_have_input_wrapper_with_id("author_posts_input")
     it_should_have_a_nested_div

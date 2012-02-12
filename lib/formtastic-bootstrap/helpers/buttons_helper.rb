@@ -7,7 +7,7 @@ module FormtasticBootstrap
       def buttons(*args, &block)
 
         html_options = args.extract_options!
-        html_options[:class] ||= "actions"
+        html_options[:class] ||= "form-actions"
   
         if html_options.has_key?(:name)
           ActiveSupport::Deprecation.warn('The :name option is not supported')
@@ -35,7 +35,7 @@ module FormtasticBootstrap
                 Formtastic::I18n.t(commit_button_i18n_key, :model => commit_button_object_name)) unless text.is_a?(::String)
       
         button_html = options.delete(:button_html) || {}
-        button_html.merge!(:class => [button_html[:class], "btn commit", commit_button_i18n_key].compact.join(' '))
+        button_html.merge!(:class => [button_html[:class], "btn btn-primary commit", commit_button_i18n_key].compact.join(' '))
       
         # TODO We don't have a wrapper. Add deprecation message.
         # wrapper_html = options.delete(:wrapper_html) || {}
