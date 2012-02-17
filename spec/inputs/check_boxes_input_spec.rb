@@ -29,12 +29,12 @@ describe 'check_boxes input' do
 
     # TODO Refactor out the next three tests and their bretheren in radio_input_spec
     it 'should generate a \'legend\' containing a label with text for the input' do
-      output_buffer.should have_tag('form div.control-group label')
-      output_buffer.should have_tag('form div.control-group label', /Posts/)
+      output_buffer.should have_tag('form div.control-group label.control-label')
+      output_buffer.should have_tag('form div.control-group label.control-label', /Posts/)
     end
 
     it 'should not link the \'legend\' label to any input' do
-      output_buffer.should_not have_tag('form div.control-group > label[@for]')
+      output_buffer.should_not have_tag('form div.control-group > label.control-label[@for]')
     end
 
     it 'should generate an unordered list with a list item for each choice' do
@@ -74,8 +74,8 @@ describe 'check_boxes input' do
 
     describe "each choice" do
 
-      it 'should not give the choice label the .label class' do
-        output_buffer.should_not have_tag('li.choice label.label')
+      it 'should not give the choice label the .control-label class' do
+        output_buffer.should_not have_tag('li.choice label.control-label')
       end
 
       it 'should not be marked as required' do
@@ -143,7 +143,7 @@ describe 'check_boxes input' do
       end
 
       it 'should generate a top-level div with \'legend\'' do
-        output_buffer.should have_tag('form div.control-group > label', /Author/)
+        output_buffer.should have_tag('form div.control-group > label.control-label', /Author/)
       end
 
       it 'shold generate an li tag for each item in the collection' do
@@ -277,7 +277,7 @@ describe 'check_boxes input' do
       end
 
       it "should do foo" do
-        output_buffer.should have_tag("div.control-group > label", /Translated/)
+        output_buffer.should have_tag("div.control-group > label.control-label", /Translated/)
       end
 
     end
@@ -291,7 +291,7 @@ describe 'check_boxes input' do
       end
 
       it "should output the correct label title" do
-        output_buffer.should have_tag("div.control-group > label", /The authors/)
+        output_buffer.should have_tag("div.control-group > label.control-label", /The authors/)
       end
     end
 
@@ -305,7 +305,7 @@ describe 'check_boxes input' do
       end
 
       it "should output an empty \'legend\'" do
-        output_buffer.should have_tag("div.control-group > label", "")
+        output_buffer.should have_tag("div.control-group > label.control-label", "")
       end
 
       it "should not cause escaped HTML" do
@@ -323,7 +323,7 @@ describe 'check_boxes input' do
       end
 
       it "should output the correct label title" do
-        output_buffer.should have_tag("div.control-group > label abbr")
+        output_buffer.should have_tag("div.control-group > label.control-label abbr")
       end
     end
 

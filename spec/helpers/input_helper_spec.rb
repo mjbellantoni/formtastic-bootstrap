@@ -49,7 +49,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
             concat(semantic_form_for(@new_post) do |builder|
               concat(builder.input(:title, :required => true))
             end)
-            output_buffer.should have_tag('form div.control-group.required label', /required yo/)
+            output_buffer.should have_tag('form div.control-group.required label.control-label', /required yo/)
           end
         end
       end
@@ -89,7 +89,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :required => false))
           end)
-          output_buffer.should have_tag('form div.control-group.optional label', /#{@string}$/)
+          output_buffer.should have_tag('form div.control-group.optional label.control-label', /#{@string}$/)
         end
 
       end
@@ -538,21 +538,21 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :label => "Kustom"))
           end)
-          output_buffer.should have_tag("form div.control-group label", /Kustom/)
+          output_buffer.should have_tag("form div.control-group label.control-label", /Kustom/)
         end
 
         it 'should not generate a label if false' do
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :label => false))
           end)
-          output_buffer.should_not have_tag("form div.control-group label")
+          output_buffer.should_not have_tag("form div.control-group label.control-label")
         end
 
         it 'should be dupped if frozen' do
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :label => "Kustom".freeze))
           end)
-          output_buffer.should have_tag("form div.control-group label", /Kustom/)
+          output_buffer.should have_tag("form div.control-group label.control-label", /Kustom/)
         end
       end
 
@@ -574,7 +574,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                   concat(semantic_form_for(@new_post) do |builder|
                     concat(builder.input(:meta_description))
                   end)
-                  output_buffer.should have_tag('form div.control-group label', /Localized title/)
+                  output_buffer.should have_tag('form div.control-group label.control-label', /Localized title/)
                 end
               end
             end
@@ -589,7 +589,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                 concat(semantic_form_for(:project, :url => 'http://test.host') do |builder|
                   concat(builder.input(:meta_description))
                 end)
-                output_buffer.should have_tag("form div.control-group label", /#{'meta_description'.humanize}/)
+                output_buffer.should have_tag("form div.control-group label.control-label", /#{'meta_description'.humanize}/)
               end
             end
           end
@@ -602,7 +602,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
               concat(semantic_form_for(@new_post) do |builder|
                 concat(builder.input(:meta_description))
               end)
-              output_buffer.should have_tag("form div.control-group label", /#{'meta_description'.humanize}/)
+              output_buffer.should have_tag("form div.control-group label.control-label", /#{'meta_description'.humanize}/)
             end
           end
 
@@ -614,7 +614,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:meta_description))
                 end)
-                output_buffer.should have_tag("form div.control-group label", /#{'meta_description'.capitalize}/)
+                output_buffer.should have_tag("form div.control-group label.control-label", /#{'meta_description'.capitalize}/)
               end
             end
           end
@@ -643,7 +643,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                 concat(builder.input(:title, :label => true))
                 concat(builder.input(:published, :as => :boolean, :label => true))
               end)
-              output_buffer.should have_tag('form div.control-group label', Regexp.new('^' + @localized_label_text))
+              output_buffer.should have_tag('form div.control-group label.control-label', Regexp.new('^' + @localized_label_text))
             end
           end
 
@@ -662,7 +662,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                 concat(builder.input(:title, :label => true))
                 concat(builder.input(:published, :as => :boolean, :label => true))
               end)
-              output_buffer.should have_tag('form div.control-group label', Regexp.new('^' + @default_localized_label_text))
+              output_buffer.should have_tag('form div.control-group label.control-label', Regexp.new('^' + @default_localized_label_text))
             end
           end
         end

@@ -21,9 +21,9 @@ describe 'time_zone input' do
   it_should_apply_error_logic_for_input_type(:time_zone)
 
   it 'should generate a label for the input' do
-    output_buffer.should have_tag('form div label')
-    output_buffer.should have_tag('form div label[@for="post_time_zone"]')
-    output_buffer.should have_tag('form div label', /Time zone/)
+    output_buffer.should have_tag('form div label.control-label')
+    output_buffer.should have_tag('form div label.control-label[@for="post_time_zone"]')
+    output_buffer.should have_tag('form div label.control-label', /Time zone/)
   end
 
   it "should generate a select" do
@@ -94,9 +94,9 @@ describe 'time_zone input' do
     end
 
     it 'should generate labels' do
-      output_buffer.should have_tag('form div label')
-      output_buffer.should have_tag('form div label[@for="project_time_zone"]')
-      output_buffer.should have_tag('form div label', /Time zone/)
+      output_buffer.should have_tag('form div label.control-label')
+      output_buffer.should have_tag('form div label.control-label[@for="project_time_zone"]')
+      output_buffer.should have_tag('form div label.control-label', /Time zone/)
     end
 
     it 'should generate select inputs' do
