@@ -21,7 +21,7 @@ module FormtasticBootstrap
 
       # Need this for formatting to work.
       def empty_label
-        template.content_tag(:label, '', class: 'control-label') do end
+        template.content_tag(:label, '', :class => 'control-label') do end
       end
 
     end
