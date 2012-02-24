@@ -346,10 +346,10 @@ module CustomMacros
                 end
                 concat(fields)
               end)
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_general']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_design']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_development']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_quasi-serious_inventions']")
+              output_buffer.should have_tag("form div div label.radio[@for='post_author_category_name_general']")
+              output_buffer.should have_tag("form div div label.radio[@for='post_author_category_name_design']")
+              output_buffer.should have_tag("form div div label.radio[@for='post_author_category_name_development']")
+              output_buffer.should have_tag("form div div label.radio[@for='post_author_category_name_quasi-serious_inventions']")
             end
           end
         end
