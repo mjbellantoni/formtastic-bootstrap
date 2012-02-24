@@ -32,7 +32,7 @@ describe 'datetime input' do
     it_should_apply_error_logic_for_input_type(:datetime)
 
     it 'should have a legend and label with the label text inside the fieldset' do
-      output_buffer.should have_tag('form div.control-group.datetime label', /Publish at/)
+      output_buffer.should have_tag('form div.control-group.datetime label.control-label', /Publish at/)
     end
 
     # it 'should associate the legend label with the first select' do

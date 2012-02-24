@@ -77,12 +77,12 @@ describe 'time input' do
       it_should_apply_error_logic_for_input_type(:time)
 
       it 'should have a legend and label with the label text inside the fieldset' do
-        output_buffer.should have_tag('form div.control-group.time label', /Publish at/)
+        output_buffer.should have_tag('form div.control-group.time label.control-label', /Publish at/)
       end
 
       # TODO Is this right?
       it 'should (sort of) associate the label with the input' do
-        output_buffer.should have_tag('form div.control-group.time label[@for="post_publish_at"]')
+        output_buffer.should have_tag('form div.control-group.time label.control-label[@for="post_publish_at"]')
         output_buffer.should have_tag('form div.control-group.time div.controls input[@id="post_publish_at[time]"]')
       end
 

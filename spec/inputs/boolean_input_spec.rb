@@ -22,9 +22,7 @@ describe 'boolean input' do
   it_should_apply_error_logic_for_input_type(:boolean, :block)
 
   it 'should generate a label containing the input' do
-    output_buffer.should_not have_tag('label.label')
-
-
+    output_buffer.should have_tag('label.control-label')
     output_buffer.should have_tag('form div.control-group div.controls label.checkbox', :count => 1)
     output_buffer.should have_tag('form div.control-group div.controls label.checkbox[@for="post_allow_comments"]')
     output_buffer.should have_tag('form div.control-group div.controls label.checkbox', /Allow comments/)

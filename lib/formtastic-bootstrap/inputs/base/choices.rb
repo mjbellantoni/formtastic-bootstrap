@@ -34,12 +34,12 @@ module FormtasticBootstrap
 
         # This is actually a label in Bootstrap.
         def legend_html
-          template.content_tag(:label, label_html_options) do
+          template.content_tag(:label, control_label_html_options) do
             render_label? ? label_text : "".html_safe
           end
         end
 
-        def label_html_options
+        def control_label_html_options
           super.merge(:for => nil)
         end
 

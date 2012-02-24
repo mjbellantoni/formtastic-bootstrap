@@ -31,7 +31,7 @@ describe 'date input' do
     it_should_apply_error_logic_for_input_type(:date)
 
     it 'should have a legend and label with the label text inside the fieldset' do
-      output_buffer.should have_tag('form div.control-group.date label', /Publish at/)
+      output_buffer.should have_tag('form div.control-group.date label.control-label', /Publish at/)
     end
 
     # it 'should associate the legend label with the first select' do
@@ -42,7 +42,7 @@ describe 'date input' do
     # end
 
     it 'should (sort of) associate the label with the input' do
-      output_buffer.should have_tag('form div.control-group.date label[@for="post_publish_at"]')
+      output_buffer.should have_tag('form div.control-group.date label.control-label[@for="post_publish_at"]')
       output_buffer.should have_tag('form div.control-group.date div.controls input[@id="post_publish_at[date]"]')
     end
 

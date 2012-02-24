@@ -31,7 +31,7 @@ module CustomMacros
 
     def it_should_not_have_a_label
       it "should not have a label" do
-        output_buffer.should_not have_tag("form div.control-group label")
+        output_buffer.should_not have_tag("form div.control-group label.control-label")
       end
     end
 
@@ -73,7 +73,7 @@ module CustomMacros
 
     def it_should_have_label_with_text(string_or_regex)
       it "should have a label with text '#{string_or_regex}'" do
-        output_buffer.should have_tag("form div.control-group label", string_or_regex)
+        output_buffer.should have_tag("form div.control-group label.control-label", string_or_regex)
       end
     end
 
@@ -81,7 +81,6 @@ module CustomMacros
       it "should have a label for ##{element_id}" do
         # output_buffer.should have_tag("form div label.label[@for='#{element_id}']")
         output_buffer.should have_tag("form div.control-group label[@for='#{element_id}']")
-        output_buffer.should_not have_tag("form div.control-group label.label")
       end
     end
 
@@ -131,7 +130,7 @@ module CustomMacros
     def it_should_have_label_and_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
         output_buffer.should have_tag("form div.control-group div.controls input##{element_id}")
-        output_buffer.should have_tag("form div.control-group label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.control-group label.control-label[@for='#{element_id}']")
       end
     end
 
@@ -172,7 +171,7 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :id => 'myid' }))
         end)
-        output_buffer.should have_tag('form div.control-group label[@for="myid"]')
+        output_buffer.should have_tag('form div.control-group label.control-label[@for="myid"]')
       end
     end
 

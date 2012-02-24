@@ -437,8 +437,8 @@ describe 'select input' do
     end
 
     it 'should generate label' do
-      output_buffer.should have_tag('form div.control-group label', /Author/)
-      output_buffer.should have_tag("form div.control-group label[@for='project_author']")
+      output_buffer.should have_tag('form div.control-group label.control-label', /Author/)
+      output_buffer.should have_tag("form div.control-group label.control-label[@for='project_author']")
     end
 
     it 'should generate select inputs' do

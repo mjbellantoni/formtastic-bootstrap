@@ -29,12 +29,12 @@ describe 'radio input' do
     it_should_use_the_collection_when_provided(:radio, 'input')
 
     it 'should generate a \'legend\' containing a label with text for the input' do
-      output_buffer.should have_tag('form div.control-group label')
-      output_buffer.should have_tag('form div.control-group label', /Author/)
+      output_buffer.should have_tag('form div.control-group label.control-label')
+      output_buffer.should have_tag('form div.control-group label.control-label', /Author/)
     end
 
     it 'should not link the \'legend\' label to any input' do
-      output_buffer.should_not have_tag('form div.control-group > label[@for]')
+      output_buffer.should_not have_tag('form div.control-group > label.control-label[@for]')
     end
 
     it 'should generate an unordered list with a list item for each choice' do
@@ -48,8 +48,8 @@ describe 'radio input' do
 
     describe "each choice" do
 
-      it 'should not give the choice label the .label class' do
-        output_buffer.should_not have_tag('li.choice label.label')
+      it 'should not give the choice label the .control-label class' do
+        output_buffer.should_not have_tag('li.choice label.control-label')
       end
 
       it 'should not add the required attribute to each input' do
@@ -120,7 +120,7 @@ describe 'radio input' do
       end
 
       it 'should generate a div with a label' do
-        output_buffer.should have_tag('form div.control-group label', /Author/)
+        output_buffer.should have_tag('form div.control-group label.control-label', /Author/)
       end
 
       it 'should generate an li tag for each item in the collection' do
@@ -173,7 +173,7 @@ describe 'radio input' do
     end
 
     it "should do foo" do
-      output_buffer.should have_tag("div.control-group > label", /Translated/)
+      output_buffer.should have_tag("div.control-group > label.control-label", /Translated/)
     end
 
   end
@@ -187,7 +187,7 @@ describe 'radio input' do
     end
 
     it "should output the correct label title" do
-      output_buffer.should have_tag("div.control-group > label", /The authors/)
+      output_buffer.should have_tag("div.control-group > label.control-label", /The authors/)
     end
   end
 
@@ -201,7 +201,7 @@ describe 'radio input' do
     end
 
     it "should not output the legend" do
-      output_buffer.should_not have_tag("legend.label")
+      output_buffer.should_not have_tag("legend.control-label")
       output_buffer.should_not include("&gt;")
     end
 
@@ -219,7 +219,7 @@ describe 'radio input' do
     end
 
     it "should output the correct label title" do
-      output_buffer.should have_tag("div.control-group label abbr")
+      output_buffer.should have_tag("div.control-group label.control-label abbr")
     end
   end
 
