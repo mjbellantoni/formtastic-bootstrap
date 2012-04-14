@@ -11,6 +11,7 @@ $LOAD_PATH.unshift(File.dirname(__FILE__))
 formtastic_full_gem_path = Bundler.load.specs.find{|s| s.name == "formtastic" }.full_gem_path
 require File.join(formtastic_full_gem_path, 'spec', 'spec_helper.rb')
 
+# Now add in ours.
 require 'formtastic-bootstrap'
 require File.join(File.dirname(__FILE__), "support", "custom_macros.rb")
 
