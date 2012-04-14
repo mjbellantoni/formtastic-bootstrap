@@ -16,14 +16,14 @@ describe 'time_zone input' do
   end
 
   it_should_have_input_wrapper_with_class("time_zone")
-  it_should_have_input_wrapper_with_class(:clearfix)
+  it_should_have_input_wrapper_with_class("control-group")
   it_should_have_input_wrapper_with_id("post_time_zone_input")
   it_should_apply_error_logic_for_input_type(:time_zone)
 
   it 'should generate a label for the input' do
-    output_buffer.should have_tag('form div label')
-    output_buffer.should have_tag('form div label[@for="post_time_zone"]')
-    output_buffer.should have_tag('form div label', /Time zone/)
+    output_buffer.should have_tag('form div label.control-label')
+    output_buffer.should have_tag('form div label.control-label[@for="post_time_zone"]')
+    output_buffer.should have_tag('form div label.control-label', /Time zone/)
   end
 
   it "should generate a select" do
@@ -56,7 +56,7 @@ describe 'time_zone input' do
     it_should_have_label_for("context2_post_time_zone")
 
   end
-  
+
   describe "when index is provided" do
 
     before do
@@ -70,21 +70,21 @@ describe 'time_zone input' do
         end)
       end)
     end
-    
+
     it 'should index the id of the wrapper' do
       output_buffer.should have_tag("div#post_author_attributes_3_name_input")
     end
-    
+
     it 'should index the id of the select tag' do
       output_buffer.should have_tag("select#post_author_attributes_3_name")
     end
-    
+
     it 'should index the name of the select tag' do
       output_buffer.should have_tag("select[@name='post[author_attributes][3][name]']")
     end
-    
+
   end
-  
+
 
   describe 'when no object is given' do
     before(:each) do
@@ -94,9 +94,9 @@ describe 'time_zone input' do
     end
 
     it 'should generate labels' do
-      output_buffer.should have_tag('form div label')
-      output_buffer.should have_tag('form div label[@for="project_time_zone"]')
-      output_buffer.should have_tag('form div label', /Time zone/)
+      output_buffer.should have_tag('form div label.control-label')
+      output_buffer.should have_tag('form div label.control-label[@for="project_time_zone"]')
+      output_buffer.should have_tag('form div label.control-label', /Time zone/)
     end
 
     it 'should generate select inputs' do
@@ -105,10 +105,10 @@ describe 'time_zone input' do
       output_buffer.should have_tag("form div select[@name=\"project[time_zone]\"]")
     end
   end
-  
+
   context "when required" do
     it "should add the required attribute to the input's html options" do
-      with_config :use_required_attribute, true do 
+      with_config :use_required_attribute, true do
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => :time_zone, :required => true))
         end)
@@ -116,5 +116,5 @@ describe 'time_zone input' do
       end
     end
   end
-  
+
 end

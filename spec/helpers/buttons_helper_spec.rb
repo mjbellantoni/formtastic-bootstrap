@@ -22,20 +22,20 @@ describe 'Formtastic::FormBuilder#buttons' do
         end)
       end
 
-      it 'should render a div inside the form, with a class of "actions"' do
-        output_buffer.should have_tag("form div.actions")
+      it 'should render a div inside the form, with a class of "form-actions"' do
+        output_buffer.should have_tag("form div.form-actions")
       end
 
       it 'should not render an ol inside the div' do
-        output_buffer.should_not have_tag("form div.actions ol")
+        output_buffer.should_not have_tag("form div.form-actions ol")
       end
 
       it 'should render the contents of the block inside the input' do
-        output_buffer.should have_tag("form div.actions", /hello/)
+        output_buffer.should have_tag("form div.form-actions", /hello/)
       end
 
       it 'should not render a legend inside the div' do
-        output_buffer.should_not have_tag("form div.actions legend")
+        output_buffer.should_not have_tag("form div.form-actions legend")
       end
     end
 
@@ -71,20 +71,20 @@ describe 'Formtastic::FormBuilder#buttons' do
         output_buffer.should have_tag('form')
       end
 
-      it 'should render a "actions" div inside the form' do
-        output_buffer.should have_tag('form div.actions')
+      it 'should render a "form-actions" div inside the form' do
+        output_buffer.should have_tag('form div.form-actions')
       end
 
       it 'should not render a legend in the div' do
-        output_buffer.should_not have_tag('form div.actions legend')
+        output_buffer.should_not have_tag('form div.form-actions legend')
       end
 
       it 'should render an button item in the ol for each default button' do
-        output_buffer.should have_tag('form div.actions input.btn', :count => 1)
+        output_buffer.should have_tag('form div.form-actions input.btn', :count => 1)
       end
 
       it 'should render a commit list item for the commit button' do
-        output_buffer.should have_tag('form div.actions input.commit')
+        output_buffer.should have_tag('form div.form-actions input.commit')
       end
 
     end
@@ -98,14 +98,14 @@ describe 'Formtastic::FormBuilder#buttons' do
       end
 
       it 'should render a form with a div containing an input for each button arg' do
-        output_buffer.should have_tag('form > div.actions > input', :count => 1)
-        output_buffer.should have_tag('form > div.actions > input.commit')
+        output_buffer.should have_tag('form > div.form-actions > input', :count => 1)
+        output_buffer.should have_tag('form > div.form-actions > input.commit')
       end
 
     end
 
     describe 'with :names' do
-  
+
       before do
         ActiveSupport::Deprecation.should_receive(:warn)
         concat(
@@ -120,10 +120,10 @@ describe 'Formtastic::FormBuilder#buttons' do
       end
 
     end
-  
-  
+
+
     describe 'with button names and an options hash' do
-  
+
       before do
         concat(
           semantic_form_for(@new_post) do |builder|
@@ -131,18 +131,18 @@ describe 'Formtastic::FormBuilder#buttons' do
           end
         )
       end
-  
+
       it 'should render a form with a div containing a input for each button arg' do
-        output_buffer.should have_tag('form > div.actions > input', :count => 1)
-        output_buffer.should have_tag('form > div.actions > input.commit', :count => 1)
+        output_buffer.should have_tag('form > div.form-actions > input', :count => 1)
+        output_buffer.should have_tag('form > div.form-actions > input.commit', :count => 1)
       end
-  
+
       it 'should pass the options down to the div' do
-        output_buffer.should have_tag('form > div#my-id.actions')
+        output_buffer.should have_tag('form > div#my-id.form-actions')
       end
-  
+
     end
-  
+
   end
 
 end

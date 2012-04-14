@@ -20,36 +20,36 @@ describe 'hidden input' do
   end
 
   it_should_have_input_wrapper_with_class("hidden")
-  it_should_have_input_wrapper_with_class(:clearfix)
+  it_should_have_input_wrapper_with_class("control-group")
   it_should_have_input_class_in_the_right_place
   it_should_have_input_wrapper_with_id("post_secret_input")
   it_should_not_have_a_label
 
   it "should generate a input field" do
-    output_buffer.should have_tag("form div.clearfix div.input input#post_secret")
-    output_buffer.should have_tag("form div.clearfix div.input input#post_secret[@type=\"hidden\"]")
-    output_buffer.should have_tag("form div.clearfix div.input input#post_secret[@name=\"post[secret]\"]")
+    output_buffer.should have_tag("form div.control-group div.controls input#post_secret")
+    output_buffer.should have_tag("form div.control-group div.controls input#post_secret[@type=\"hidden\"]")
+    output_buffer.should have_tag("form div.control-group div.controls input#post_secret[@name=\"post[secret]\"]")
   end
 
   it "should get value from the object" do
-    output_buffer.should have_tag("form div.clearfix div.input input#post_secret[@type=\"hidden\"][@value=\"1\"]")
+    output_buffer.should have_tag("form div.control-group div.controls input#post_secret[@type=\"hidden\"][@value=\"1\"]")
   end
-  
+
   it "should pass any explicitly specified value - using :value" do
-    output_buffer.should have_tag("form div.clearfix div.input input#post_author_id[@type=\"hidden\"][@value=\"99\"]")
+    output_buffer.should have_tag("form div.control-group div.controls input#post_author_id[@type=\"hidden\"][@value=\"99\"]")
   end
 
   # Handle Formtastic :input_html options for consistency.
   it "should pass any explicitly specified value - using :input_html options" do
-    output_buffer.should have_tag("form div.clearfix div.input input#post_published[@type=\"hidden\"][@value=\"true\"]")
+    output_buffer.should have_tag("form div.control-group div.controls input#post_published[@type=\"hidden\"][@value=\"true\"]")
   end
 
   it "should pass any option specified using :input_html" do
-    output_buffer.should have_tag("form div.clearfix div.input input#new_post_reviewer[@type=\"hidden\"][@class=\"new_post_reviewer\"]")
+    output_buffer.should have_tag("form div.control-group div.controls input#new_post_reviewer[@type=\"hidden\"][@class=\"new_post_reviewer\"]")
   end
 
   it "should prefer :input_html over directly supplied options" do
-    output_buffer.should have_tag("form div.clearfix div.input input#post_author_id[@type=\"hidden\"][@value=\"formtastic_value\"]")
+    output_buffer.should have_tag("form div.control-group div.controls input#post_author_id[@type=\"hidden\"][@value=\"formtastic_value\"]")
   end
 
   it "should not render inline errors" do
@@ -99,7 +99,7 @@ describe 'hidden input' do
     end
 
   end
-  
+
   context "when required" do
     it "should not add the required attribute to the input's html options" do
       concat(semantic_form_for(@new_post) do |builder|

@@ -5,27 +5,23 @@ module FormtasticBootstrap
       include Base
 
       def to_html
-        clearfix_div_wrapping do
+        control_group_div_wrapping do
           empty_label <<
           hidden_field_html <<
           input_div_wrapping(:block) do
-            template.content_tag(:ul, :class => "inputs-list") do
-              template.content_tag(:li) do
-                label_with_nested_checkbox
-              end
-            end
+            label_with_nested_checkbox
           end
         end
       end
 
-      def label_text_with_embedded_checkbox
-        # That newline matters!  Why, I do no not know.
-        check_box_html << "\n" << template.content_tag(:span) do label_text end
+      def label_html_options
+        new_class = [super[:class], "checkbox"].compact.join(" ")
+        super.merge(:class => new_class)
       end
 
       # Need this for formatting to work.
       def empty_label
-        template.content_tag(:label) do end
+        template.content_tag(:label, '', :class => 'control-label') do end
       end
 
     end

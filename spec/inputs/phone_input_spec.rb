@@ -19,7 +19,7 @@ describe 'phone input' do
     end
 
     it_should_have_input_wrapper_with_class(:phone)
-    it_should_have_input_wrapper_with_class(:clearfix)
+    it_should_have_input_wrapper_with_class("control-group")
     it_should_have_input_wrapper_with_class(:stringish)
     it_should_have_input_class_in_the_right_place
     it_should_have_input_wrapper_with_id("post_phone_input")
@@ -43,10 +43,10 @@ describe 'phone input' do
     it_should_have_label_and_input_with_id("context2_post_phone")
 
   end
-  
+
   describe "when required" do
     it "should add the required attribute to the input's html options" do
-      with_config :use_required_attribute, true do 
+      with_config :use_required_attribute, true do
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => :phone, :required => true))
         end)
@@ -54,6 +54,6 @@ describe 'phone input' do
       end
     end
   end
-  
+
 end
 

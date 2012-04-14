@@ -19,63 +19,63 @@ describe 'radio input' do
     end
 
     it_should_have_input_wrapper_with_class("radio")
-    it_should_have_input_wrapper_with_class(:clearfix)
+    it_should_have_input_wrapper_with_class("control-group")
     it_should_have_input_class_in_the_right_place
     it_should_have_input_wrapper_with_id("post_author_input")
     it_should_have_a_nested_div
-    it_should_have_a_nested_div_with_class('choices.input')
-    it_should_have_a_nested_unordered_list_with_class('choices-group.inputs-list')
+    it_should_have_a_nested_div_with_class('choices.controls')
+    #it_should_have_a_nested_unordered_list_with_class('choices-group.inputs-list')
     it_should_apply_error_logic_for_input_type(:radio, :block)
-    it_should_use_the_collection_when_provided(:radio, 'input')
+    it_should_use_the_collection_when_provided(:radio, 'input[@type="radio"]')
 
     it 'should generate a \'legend\' containing a label with text for the input' do
-      output_buffer.should have_tag('form div.clearfix label')
-      output_buffer.should have_tag('form div.clearfix label', /Author/)
+      output_buffer.should have_tag('form div.control-group label.control-label')
+      output_buffer.should have_tag('form div.control-group label.control-label', /Author/)
     end
 
     it 'should not link the \'legend\' label to any input' do
-      output_buffer.should_not have_tag('form div.clearfix > label[@for]')
+      output_buffer.should_not have_tag('form div.control-group > label.control-label[@for]')
     end
 
-    it 'should generate an unordered list with a list item for each choice' do
-      output_buffer.should have_tag('form div.clearfix div.input ul')
-      output_buffer.should have_tag('form div.clearfix div.input ul li.choice', :count => ::Author.all.size)
-    end
+    # it 'should generate an unordered list with a list item for each choice' do
+    #   output_buffer.should have_tag('form div.control-group div.controls ul')
+    #   output_buffer.should have_tag('form div.control-group div.controls ul li.choice', :count => ::Author.all.size)
+    # end
 
     it 'should have one option with a "checked" attribute' do
-      output_buffer.should have_tag('form ul input[@checked]', :count => 1)
+      output_buffer.should have_tag('form .controls input[@checked]', :count => 1)
     end
 
     describe "each choice" do
-      
-      it 'should not give the choice label the .label class' do
-        output_buffer.should_not have_tag('li.choice label.label')
+
+      it 'should not give the choice label the .control-label class' do
+        output_buffer.should_not have_tag('div.controls label.control-label')
       end
-      
+
       it 'should not add the required attribute to each input' do
         output_buffer.should_not have_tag('li.choice input[@required]')
       end
-      
-      
+
+
       it 'should contain a label for the radio input with a nested input and label text' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag('form div.clearfix div.input ul li label', /#{author.to_label}/)
-          output_buffer.should have_tag("form div.clearfix div.input ul li label[@for='post_author_id_#{author.id}']")
+          output_buffer.should have_tag('form div.control-group div.controls label.radio', /#{author.to_label}/)
+          output_buffer.should have_tag("form div.control-group div.controls label.radio[@for='post_author_id_#{author.id}']")
         end
       end
 
       it 'should use values as li.class when value_as_class is true' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag("form div.clearfix ul li.author_#{author.id} label")
+          output_buffer.should have_tag("form div.control-group label.radio.author_#{author.id}")
         end
       end
 
       it "should have a radio input" do
         ::Author.all.each do |author|
-          output_buffer.should have_tag("form div.clearfix div.input ul li label input#post_author_id_#{author.id}")
-          output_buffer.should have_tag("form div.clearfix div.input ul li label input[@type='radio']")
-          output_buffer.should have_tag("form div.clearfix div.input ul li label input[@value='#{author.id}']")
-          output_buffer.should have_tag("form div.clearfix div.input ul li label input[@name='post[author_id]']")
+          output_buffer.should have_tag("form div.control-group div.controls label.radio input#post_author_id_#{author.id}")
+          output_buffer.should have_tag("form div.control-group div.controls label.radio input[@type='radio']")
+          output_buffer.should have_tag("form div.control-group div.controls label.radio input[@value='#{author.id}']")
+          output_buffer.should have_tag("form div.control-group div.controls label.radio input[@name='post[author_id]']")
         end
       end
 
@@ -88,7 +88,7 @@ describe 'radio input' do
           concat(builder.input(:author, :as => :radio))
         end)
 
-        output_buffer.should have_tag("form div.clearfix div.input ul li label input[@checked='checked']")
+        output_buffer.should have_tag("form div.control-group div.controls label.radio input[@checked='checked']")
       end
 
       it "should mark the input as disabled if options attached for disabling" do
@@ -96,8 +96,8 @@ describe 'radio input' do
           concat(builder.input(:author, :as => :radio, :collection => [["Test", 'test'], ["Try", "try", {:disabled => true}]]))
         end)
 
-        output_buffer.should_not have_tag("form div.clearfix div.input ul li label input[@value='test'][@disabled='disabled']")
-        output_buffer.should have_tag("form div.clearfix div.input ul li label input[@value='try'][@disabled='disabled']")
+        output_buffer.should_not have_tag("form div.control-group div.controls label.radio input[@value='test'][@disabled='disabled']")
+        output_buffer.should have_tag("form div.control-group div.controls label.radio input[@value='try'][@disabled='disabled']")
       end
 
       it "should not contain invalid HTML attributes" do
@@ -106,7 +106,7 @@ describe 'radio input' do
           concat(builder.input(:author, :as => :radio))
         end)
 
-        output_buffer.should_not have_tag("form div.clearfix div.input ul li input[@find_options]")
+        output_buffer.should_not have_tag("form div.control-group div.controls input[@find_options]")
       end
 
     end
@@ -120,17 +120,17 @@ describe 'radio input' do
       end
 
       it 'should generate a div with a label' do
-        output_buffer.should have_tag('form div.clearfix label', /Author/)
+        output_buffer.should have_tag('form div.control-group label.control-label', /Author/)
       end
 
       it 'should generate an li tag for each item in the collection' do
-        output_buffer.should have_tag('form div.clearfix div ul li', :count => ::Author.all.size)
+        output_buffer.should have_tag('form div.control-group div label.radio', :count => ::Author.all.size)
       end
 
       it 'should generate labels for each item' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag('form div div ul li label', /#{author.to_label}/)
-          output_buffer.should have_tag("form div div ul li label[@for='project_author_id_#{author.id}']")
+          output_buffer.should have_tag('form div div label.radio', /#{author.to_label}/)
+          output_buffer.should have_tag("form div div label.radio[@for='project_author_id_#{author.id}']")
         end
       end
 
@@ -138,7 +138,7 @@ describe 'radio input' do
         concat(semantic_form_for(:project, :url => 'http://test.host') do |builder|
           concat(builder.input(:author_id, :as => :radio, :collection => [["<b>Item 1</b>", 1], ["<b>Item 2</b>", 2]]))
         end)
-        output_buffer.should have_tag('form div div ul li label') do |label|
+        output_buffer.should have_tag('form div div label.radio') do |label|
           # label.body.should match /&lt;b&gt;Item [12]&lt;\/b&gt;$/
           label.body.should match /&lt;b&gt;Item [12]&lt;\/b&gt;/
         end
@@ -146,10 +146,10 @@ describe 'radio input' do
 
       it 'should generate inputs for each item' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag("form div div ul li label input#project_author_id_#{author.id}")
-          output_buffer.should have_tag("form div div ul li label input[@type='radio']")
-          output_buffer.should have_tag("form div div ul li label input[@value='#{author.id}']")
-          output_buffer.should have_tag("form div div ul li label input[@name='project[author_id]']")
+          output_buffer.should have_tag("form div div label.radio input#project_author_id_#{author.id}")
+          output_buffer.should have_tag("form div div label.radio input[@type='radio']")
+          output_buffer.should have_tag("form div div label.radio input[@value='#{author.id}']")
+          output_buffer.should have_tag("form div div label.radio input[@name='project[author_id]']")
         end
       end
     end
@@ -173,7 +173,7 @@ describe 'radio input' do
     end
 
     it "should do foo" do
-      output_buffer.should have_tag("div.clearfix > label", /Translated/)
+      output_buffer.should have_tag("div.control-group > label.control-label", /Translated/)
     end
 
   end
@@ -187,7 +187,7 @@ describe 'radio input' do
     end
 
     it "should output the correct label title" do
-      output_buffer.should have_tag("div.clearfix > label", /The authors/)
+      output_buffer.should have_tag("div.control-group > label.control-label", /The authors/)
     end
   end
 
@@ -201,10 +201,10 @@ describe 'radio input' do
     end
 
     it "should not output the legend" do
-      output_buffer.should_not have_tag("legend.label")
+      output_buffer.should_not have_tag("legend.control-label")
       output_buffer.should_not include("&gt;")
     end
-    
+
     it "should not cause escaped HTML" do
       output_buffer.should_not include("&gt;")
     end
@@ -219,7 +219,7 @@ describe 'radio input' do
     end
 
     it "should output the correct label title" do
-      output_buffer.should have_tag("div.clearfix label abbr")
+      output_buffer.should have_tag("div.control-group label.control-label abbr")
     end
   end
 

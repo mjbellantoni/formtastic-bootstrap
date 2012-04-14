@@ -3,13 +3,6 @@ module FormtasticBootstrap
     module Base
       module Timeish
 
-        def label_html
-          # TODO Supress the "for" field?
-          template.content_tag(:label, label_html_options) do
-            render_label? ? label_text : "".html_safe
-          end
-        end
-
         def date_input_html
           fragment_input_html(:date, "small")
         end

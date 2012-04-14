@@ -18,8 +18,8 @@ module CustomMacros
     # it's located on the outer wrapper.  We move it to the inner wrapper.
     def it_should_have_input_class_in_the_right_place
       it "should have 'input' class in the right place" do
-        output_buffer.should have_tag("form div.clearfix div.input")
-        output_buffer.should_not have_tag("form div.clearfix.input")
+        output_buffer.should have_tag("form div.control-group div.controls")
+        output_buffer.should_not have_tag("form div.control-group.input")
       end
     end
 
@@ -31,7 +31,7 @@ module CustomMacros
 
     def it_should_not_have_a_label
       it "should not have a label" do
-        output_buffer.should_not have_tag("form li label")
+        output_buffer.should_not have_tag("form div.control-group label.control-label")
       end
     end
 
@@ -40,25 +40,25 @@ module CustomMacros
         output_buffer.should have_tag("form li fieldset")
       end
     end
-    
+
     def it_should_have_a_nested_fieldset_with_class(klass)
       it "should have a nested_fieldset with class #{klass}" do
         output_buffer.should have_tag("form li fieldset.#{klass}")
       end
     end
-    
+
     def it_should_have_a_nested_div
       it "should have a nested div" do
-        output_buffer.should have_tag("form div.clearfix div")
+        output_buffer.should have_tag("form div.control-group div")
       end
     end
 
     def it_should_have_a_nested_div_with_class(klass)
       it "should have a nested div with class #{klass}" do
-        output_buffer.should have_tag("form div.clearfix div.#{klass}")
+        output_buffer.should have_tag("form div.control-group div.#{klass}")
       end
     end
-    
+
     def it_should_have_a_nested_ordered_list_with_class(klass)
       it "should have a nested fieldset with class #{klass}" do
         output_buffer.should have_tag("form li ol.#{klass}")
@@ -67,71 +67,70 @@ module CustomMacros
 
     def it_should_have_a_nested_unordered_list_with_class(klass)
       it "should have a nested unordered list with class #{klass}" do
-        output_buffer.should have_tag("form div.clearfix div ul.#{klass}")
+        output_buffer.should have_tag("form div.control-group div ul.#{klass}")
       end
     end
 
     def it_should_have_label_with_text(string_or_regex)
       it "should have a label with text '#{string_or_regex}'" do
-        output_buffer.should have_tag("form div.clearfix label", string_or_regex)
+        output_buffer.should have_tag("form div.control-group label.control-label", string_or_regex)
       end
     end
 
     def it_should_have_label_for(element_id)
       it "should have a label for ##{element_id}" do
         # output_buffer.should have_tag("form div label.label[@for='#{element_id}']")
-        output_buffer.should have_tag("form div.clearfix label[@for='#{element_id}']")
-        output_buffer.should_not have_tag("form div.clearfix label.label")
+        output_buffer.should have_tag("form div.control-group label[@for='#{element_id}']")
       end
     end
-    
+
     def it_should_have_an_inline_label_for(element_id)
       it "should have a label for ##{element_id}" do
-        output_buffer.should have_tag("form li label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.controls label[@for='#{element_id}']")
       end
     end
 
     def it_should_have_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        # output_buffer.should have_tag("form div.clearfix div.input input##{element_id}")
-        output_buffer.should have_tag("form div.clearfix div.input input[@id=\"#{element_id}\"]")
+        # output_buffer.should have_tag("form div.control-group div.controls input##{element_id}")
+        output_buffer.should have_tag("form div.control-group div.controls input[@id=\"#{element_id}\"]")
       end
     end
 
     def it_should_have_select_with_id(element_id)
       it "should have a select box with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.clearfix div.input select##{element_id}")
+        output_buffer.should have_tag("form div.control-group div.controls select##{element_id}")
       end
     end
 
     def it_should_have_input_with_type(input_type)
       it "should have a #{input_type} input" do
-        output_buffer.should have_tag("form div.clearfix div.input input[@type=\"#{input_type}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@type=\"#{input_type}\"]")
       end
     end
 
     def it_should_have_input_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form div.clearfix div.input input[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@name=\"#{name}\"]")
       end
     end
 
     def it_should_have_textarea_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form div.clearfix div.input textarea[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls textarea[@name=\"#{name}\"]")
       end
     end
 
     def it_should_have_textarea_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.clearfix div.input textarea##{element_id}")
+        output_buffer.should have_tag("form div.control-group div.controls textarea##{element_id}")
       end
     end
 
     def it_should_have_label_and_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.clearfix div.input input##{element_id}")
-        output_buffer.should have_tag("form div.clearfix label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.control-group div.controls input##{element_id}")
+        output_buffer.should have_tag("form div.control-group label.control-label[@for='#{element_id}']")
       end
     end
 
@@ -141,7 +140,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.clearfix div.input input[@size='#{FormtasticBootstrap::FormBuilder.default_text_field_size}']")
+          output_buffer.should have_tag("form div.control-group div.controls input[@size='#{FormtasticBootstrap::FormBuilder.default_text_field_size}']")
         end
       end
     end
@@ -152,8 +151,8 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.clearfix div.input input")
-          output_buffer.should_not have_tag("form div.clearfix div.input input[@size]")
+          output_buffer.should have_tag("form div.control-group div.controls input")
+          output_buffer.should_not have_tag("form div.control-group div.controls input[@size]")
         end
       end
     end
@@ -163,7 +162,7 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :class => 'myclass' }))
         end)
-        output_buffer.should have_tag("form div.clearfix div.input input.myclass")
+        output_buffer.should have_tag("form div.control-group div.controls input.myclass")
       end
     end
 
@@ -172,14 +171,14 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :id => 'myid' }))
         end)
-        output_buffer.should have_tag('form div.clearfix label[@for="myid"]')
+        output_buffer.should have_tag('form div.control-group label.control-label[@for="myid"]')
       end
     end
 
     def it_should_have_maxlength_matching_column_limit
       it 'should have a maxlength matching column limit' do
         @new_post.column_for_attribute(:title).limit.should == 50
-        output_buffer.should have_tag("form div.clearfix div.input input[@maxlength='50']")
+        output_buffer.should have_tag("form div.control-group div.controls input[@maxlength='50']")
       end
     end
 
@@ -347,10 +346,10 @@ module CustomMacros
                 end
                 concat(fields)
               end)
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_general']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_design']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_development']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_quasi-serious_inventions']")
+              output_buffer.should have_tag("form div div label.radio[@for='post_author_category_name_general']")
+              output_buffer.should have_tag("form div div label.radio[@for='post_author_category_name_design']")
+              output_buffer.should have_tag("form div div label.radio[@for='post_author_category_name_development']")
+              output_buffer.should have_tag("form div div label.radio[@for='post_author_category_name_quasi-serious_inventions']")
             end
           end
         end
@@ -564,7 +563,7 @@ module CustomMacros
         end
 
         describe 'when the deprecated :label_method option is provided' do
-          
+
           describe 'as a symbol' do
             before do
               with_deprecation_silenced do
@@ -582,7 +581,7 @@ module CustomMacros
           end
 
           describe 'as a proc' do
-            
+
             before do
               with_deprecation_silenced do
                 concat(semantic_form_for(@new_post) do |builder|
@@ -603,7 +602,7 @@ module CustomMacros
               def reverse_login(a)
                 a.login.reverse
               end
-              with_deprecation_silenced do 
+              with_deprecation_silenced do
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:author, :as => as, :label_method => method(:reverse_login)))
                 end)
@@ -626,7 +625,7 @@ module CustomMacros
                 @fred.stub!(:respond_to?).and_return { |m| m.to_s == label_method || m.to_s == 'id' }
                 ::Author.all.each { |a| a.stub!(label_method).and_return('The Label Text') }
 
-                with_deprecation_silenced do 
+                with_deprecation_silenced do
                   concat(semantic_form_for(@new_post) do |builder|
                     concat(builder.input(:author, :as => as))
                   end)
@@ -647,7 +646,7 @@ module CustomMacros
 
           describe 'as a symbol' do
             before do
-              with_deprecation_silenced do 
+              with_deprecation_silenced do
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:author, :as => as, :value_method => :login))
                 end)
@@ -663,7 +662,7 @@ module CustomMacros
 
           describe 'as a proc' do
             before do
-              with_deprecation_silenced do 
+              with_deprecation_silenced do
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:author, :as => as, :value_method => Proc.new {|a| a.login.reverse }))
                 end)
@@ -682,7 +681,7 @@ module CustomMacros
               def reverse_login(a)
                 a.login.reverse
               end
-              with_deprecation_silenced do 
+              with_deprecation_silenced do
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:author, :as => as, :value_method => method(:reverse_login)))
                 end)
