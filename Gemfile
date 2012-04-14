@@ -2,9 +2,10 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'formtastic'
+gem 'formtastic', "~> 2.1"
 
 group :development, :test do
+  gem "ammeter"
   gem "rspec"
   gem "bundler"
   gem "jeweler"
