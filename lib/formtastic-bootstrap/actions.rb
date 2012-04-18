@@ -4,7 +4,7 @@ module FormtasticBootstrap
 
     autoload :Base,         'formtastic-bootstrap/actions/base'
     # autoload :Buttonish,
-    # autoload :InputAction
+    autoload :InputAction,  'formtastic-bootstrap/actions/input_action'
     # autoload :LinkAction
     autoload :ButtonAction, 'formtastic-bootstrap/actions/button_action'
   end
