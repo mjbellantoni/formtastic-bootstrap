@@ -4,6 +4,8 @@ require "formtastic-bootstrap/helpers/inputs_helper"
 
 module FormtasticBootstrap
   module Helpers
+
+    autoload :ActionHelper, 'formtastic-bootstrap/helpers/action_helper'
     # autoload :ErrorsHelper, 'formtastic/helpers/errors_helper'
     # autoload :FieldsetWrapper, 'formtastic/helpers/fieldset_wrapper'
     # autoload :FileColumnDetection, 'formtastic/helpers/file_column_detection'
