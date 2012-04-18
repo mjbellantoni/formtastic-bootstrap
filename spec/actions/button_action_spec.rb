@@ -15,7 +15,6 @@ describe 'ButtonAction', 'when submitting' do
   end
   
   it 'should render a submit type of button' do
-    # output_buffer.should have_tag('li.action.button_action button[@type="submit"]')
     output_buffer.should have_tag('button[@type="submit"].btn')
   end
 
@@ -35,7 +34,6 @@ describe 'ButtonAction', 'when resetting' do
   end
   
   it 'should render a reset type of button' do
-    # output_buffer.should have_tag('li.action.button_action button[@type="reset"]', :text => "Reset Post")
     output_buffer.should have_tag('button[@type="reset"].btn', :text => "Reset Post")
   end
 
