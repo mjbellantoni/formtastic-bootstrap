@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 gemspec
 
-gem 'formtastic', "~> 2.1"
+gem 'formtastic', "~> 2.2"
 
 group :development, :test do
   gem "ammeter"

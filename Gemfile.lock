@@ -122,7 +122,7 @@ PLATFORMS
 DEPENDENCIES
   ammeter
   bundler
-  formtastic (~> 2.1)
+  formtastic (~> 2.2)
   formtastic-bootstrap!
   jeweler
   rcov
