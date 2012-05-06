@@ -31,7 +31,7 @@ module FormtasticBootstrap
 
     include FormtasticBootstrap::Helpers::InputHelper
     include FormtasticBootstrap::Helpers::InputsHelper
-    include FormtasticBootstrap::Helpers::ButtonsHelper
+    #include FormtasticBootstrap::Helpers::ButtonsHelper
     include FormtasticBootstrap::Helpers::ActionHelper
     include FormtasticBootstrap::Helpers::ActionsHelper
 
