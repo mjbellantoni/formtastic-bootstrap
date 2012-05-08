@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
-gem 'formtastic', '~> 2.1.0.beta1'
-gem 'rails', '>= 3.1.0'
+gem 'formtastic', '~> 2.2.0'
+gem 'rails', '>= 3.2.0'
 
 group :development, :test do
   gem "rspec"
