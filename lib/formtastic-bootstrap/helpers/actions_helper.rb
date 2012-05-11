@@ -3,6 +3,7 @@ module FormtasticBootstrap
     module ActionsHelper
 
       include Formtastic::Helpers::ActionsHelper
+      include FormtasticBootstrap::Helpers::FieldsetWrapper
       
       def actions(*args, &block)
 
@@ -18,12 +19,6 @@ module FormtasticBootstrap
         end
       end
       
-      # protected
-      # 
-      # def default_actions
-      #   [:submit]
-      # end
-
     end
   end
 end
