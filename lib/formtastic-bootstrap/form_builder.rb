@@ -29,10 +29,10 @@ module FormtasticBootstrap
       raise
     end
 
-    include FormtasticBootstrap::Helpers::InputHelper
+    include FormtasticBootstrap::Helpers::InputHelper # Revisit
     include FormtasticBootstrap::Helpers::InputsHelper
     include FormtasticBootstrap::Helpers::ActionHelper
-    # include Formtastic::Helpers::ActionsHelper
+    include FormtasticBootstrap::Helpers::ActionsHelper
     # include Formtastic::Helpers::ErrorsHelper
 
   end

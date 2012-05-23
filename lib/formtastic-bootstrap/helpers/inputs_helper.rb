@@ -1,7 +1,6 @@
 module FormtasticBootstrap
   module Helpers
     module InputsHelper
-      include FormtasticBootstrap::Helpers::FieldsetWrapper
 
         def inputs(*args, &block)
           wrap_it = @already_in_an_inputs_block ? true : false
@@ -26,7 +25,6 @@ module FormtasticBootstrap
             end
           end
         
-          # out = template.content_tag(:li, out, :class => "input") if wrap_it
           @already_in_an_inputs_block = false
           out
         end
