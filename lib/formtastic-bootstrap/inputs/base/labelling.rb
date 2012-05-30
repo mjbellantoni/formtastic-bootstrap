@@ -6,9 +6,10 @@ module FormtasticBootstrap
         include Formtastic::Inputs::Base::Labelling
 
         def label_html_options
-          {}.tap do |opts|
-            opts[:for] ||= input_html_options[:id]
-            opts[:class] = [opts[:class]]
+          super.tap do |options|
+            # Bootstrap defines class 'label'
+            options[:class] = options[:class].reject { |c| c == 'label' }
+            options[:class] << "control-label"
           end
         end
         
