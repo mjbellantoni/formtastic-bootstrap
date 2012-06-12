@@ -9,7 +9,17 @@ module FormtasticBootstrap
           clearfix_div_wrapping do
             label_html <<
             input_div_wrapping do
-              yield
+              if options[:prepend]
+                prepended_input_wrapping do
+                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield].join("\n").html_safe
+                end
+              elsif options[:append]
+                prepended_input_wrapping do
+                  [template.content_tag(:span, options[:append], :class => 'add-on'), yield].join("\n").html_safe
+                end
+              else
+                yield
+              end
             end
           end
         end
@@ -48,6 +58,18 @@ module FormtasticBootstrap
           opts[:id] ||= wrapper_dom_id
       
           opts
+        end
+
+        def prepended_input_wrapping(&block)
+          template.content_tag(:div, :class => 'input-prepend') do
+            yield
+          end
+        end
+
+        def appended_input_wrapping(&block)
+          template.content_tag(:div, :class => 'input-append') do
+            yield
+          end
         end
 
       end
