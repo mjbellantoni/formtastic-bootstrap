@@ -14,7 +14,7 @@ module FormtasticBootstrap
                   [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield].join("\n").html_safe
                 end
               elsif options[:append]
-                prepended_input_wrapping do
+                appendeded_input_wrapping do
                   [template.content_tag(:span, options[:append], :class => 'add-on'), yield].join("\n").html_safe
                 end
               else
