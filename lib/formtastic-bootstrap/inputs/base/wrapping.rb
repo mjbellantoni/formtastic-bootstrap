@@ -82,6 +82,12 @@ module FormtasticBootstrap
             yield
           end
         end
+
+        def appended_and_prepended_input_wrapping(&block)
+          template.content_tag(:div, :class => 'input-append input-prepend') do
+            yield
+          end
+        end
       end
     end
   end
