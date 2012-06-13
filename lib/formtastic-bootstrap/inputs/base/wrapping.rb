@@ -15,7 +15,7 @@ module FormtasticBootstrap
                 end
               elsif options[:prepend] && options[:append_btn]
                 appended_and_prepended_input_wrapping do
-                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, options[:append]].join.html_safe
+                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, options[:append_btn]].join.html_safe
                 end
               elsif options[:append] && !options[:prepend]
                 appended_input_wrapping do
