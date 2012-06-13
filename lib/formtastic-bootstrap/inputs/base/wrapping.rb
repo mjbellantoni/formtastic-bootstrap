@@ -9,7 +9,7 @@ module FormtasticBootstrap
           control_group_div_wrapping do
             label_html <<
             input_div_wrapping do
-              if options[:prepend] && !options[:append]
+              if options[:prepend] && !options[:append] && !options[:append_btn]
                 prepended_input_wrapping do
                   [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield].join.html_safe
                 end
