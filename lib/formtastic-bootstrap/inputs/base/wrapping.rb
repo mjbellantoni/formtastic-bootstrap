@@ -11,15 +11,15 @@ module FormtasticBootstrap
             input_div_wrapping do
               if options[:prepend] && !options[:append]
                 prepended_input_wrapping do
-                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield].join("\n").html_safe
+                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield].join.html_safe
                 end
               elsif options[:append] && !options[:prepend]
                 appended_input_wrapping do
-                  [yield, template.content_tag(:span, options[:append], :class => 'add-on')].join("\n").html_safe
+                  [yield, template.content_tag(:span, options[:append], :class => 'add-on')].join.html_safe
                 end
               elsif options[:append] && options[:prepend]
                 appended_and_prepended_input_wrapping do
-                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, template.content_tag(:span, options[:append], :class => 'add-on')].join("\n").html_safe
+                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, template.content_tag(:span, options[:append], :class => 'add-on')].join.html_safe
                 end
               else
                 yield
