@@ -23,6 +23,7 @@ describe 'boolean input' do
   it 'should generate a label containing the input' do
     output_buffer.should_not have_tag('label.label')
     output_buffer.should have_tag('form div.control-group div.controls label', :count => 1)
+    output_buffer.should have_tag('form div.control-group div.controls label.checkbox', :count => 1)
     output_buffer.should have_tag('form div.control-group div.controls label[@for="post_allow_comments"]')
     output_buffer.should have_tag('form div.control-group div.controls label', /Allow comments/)
     output_buffer.should have_tag('form div.control-group div.controls label input[@type="checkbox"]', :count => 1)
@@ -77,7 +78,7 @@ describe 'boolean input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:allow_comments, :as => :boolean, :input_html => {:disabled => 'disabled'}))
     end)
-    output_buffer.should have_tag('form div.control-group label.control-label input[@disabled="disabled"]', :count => 1)
+    output_buffer.should have_tag('form div.control-group label.checkbox input[@disabled="disabled"]', :count => 1)
     output_buffer.should have_tag('form div.control-group input[@type="hidden"][@disabled="disabled"]', :count => 1)
   end
 

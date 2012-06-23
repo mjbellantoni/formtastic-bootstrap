@@ -7,7 +7,7 @@ module FormtasticBootstrap
 
         def bootstrap_wrapping(&block)
           control_group_wrapping do
-            label_html <<
+            control_label_html <<
             controls_wrapping do
               if options[:prepend]
                 prepended_input_wrapping do
