@@ -5,7 +5,7 @@ module FormtasticBootstrap
       include Base::Choices
 
       def to_html
-        clearfix_div_wrapping do
+        bootstrap_vertical_form_input_wrapping do
           legend_html <<
           input_div_wrapping do
             choices_group_wrapping do

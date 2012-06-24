@@ -14,15 +14,6 @@ module CustomMacros
       end
     end
 
-    # This is one of the things we move for Bootstrap.  In vanilla Formtastic
-    # it's located on the outer wrapper.  We move it to the inner wrapper.
-    def it_should_have_input_class_in_the_right_place
-      it "should have 'input' class in the right place" do
-        output_buffer.should have_tag("form div.clearfix div.input")
-        output_buffer.should_not have_tag("form div.clearfix.input")
-      end
-    end
-
     def it_should_have_input_wrapper_with_id(id_string)
       it "should have input wrapper with id '#{id_string}'" do
         output_buffer.should have_tag("form div##{id_string}")
@@ -73,28 +64,28 @@ module CustomMacros
 
     def it_should_have_label_with_text(string_or_regex)
       it "should have a label with text '#{string_or_regex}'" do
-        output_buffer.should have_tag("form div.clearfix label", string_or_regex)
+        output_buffer.should have_tag("form div label", string_or_regex)
       end
     end
 
     def it_should_have_label_for(element_id)
       it "should have a label for ##{element_id}" do
         # output_buffer.should have_tag("form div label.label[@for='#{element_id}']")
-        output_buffer.should have_tag("form div.clearfix label[@for='#{element_id}']")
-        output_buffer.should_not have_tag("form div.clearfix label.label")
+        output_buffer.should have_tag("form div label[@for='#{element_id}']")
+        output_buffer.should_not have_tag("form div label.label")
       end
     end
     
     def it_should_have_an_inline_label_for(element_id)
       it "should have a label for ##{element_id}" do
-        output_buffer.should have_tag("form li label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.control-group div.controls label[@for='#{element_id}']")
       end
     end
 
     def it_should_have_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
         # output_buffer.should have_tag("form div.clearfix div.input input##{element_id}")
-        output_buffer.should have_tag("form div.clearfix div.input input[@id=\"#{element_id}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@id=\"#{element_id}\"]")
       end
     end
 
@@ -106,13 +97,13 @@ module CustomMacros
 
     def it_should_have_input_with_type(input_type)
       it "should have a #{input_type} input" do
-        output_buffer.should have_tag("form div.clearfix div.input input[@type=\"#{input_type}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@type=\"#{input_type}\"]")
       end
     end
 
     def it_should_have_input_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form div.clearfix div.input input[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@name=\"#{name}\"]")
       end
     end
 
@@ -130,8 +121,8 @@ module CustomMacros
 
     def it_should_have_label_and_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.clearfix div.input input##{element_id}")
-        output_buffer.should have_tag("form div.clearfix label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.control-group div.controls input##{element_id}")
+        output_buffer.should have_tag("form div.control-group label[@for='#{element_id}']")
       end
     end
 
@@ -141,7 +132,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.clearfix div.input input[@size='#{FormtasticBootstrap::FormBuilder.default_text_field_size}']")
+          output_buffer.should have_tag("form div.control-group div.controls input[@size='#{FormtasticBootstrap::FormBuilder.default_text_field_size}']")
         end
       end
     end
@@ -152,8 +143,8 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.clearfix div.input input")
-          output_buffer.should_not have_tag("form div.clearfix div.input input[@size]")
+          output_buffer.should have_tag("form div.control-group div.controls input")
+          output_buffer.should_not have_tag("form div.control-group div.controls input[@size]")
         end
       end
     end
@@ -163,7 +154,7 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :class => 'myclass' }))
         end)
-        output_buffer.should have_tag("form div.clearfix div.input input.myclass")
+        output_buffer.should have_tag("form div.control-group div.controls input.myclass")
       end
     end
 
@@ -172,14 +163,14 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :id => 'myid' }))
         end)
-        output_buffer.should have_tag('form div.clearfix label[@for="myid"]')
+        output_buffer.should have_tag('form div label[@for="myid"]')
       end
     end
 
     def it_should_have_maxlength_matching_column_limit
       it 'should have a maxlength matching column limit' do
         @new_post.column_for_attribute(:title).limit.should == 50
-        output_buffer.should have_tag("form div.clearfix div.input input[@maxlength='50']")
+        output_buffer.should have_tag("form div.control-group div.controls input[@maxlength='50']")
       end
     end
 

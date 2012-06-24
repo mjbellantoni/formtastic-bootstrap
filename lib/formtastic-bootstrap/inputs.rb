@@ -1,6 +1,5 @@
 require "formtastic-bootstrap/inputs/base"
-require "formtastic-bootstrap/inputs/boolean_input"
-require "formtastic-bootstrap/inputs/check_boxes_input"
+
 require "formtastic-bootstrap/inputs/date_input"
 require "formtastic-bootstrap/inputs/datetime_input"
 require "formtastic-bootstrap/inputs/email_input"
@@ -22,7 +21,11 @@ require "formtastic-bootstrap/inputs/url_input"
 module FormtasticBootstrap
   module Inputs
 
-    include Base
+    include Base # TODO: Understand why I need to do this.
+    # autoload :Base, "formtastic-bootstrap/inputs/base"
+    autoload :BooleanInput,    "formtastic-bootstrap/inputs/boolean_input" 
+    autoload :CheckBoxesInput, "formtastic-bootstrap/inputs/check_boxes_input"
+    # autoload :DateSelectInput, "formtastic-bootstrap/inputs/date_select_input"
 
   end
 end
