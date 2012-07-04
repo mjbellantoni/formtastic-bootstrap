@@ -17,6 +17,7 @@ describe 'file input' do
 
   it_should_have_input_wrapper_with_class("file")
   it_should_have_input_wrapper_with_class(:clearfix)
+  it_should_have_input_wrapper_with_class("control-group")
   it_should_have_input_class_in_the_right_place
   it_should_have_input_wrapper_with_id("post_body_input")
   it_should_have_label_with_text(/Body/)

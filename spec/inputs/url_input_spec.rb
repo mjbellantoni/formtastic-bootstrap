@@ -20,6 +20,7 @@ describe 'url input' do
 
     it_should_have_input_wrapper_with_class(:url)
     it_should_have_input_wrapper_with_class(:clearfix)
+    it_should_have_input_wrapper_with_class("control-group")
     it_should_have_input_wrapper_with_class(:stringish)
     it_should_have_input_class_in_the_right_place
     it_should_have_input_wrapper_with_id("post_url_input")

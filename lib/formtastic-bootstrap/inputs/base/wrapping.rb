@@ -43,7 +43,7 @@ module FormtasticBootstrap
           opts[:class] ||= []
           opts[:class] = [opts[:class].to_s] unless opts[:class].is_a?(Array)
           opts[:class] << as
-          opts[:class] << "clearfix"
+          opts[:class] << "clearfix control-group"
           # opts[:class] << "input"
           opts[:class] << "error" if errors?
           opts[:class] << "optional" if optional?

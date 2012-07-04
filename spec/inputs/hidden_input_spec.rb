@@ -21,6 +21,7 @@ describe 'hidden input' do
 
   it_should_have_input_wrapper_with_class("hidden")
   it_should_have_input_wrapper_with_class(:clearfix)
+  it_should_have_input_wrapper_with_class("control-group")
   it_should_have_input_class_in_the_right_place
   it_should_have_input_wrapper_with_id("post_secret_input")
   it_should_not_have_a_label
