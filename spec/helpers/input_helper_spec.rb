@@ -509,17 +509,41 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         end
       end
       
-      it 'should call the corresponding input class with .to_html' do
-        # TODO Re-activate timezone test.
-        # TODO Add for fancy Bootstrap types.
-        # [:select, :time_zone, :radio, :date, :datetime, :time, :boolean, :check_boxes, :hidden, :string, :password, :number, :text, :file].each do |input_style|
-        [:select, :radio, :date, :datetime, :time, :boolean, :check_boxes, :hidden, :string, :password, :number, :text, :file].each do |input_style|
+      describe 'when provided' do
+        it 'should call the corresponding input class with .to_html' do
+          # TODO Re-activate timezone test.
+          # TODO Add for fancy Bootstrap types.
+          # [:select, :time_zone, :radio, :date, :datetime, :time, :boolean, :check_boxes, :hidden, :string, :password, :number, :text, :file].each do |input_style|
+          [:select, :radio, :date, :datetime, :time, :boolean, :check_boxes, :hidden, :string, :password, :number, :text, :file].each do |input_style|
+            @new_post.stub!(:generic_column_name)
+            @new_post.stub!(:column_for_attribute).and_return(mock('column', :type => :string, :limit => 255))
+            semantic_form_for(@new_post) do |builder|
+              input_instance = mock('Input instance')
+              input_class = "#{input_style.to_s}_input".classify
+              input_constant = "FormtasticBootstrap::Inputs::#{input_class}".constantize
+        
+              input_constant.should_receive(:new).and_return(input_instance)
+              input_instance.should_receive(:to_html).and_return("some HTML")
+        
+              concat(builder.input(:generic_column_name, :as => input_style))
+            end
+          end
+        end
+
+        it 'should fallback on the parent\'s input classes if it doesn\'t exist in FormtasticBootstrap' do
+          input_style = :only_in_formtastic
           @new_post.stub!(:generic_column_name)
           @new_post.stub!(:column_for_attribute).and_return(mock('column', :type => :string, :limit => 255))
+
+          module ::Formtastic::Inputs
+            class OnlyInFormtasticInput
+            end
+          end
+
           semantic_form_for(@new_post) do |builder|
             input_instance = mock('Input instance')
             input_class = "#{input_style.to_s}_input".classify
-            input_constant = "FormtasticBootstrap::Inputs::#{input_class}".constantize
+            input_constant = "Formtastic::Inputs::#{input_class}".constantize
       
             input_constant.should_receive(:new).and_return(input_instance)
             input_instance.should_receive(:to_html).and_return("some HTML")
@@ -942,7 +966,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
       it "should be cached (not calling the internal methods)" do
         # TODO this is really tied to the underlying implementation
         concat(semantic_form_for(@new_post) do |builder|
-          builder.should_receive(:custom_input_class_name).with(:string).once.and_return(::Formtastic::Inputs::StringInput)
+          builder.should_receive(:custom_input_class_name).with(:string).once.and_return(::Formtastic::Inputs::StringInput.to_s)
           builder.input(:title, :as => :string)
           builder.input(:title, :as => :string)
         end)
