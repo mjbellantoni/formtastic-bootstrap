@@ -1,3 +1,6 @@
 .hidden {
 	display: none;
 }
+.formtastic, .formtastic ul, .formtastic ol, .formtastic li, .formtastic fieldset, .formtastic legend, .formtastic input, .formtastic button, .formtastic textarea, .formtastic select, .formtastic p{
+  padding: 4px 10px;
+}

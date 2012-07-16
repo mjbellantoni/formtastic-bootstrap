@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    formtastic-bootstrap (1.1.2)
+    formtastic-bootstrap (1.2.0)
       formtastic
       rails (>= 3.1.0)
 
