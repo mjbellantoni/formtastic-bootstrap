@@ -8,6 +8,6 @@ group :development, :test do
   gem "rspec"
   gem "bundler"
   gem "jeweler"
-  gem "rcov", ">= 0"
+  gem "simplecov"
   gem "rspec_tag_matchers"
 end
