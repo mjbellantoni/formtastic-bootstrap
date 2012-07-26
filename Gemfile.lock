@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    formtastic-bootstrap (1.1.2)
+    formtastic-bootstrap (1.2.0)
       formtastic
       rails (>= 3.1.0)
 
@@ -102,6 +102,10 @@ GEM
     rspec_tag_matchers (1.0.0)
       nokogiri (>= 1.4.0)
       rspec-rails (>= 1.2.6)
+    simplecov (0.6.4)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     sprockets (2.0.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -124,3 +128,4 @@ DEPENDENCIES
   rcov
   rspec
   rspec_tag_matchers
+  simplecov
