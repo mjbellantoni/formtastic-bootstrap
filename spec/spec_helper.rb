@@ -12,7 +12,7 @@ require 'action_view'
 require 'action_controller'
 require 'action_dispatch'
 
-require 'formtastic-bootstrap'
+require 'crowdtastic'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.

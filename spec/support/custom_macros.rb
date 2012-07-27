@@ -141,7 +141,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.clearfix div.input input[@size='#{FormtasticBootstrap::FormBuilder.default_text_field_size}']")
+          output_buffer.should have_tag("form div.clearfix div.input input[@size='#{Crowdtastic::FormBuilder.default_text_field_size}']")
         end
       end
     end
@@ -208,15 +208,15 @@ module CustomMacros
           end
           @new_post.stub!(:errors).and_return(@errors)
 
-          @orig_inline_errors      = FormtasticBootstrap::FormBuilder.inline_errors
-          @orig_inline_error_class = FormtasticBootstrap::FormBuilder.default_inline_error_class
-          @orig_error_list_class   = FormtasticBootstrap::FormBuilder.default_error_list_class
+          @orig_inline_errors      = Crowdtastic::FormBuilder.inline_errors
+          @orig_inline_error_class = Crowdtastic::FormBuilder.default_inline_error_class
+          @orig_error_list_class   = Crowdtastic::FormBuilder.default_error_list_class
         end
 
         after(:each) do
-          FormtasticBootstrap::FormBuilder.inline_errors              = @orig_inline_errors
-          FormtasticBootstrap::FormBuilder.default_inline_error_class = @orig_inline_error_class
-          FormtasticBootstrap::FormBuilder.default_error_list_class   = @orig_error_list_class
+          Crowdtastic::FormBuilder.inline_errors              = @orig_inline_errors
+          Crowdtastic::FormBuilder.default_inline_error_class = @orig_inline_error_class
+          Crowdtastic::FormBuilder.default_error_list_class   = @orig_error_list_class
         end
 
         it 'should apply an errors class to the list item' do
@@ -234,7 +234,7 @@ module CustomMacros
         end
 
         it 'should render a paragraph for the errors' do
-          FormtasticBootstrap::FormBuilder.inline_errors = :sentence
+          Crowdtastic::FormBuilder.inline_errors = :sentence
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => type))
           end)
@@ -247,7 +247,7 @@ module CustomMacros
         end
 
         it 'should not display an error list' do
-          FormtasticBootstrap::FormBuilder.inline_errors = :list
+          Crowdtastic::FormBuilder.inline_errors = :list
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => type))
           end)

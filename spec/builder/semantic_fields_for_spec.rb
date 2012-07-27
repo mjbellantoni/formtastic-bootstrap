@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'FormtasticBootstrap::FormBuilder#fields_for' do
+describe 'Crowdtastic::FormBuilder#fields_for' do
 
   include FormtasticSpecHelper
 
@@ -9,7 +9,7 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
     mock_everything
     @new_post.stub!(:author).and_return(::Author.new)
 
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
   end
 
   context 'outside a form_for block' do

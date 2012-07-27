@@ -8,7 +8,7 @@ describe 'radio input' do
   before do
     @output_buffer = ''
     mock_everything
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
   end
 
   describe 'for belongs_to association' do

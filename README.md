@@ -14,11 +14,11 @@ Formtastic Bootstrap has only been tested with Ruby 1.9.2, Rails 3.1, Formtastic
 
 Install the gem with 
 
-    gem install formtastic-bootstrap
+    gem install crowdtastic
 
 Or add it to your Gemfile:
 
-    gem 'formtastic-bootstrap'
+    gem 'crowdtastic'
 
 And install it with <tt>bundle install</tt>.
 
@@ -27,12 +27,12 @@ And install it with <tt>bundle install</tt>.
 Add the following line to your Formtastic initialization file:
 
     # config/initializers/formtastic.rb
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
 
 Add the following line to the top of your <tt>application.css</tt> file:
 
     # app/assets/stylesheets/application.css
-    *= require formtastic-bootstrap
+    *= require crowdtastic
 
 Make sure you've already downloaded and installed Formtastic!
 
@@ -148,7 +148,7 @@ To create a Prepended Text field, use the ```:prepend``` option.  This works on 
  
 ### Contributors
 
-A big thank you [to all contributors](https://github.com/mjbellantoni/formtastic-bootstrap/contributors)!
+A big thank you [to all contributors](https://github.com/mjbellantoni/crowdtastic/contributors)!
 
 ### Submitting Issues
 
