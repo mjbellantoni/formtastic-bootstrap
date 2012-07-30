@@ -9,7 +9,7 @@ describe 'check_boxes input' do
     before do
       @output_buffer = ''
       mock_everything
-      Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+      Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
   
       concat(semantic_form_for(@fred) do |builder|
         concat(builder.input(:posts, :as => :check_boxes, :value_as_class => true, :required => true))
@@ -416,7 +416,7 @@ describe 'check_boxes input' do
       @output_buffer = ''
       @_collection = [["First", 1], ["Second", 2]]
       mock_everything
-      Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+      Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
   
       concat(semantic_form_for(@fred) do |builder|
         concat(builder.input(:posts, :as => :check_boxes, :collection => @_collection))

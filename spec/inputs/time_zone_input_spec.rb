@@ -8,7 +8,7 @@ describe 'time_zone input' do
   before do
     @output_buffer = ''
     mock_everything
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
 
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:time_zone))
@@ -44,7 +44,7 @@ describe 'time_zone input' do
     before do
       @output_buffer = ''
       mock_everything
-      Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+      Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
 
       concat(semantic_form_for(@new_post, :namespace => 'context2') do |builder|
         concat(builder.input(:time_zone))
@@ -62,7 +62,7 @@ describe 'time_zone input' do
     before do
       @output_buffer = ''
       mock_everything
-      Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+      Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
 
       concat(semantic_form_for(@new_post) do |builder|
         concat(builder.fields_for(:author, :index => 3) do |author|

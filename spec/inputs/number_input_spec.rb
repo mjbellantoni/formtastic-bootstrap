@@ -8,7 +8,7 @@ describe 'number input' do
   before do
     @output_buffer = ''
     mock_everything
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
 
     @new_post.class.stub!(:validators_on).with(:title).and_return([
       active_model_numericality_validator([:title], {:only_integer=>false, :allow_nil=>false, :greater_than=>2})

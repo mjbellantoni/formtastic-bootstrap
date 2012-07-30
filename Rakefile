@@ -14,8 +14,8 @@ require 'rake'
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "formtastic-bootstrap"
-  gem.homepage = "http://github.com/mjbellantoni/formtastic-bootstrap"
+  gem.name = "crowdtastic"
+  gem.homepage = "http://github.com/mjbellantoni/crowdtastic"
   gem.license = "MIT"
   gem.summary = %Q{Formtastic form builder to generate Twitter Bootstrap-friendly markup.}
   gem.description = gem.summary
@@ -43,7 +43,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "formtastic-bootstrap #{version}"
+  rdoc.title = "crowdtastic #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end

@@ -8,20 +8,20 @@ describe 'Formtastic::FormBuilder#errors_on' do
   before(:each) do
     @output_buffer = ''
     mock_everything
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
     @title_errors = ['must not be blank', 'must be longer than 10 characters', 'must be awesome']
     @errors = mock('errors')
     @new_post.stub!(:errors).and_return(@errors)
 
-    @orig_inline_errors      = FormtasticBootstrap::FormBuilder.inline_errors
-    @orig_inline_error_class = FormtasticBootstrap::FormBuilder.default_inline_error_class
-    @orig_error_list_class   = FormtasticBootstrap::FormBuilder.default_error_list_class
+    @orig_inline_errors      = Crowdtastic::FormBuilder.inline_errors
+    @orig_inline_error_class = Crowdtastic::FormBuilder.default_inline_error_class
+    @orig_error_list_class   = Crowdtastic::FormBuilder.default_error_list_class
   end
 
   after(:each) do
-    FormtasticBootstrap::FormBuilder.inline_errors              = @orig_inline_errors
-    FormtasticBootstrap::FormBuilder.default_inline_error_class = @orig_inline_error_class
-    FormtasticBootstrap::FormBuilder.default_error_list_class   = @orig_error_list_class
+    Crowdtastic::FormBuilder.inline_errors              = @orig_inline_errors
+    Crowdtastic::FormBuilder.default_inline_error_class = @orig_inline_error_class
+    Crowdtastic::FormBuilder.default_error_list_class   = @orig_error_list_class
   end
 
   describe 'when there are errors' do
@@ -30,13 +30,13 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     # after do
-      # FormtasticBootstrap::FormBuilder.default_inline_error_class = 'inline-errors'
-      # FormtasticBootstrap::FormBuilder.default_inline_error_class = 'help-inline'
-      # FormtasticBootstrap::FormBuilder.default_error_list_class = 'errors'
+      # Crowdtastic::FormBuilder.default_inline_error_class = 'inline-errors'
+      # Crowdtastic::FormBuilder.default_inline_error_class = 'help-inline'
+      # Crowdtastic::FormBuilder.default_error_list_class = 'errors'
     # end
 
     it 'should render a paragraph with the errors joined into a sentence when inline_errors config is :sentence' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :sentence
+      Crowdtastic::FormBuilder.inline_errors = :sentence
       concat(semantic_form_for(@new_post) do |builder|
         builder.input :title
       end)
@@ -44,7 +44,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     it 'should render a paragraph with a overridden default class' do
-      FormtasticBootstrap::FormBuilder.default_inline_error_class = 'better-errors'
+      Crowdtastic::FormBuilder.default_inline_error_class = 'better-errors'
       concat(semantic_form_for(@new_post) do |builder|
         builder.input(:title)
       end)
@@ -52,7 +52,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     it 'should render a paragraph with the errors joined into a sentence when inline_errors config is :sentence with a customized error class' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :sentence
+      Crowdtastic::FormBuilder.inline_errors = :sentence
       concat(semantic_form_for(@new_post) do |builder|
         builder.input(:title, :error_class => 'better-errors')
       end)
@@ -60,7 +60,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     it 'should render an unordered list with the class errors when inline_errors config is :list' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :list
+      Crowdtastic::FormBuilder.inline_errors = :list
       concat(semantic_form_for(@new_post) do |builder|
         builder.input(:title)
       end)
@@ -71,8 +71,8 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     it 'should render an unordered list with the class overridden default class' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :list
-      FormtasticBootstrap::FormBuilder.default_error_list_class = "better-errors"
+      Crowdtastic::FormBuilder.inline_errors = :list
+      Crowdtastic::FormBuilder.default_error_list_class = "better-errors"
       concat(semantic_form_for(@new_post) do |builder|
         builder.input :title
       end)
@@ -83,7 +83,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     it 'should render an unordered list with the class errors when inline_errors config is :list with a customized error class' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :list
+      Crowdtastic::FormBuilder.inline_errors = :list
       concat(semantic_form_for(@new_post) do |builder|
         builder.input :title, :error_class => "better-errors"
       end)
@@ -94,7 +94,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     it 'should render a paragraph with the first error when inline_errors config is :first' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :first
+      Crowdtastic::FormBuilder.inline_errors = :first
       concat(semantic_form_for(@new_post) do |builder|
         builder.input :title
       end)
@@ -102,7 +102,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     it 'should render a paragraph with the first error when inline_errors config is :first with a customized error class' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :first
+      Crowdtastic::FormBuilder.inline_errors = :first
       concat(semantic_form_for(@new_post) do |builder|
         builder.input :title, :error_class => "better-errors"
       end)
@@ -110,7 +110,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
 
     it 'should return nil when inline_errors config is :none' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :none
+      Crowdtastic::FormBuilder.inline_errors = :none
       concat(semantic_form_for(@new_post) do |builder|
         builder.input :title
       end)
@@ -120,7 +120,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     end
   
     it 'should allow calling deprecated errors_on and inline_errors_for helpers' do
-      FormtasticBootstrap::FormBuilder.inline_errors = :sentence
+      Crowdtastic::FormBuilder.inline_errors = :sentence
       with_deprecation_silenced do
         concat(semantic_form_for(@new_post) do |builder|
           builder.errors_on :title
@@ -157,7 +157,7 @@ describe 'Formtastic::FormBuilder#errors_on' do
     it 'should return nil when inline_errors config is :sentence, :list or :none' do
       with_deprecation_silenced do
         [:sentence, :list, :none].each do |config|
-          FormtasticBootstrap::FormBuilder.inline_errors = config
+          Crowdtastic::FormBuilder.inline_errors = config
           semantic_form_for(@new_post) do |builder|
             builder.errors_on(:title).should be_nil
           end

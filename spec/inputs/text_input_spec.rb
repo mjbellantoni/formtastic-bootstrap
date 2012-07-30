@@ -8,7 +8,7 @@ describe 'text input' do
   before do
     @output_buffer = ''
     mock_everything
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
 
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:body, :as => :text))
@@ -71,7 +71,7 @@ describe 'text input' do
     before do
       @output_buffer = ''
       mock_everything
-      Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+      Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
 
       concat(semantic_form_for(@new_post, :namespace => 'context2') do |builder|
         concat(builder.input(:body, :as => :text))

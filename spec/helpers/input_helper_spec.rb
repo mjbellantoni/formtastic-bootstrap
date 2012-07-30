@@ -1,7 +1,7 @@
 # encoding: utf-8
 require 'spec_helper'
 
-describe 'FormtasticBootstrap::FormBuilder#input' do
+describe 'Crowdtastic::FormBuilder#input' do
 
   include FormtasticSpecHelper
 
@@ -9,7 +9,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
     @output_buffer = ''
     mock_everything
 
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
+    Formtastic::Helpers::FormHelper.builder = Crowdtastic::FormBuilder
 
     @errors = mock('errors')
     @errors.stub!(:[]).and_return([])
@@ -57,13 +57,13 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
       describe 'when false' do
       
         before(:each) do
-          @orig_optional_string = FormtasticBootstrap::FormBuilder.optional_string
-          @string = FormtasticBootstrap::FormBuilder.optional_string = " optional yo!" # ensure there's something in the string
+          @orig_optional_string = Crowdtastic::FormBuilder.optional_string
+          @string = Crowdtastic::FormBuilder.optional_string = " optional yo!" # ensure there's something in the string
           @new_post.class.should_not_receive(:reflect_on_all_validations)
         end
       
         after(:each) do
-          FormtasticBootstrap::FormBuilder.optional_string = @orig_optional_string
+          Crowdtastic::FormBuilder.optional_string = @orig_optional_string
         end
       
         it 'should set an "optional" class' do
@@ -99,16 +99,16 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         describe 'and an object was not given' do
       
           before(:each) do
-            @orig_all_fields_required = FormtasticBootstrap::FormBuilder.all_fields_required_by_default
+            @orig_all_fields_required = Crowdtastic::FormBuilder.all_fields_required_by_default
           end
       
           after(:each) do
-            FormtasticBootstrap::FormBuilder.all_fields_required_by_default = @orig_all_fields_required         
+            Crowdtastic::FormBuilder.all_fields_required_by_default = @orig_all_fields_required         
           end
       
           it 'should use the default value' do
-            FormtasticBootstrap::FormBuilder.all_fields_required_by_default.should == true
-            FormtasticBootstrap::FormBuilder.all_fields_required_by_default = false
+            Crowdtastic::FormBuilder.all_fields_required_by_default.should == true
+            Crowdtastic::FormBuilder.all_fields_required_by_default = false
       
             concat(semantic_form_for(:project, :url => 'http://test.host/') do |builder|
               concat(builder.input(:title))
@@ -348,16 +348,16 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         describe 'and an object without :validators_on' do
       
           before(:each) do
-            @orig_all_fields_required = FormtasticBootstrap::FormBuilder.all_fields_required_by_default
+            @orig_all_fields_required = Crowdtastic::FormBuilder.all_fields_required_by_default
           end
       
           after(:each) do
-            FormtasticBootstrap::FormBuilder.all_fields_required_by_default = @orig_all_fields_required         
+            Crowdtastic::FormBuilder.all_fields_required_by_default = @orig_all_fields_required         
           end
       
           it 'should use the default value' do
-            FormtasticBootstrap::FormBuilder.all_fields_required_by_default.should == true
-            FormtasticBootstrap::FormBuilder.all_fields_required_by_default = false
+            Crowdtastic::FormBuilder.all_fields_required_by_default.should == true
+            Crowdtastic::FormBuilder.all_fields_required_by_default = false
       
             concat(semantic_form_for(@new_post) do |builder|
               concat(builder.input(:title))
@@ -489,11 +489,11 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         end
       
         describe 'defaulting to file column' do
-          FormtasticBootstrap::FormBuilder.file_methods.each do |method|
+          Crowdtastic::FormBuilder.file_methods.each do |method|
             it "should default to :file for attributes that respond to ##{method}" do
               column = mock('column')
       
-              FormtasticBootstrap::FormBuilder.file_methods.each do |test|
+              Crowdtastic::FormBuilder.file_methods.each do |test|
                 ### TODO: Check if this is ok
                 column.stub!(method).with(test).and_return(method == test)
               end
@@ -519,7 +519,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
           semantic_form_for(@new_post) do |builder|
             input_instance = mock('Input instance')
             input_class = "#{input_style.to_s}_input".classify
-            input_constant = "FormtasticBootstrap::Inputs::#{input_class}".constantize
+            input_constant = "Crowdtastic::Inputs::#{input_class}".constantize
       
             input_constant.should_receive(:new).and_return(input_instance)
             input_instance.should_receive(:to_html).and_return("some HTML")
@@ -675,11 +675,11 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
       describe 'when provided' do
         
         before(:each) do
-          @orig_hint_class = FormtasticBootstrap::FormBuilder.default_inline_hint_class
+          @orig_hint_class = Crowdtastic::FormBuilder.default_inline_hint_class
         end
 
         after(:each) do
-          FormtasticBootstrap::FormBuilder.default_inline_hint_class = @orig_hint_class
+          Crowdtastic::FormBuilder.default_inline_hint_class = @orig_hint_class
         end
 
         it 'should be passed down to the paragraph tag' do
@@ -700,8 +700,8 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
         it 'should have a custom hint class defaulted for all forms' do
           hint_text = "this is the title of the post"
-          # FormtasticBootstrap::FormBuilder.default_hint_class = "custom-hint-class"
-          FormtasticBootstrap::FormBuilder.default_inline_hint_class = "custom-hint-class"
+          # Crowdtastic::FormBuilder.default_hint_class = "custom-hint-class"
+          Crowdtastic::FormBuilder.default_inline_hint_class = "custom-hint-class"
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :hint => hint_text))
           end)
@@ -914,7 +914,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
     
       it 'should instantiate the Formtastic input' do
         input = mock('input', :to_html => 'some HTML')
-        FormtasticBootstrap::Inputs::StringInput.should_receive(:new).and_return(input)
+        Crowdtastic::Inputs::StringInput.should_receive(:new).and_return(input)
         concat(semantic_form_for(@new_post) do |builder|
           builder.input(:title, :as => :string)
         end)
@@ -924,11 +924,11 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
     
     describe 'when a top-level input class exists' do
       it "should instantiate the top-level input instead of the Formtastic one" do
-        class ::StringInput < FormtasticBootstrap::Inputs::StringInput
+        class ::StringInput < Crowdtastic::Inputs::StringInput
         end
     
         input = mock('input', :to_html => 'some HTML')
-        FormtasticBootstrap::Inputs::StringInput.should_not_receive(:new).and_return(input)
+        Crowdtastic::Inputs::StringInput.should_not_receive(:new).and_return(input)
         ::StringInput.should_receive(:new).and_return(input)
     
         concat(semantic_form_for(@new_post) do |builder|
