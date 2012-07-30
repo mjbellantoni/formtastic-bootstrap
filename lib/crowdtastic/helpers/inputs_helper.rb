@@ -9,7 +9,6 @@ module Crowdtastic
         
           title = field_set_title_from_args(*args)
           html_options = args.extract_options!
-          html_options[:class] ||= "inputs"
           html_options[:name] = title
 
           out = begin

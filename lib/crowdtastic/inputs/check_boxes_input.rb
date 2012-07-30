@@ -5,18 +5,12 @@ module Crowdtastic
       include Base::Choices
 
       def to_html
-        clearfix_div_wrapping do
-          legend_html <<
-          hidden_field_for_all <<
-          input_div_wrapping do
-            choices_group_wrapping do
-              collection.map { |choice|
-                choice_wrapping(choice_wrapping_html_options(choice)) do
-                  choice_html(choice)
-                end
-              }.join("\n").html_safe
-            end
-          end
+        legend_html <<
+        hidden_field_for_all <<
+        input_div_wrapping do
+          collection.map { |choice|
+              choice_html(choice)
+          }.join("\n").html_safe
         end
       end
 

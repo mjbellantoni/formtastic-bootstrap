@@ -14,17 +14,6 @@ module Crowdtastic
           { :class => "choices input" }
         end
 
-        def choices_group_wrapping(&block)
-          template.content_tag(:ul,
-            template.capture(&block),
-            choices_group_wrapping_html_options
-          )
-        end
-
-        def choices_group_wrapping_html_options
-          { :class => "choices-group inputs-list" }
-        end
-
         def choice_label(choice)
           "\n".html_safe + template.content_tag(:span) do
             # (choice.is_a?(Array) ? choice.first : choice).to_s
