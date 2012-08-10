@@ -1,4 +1,3 @@
-#require "formtastic-bootstrap/helpers/buttons_helper"
 require "formtastic-bootstrap/helpers/fieldset_wrapper"
 require "formtastic-bootstrap/helpers/action_helper"
 require "formtastic-bootstrap/helpers/actions_helper"

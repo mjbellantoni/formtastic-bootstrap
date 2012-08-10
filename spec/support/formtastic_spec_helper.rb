@@ -1,3 +1,6 @@
+module FakeHelpersModule
+end
+
 # This was lifted right out of Formtastic.
 module FormtasticSpecHelper
   include ActionPack
@@ -382,7 +385,7 @@ module FormtasticSpecHelper
       end
 
       def _helpers
-        FakeHelpersModule
+        ::FakeHelpersModule
       end
 
     end

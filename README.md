@@ -1,8 +1,21 @@
-# Formtastic Bootstrap
+# Formtastic Bootstrap 
 
 A [Formtastic](https://github.com/justinfrench/formtastic) form builder that creates markup suitable for the [Twitter Bootstrap](http://twitter.github.com/bootstrap/) framework.  In theory, it should just work.  Two great tastes in one!
 
 You can follow [FormBoot on twitter](http://twitter.com/FormBoot) for update announcements and other relevant info.
+
+## Important
+
+This gem has been tested with *formtastic 2.2.1*. Most of the specs now pass.
+The specs are in need of a major cleanup since many tests have been commented out as the Twitter bootstrap html structure (and Formtastic Bootstrap generated html) have changed.
+
+It is currently hard to tell what should be the expected html result in many cases.
+
+The main specs that don't pass now are the `generic_actions_spec.rb` and this likely has more to do with the setup of I18n and not the gem itself?
+
+One of the main reasons that this gem failed hard before was an insufficient setup in `spec_helper.rb`. It helped a lot to follow the latest `spec_helper.rb` example in the *formtastic* gem.
+
+Bonne chance!
 
 ## Getting Started
 
