@@ -81,31 +81,23 @@ module FormtasticBootstrap
           end
         end
 
-<<<<<<< HEAD
-        def prepended_input_wrapping(&block)
-          template.content_tag(:div, :class => 'input-prepend') do
-=======
-        def appended_input_wrapping(&block)
-          template.content_tag(:div, :class => 'input-append') do
->>>>>>> bootstrap2-rails3-2-formtastic-2-2
-            yield
-          end
-        end
-
-<<<<<<< HEAD
         def appended_input_wrapping(&block)
           template.content_tag(:div, :class => 'input-append') do
             yield
           end
         end
 
-=======
+        def appended_input_wrapping(&block)
+          template.content_tag(:div, :class => 'input-append') do
+            yield
+          end
+        end
+
         def appended_and_prepended_input_wrapping(&block)
           template.content_tag(:div, :class => 'input-append input-prepend') do
             yield
           end
         end
->>>>>>> bootstrap2-rails3-2-formtastic-2-2
       end
     end
   end
