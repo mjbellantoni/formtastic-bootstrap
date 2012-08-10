@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "formtastic-bootstrap"
-  s.version = "2.0.1"
+  s.version = "2.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthew Bellantoni"]
-  s.date = "2012-05-08"
+  s.date = "2012-08-10"
   s.description = "Formtastic form builder to generate Twitter Bootstrap-friendly markup."
   s.email = "mjbellantoni@yahoo.com"
   s.extra_rdoc_files = [
@@ -38,7 +38,6 @@ Gem::Specification.new do |s|
     "lib/formtastic-bootstrap/helpers.rb",
     "lib/formtastic-bootstrap/helpers/action_helper.rb",
     "lib/formtastic-bootstrap/helpers/actions_helper.rb",
-    "lib/formtastic-bootstrap/helpers/buttons_helper.rb",
     "lib/formtastic-bootstrap/helpers/fieldset_wrapper.rb",
     "lib/formtastic-bootstrap/helpers/input_helper.rb",
     "lib/formtastic-bootstrap/helpers/inputs_helper.rb",
@@ -55,7 +54,9 @@ Gem::Specification.new do |s|
     "lib/formtastic-bootstrap/inputs/base/wrapping.rb",
     "lib/formtastic-bootstrap/inputs/boolean_input.rb",
     "lib/formtastic-bootstrap/inputs/check_boxes_input.rb",
+    "lib/formtastic-bootstrap/inputs/country_input.rb",
     "lib/formtastic-bootstrap/inputs/date_input.rb",
+    "lib/formtastic-bootstrap/inputs/date_select_input.rb",
     "lib/formtastic-bootstrap/inputs/datetime_input.rb",
     "lib/formtastic-bootstrap/inputs/email_input.rb",
     "lib/formtastic-bootstrap/inputs/file_input.rb",
@@ -73,13 +74,12 @@ Gem::Specification.new do |s|
     "lib/formtastic-bootstrap/inputs/time_zone_input.rb",
     "lib/formtastic-bootstrap/inputs/url_input.rb",
     "spec/actions/button_action_spec.rb",
-    "spec/actions/generic_action_spec.rb",
     "spec/actions/input_action_spec.rb",
     "spec/actions/link_action_spec.rb",
+    "spec/actions/locale_action_spec.rb",
     "spec/builder/semantic_fields_for_spec.rb",
     "spec/helpers/action_helper_spec.rb",
     "spec/helpers/actions_helper_spec.rb",
-    "spec/helpers/buttons_helper_spec.rb",
     "spec/helpers/input_helper_spec.rb",
     "spec/helpers/inputs_helper_spec.rb",
     "spec/inputs/boolean_input_spec.rb",
@@ -110,14 +110,14 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/mjbellantoni/formtastic-bootstrap"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.24"
   s.summary = "Formtastic form builder to generate Twitter Bootstrap-friendly markup."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<formtastic>, ["~> 2.2.0"])
+      s.add_runtime_dependency(%q<formtastic>, ["~> 2.2.1"])
       s.add_runtime_dependency(%q<rails>, [">= 3.2.0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
@@ -125,7 +125,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<rspec_tag_matchers>, [">= 0"])
     else
-      s.add_dependency(%q<formtastic>, ["~> 2.2.0"])
+      s.add_dependency(%q<formtastic>, ["~> 2.2.1"])
       s.add_dependency(%q<rails>, [">= 3.2.0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 0"])
@@ -134,7 +134,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec_tag_matchers>, [">= 0"])
     end
   else
-    s.add_dependency(%q<formtastic>, ["~> 2.2.0"])
+    s.add_dependency(%q<formtastic>, ["~> 2.2.1"])
     s.add_dependency(%q<rails>, [">= 3.2.0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 0"])
