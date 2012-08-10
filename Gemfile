@@ -1,7 +1,9 @@
 source "http://rubygems.org"
 
-gem 'formtastic'
-gem 'rails', '~> 3.1.0'
+# Use until formtastic merges "critical" pull request
+
+gem 'formtastic', '~> 2.2.0'
+gem 'rails', '>= 3.2.0'
 
 group :development, :test do
   gem "rspec"

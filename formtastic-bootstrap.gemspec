@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "formtastic-bootstrap"
-  s.version = "1.1.2"
+  s.version = "2.0.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Matthew Bellantoni"]
-  s.date = "2011-12-21"
+  s.date = "2012-05-08"
   s.description = "Formtastic form builder to generate Twitter Bootstrap-friendly markup."
   s.email = "mjbellantoni@yahoo.com"
   s.extra_rdoc_files = [
@@ -28,9 +28,16 @@ Gem::Specification.new do |s|
     "formtastic-bootstrap.gemspec",
     "lib/action_view/helpers/text_field_date_helper.rb",
     "lib/formtastic-bootstrap.rb",
+    "lib/formtastic-bootstrap/actions.rb",
+    "lib/formtastic-bootstrap/actions/base.rb",
+    "lib/formtastic-bootstrap/actions/button_action.rb",
+    "lib/formtastic-bootstrap/actions/input_action.rb",
+    "lib/formtastic-bootstrap/actions/link_action.rb",
     "lib/formtastic-bootstrap/engine.rb",
     "lib/formtastic-bootstrap/form_builder.rb",
     "lib/formtastic-bootstrap/helpers.rb",
+    "lib/formtastic-bootstrap/helpers/action_helper.rb",
+    "lib/formtastic-bootstrap/helpers/actions_helper.rb",
     "lib/formtastic-bootstrap/helpers/buttons_helper.rb",
     "lib/formtastic-bootstrap/helpers/fieldset_wrapper.rb",
     "lib/formtastic-bootstrap/helpers/input_helper.rb",
@@ -42,6 +49,7 @@ Gem::Specification.new do |s|
     "lib/formtastic-bootstrap/inputs/base/hints.rb",
     "lib/formtastic-bootstrap/inputs/base/html.rb",
     "lib/formtastic-bootstrap/inputs/base/labelling.rb",
+    "lib/formtastic-bootstrap/inputs/base/numeric.rb",
     "lib/formtastic-bootstrap/inputs/base/stringish.rb",
     "lib/formtastic-bootstrap/inputs/base/timeish.rb",
     "lib/formtastic-bootstrap/inputs/base/wrapping.rb",
@@ -64,8 +72,13 @@ Gem::Specification.new do |s|
     "lib/formtastic-bootstrap/inputs/time_input.rb",
     "lib/formtastic-bootstrap/inputs/time_zone_input.rb",
     "lib/formtastic-bootstrap/inputs/url_input.rb",
-    "spec/builder/errors_spec.rb",
+    "spec/actions/button_action_spec.rb",
+    "spec/actions/generic_action_spec.rb",
+    "spec/actions/input_action_spec.rb",
+    "spec/actions/link_action_spec.rb",
     "spec/builder/semantic_fields_for_spec.rb",
+    "spec/helpers/action_helper_spec.rb",
+    "spec/helpers/actions_helper_spec.rb",
     "spec/helpers/buttons_helper_spec.rb",
     "spec/helpers/input_helper_spec.rb",
     "spec/helpers/inputs_helper_spec.rb",
@@ -97,23 +110,23 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/mjbellantoni/formtastic-bootstrap"
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.10"
+  s.rubygems_version = "1.8.15"
   s.summary = "Formtastic form builder to generate Twitter Bootstrap-friendly markup."
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<formtastic>, [">= 0"])
-      s.add_runtime_dependency(%q<rails>, ["~> 3.1.0"])
+      s.add_runtime_dependency(%q<formtastic>, ["~> 2.2.0"])
+      s.add_runtime_dependency(%q<rails>, [">= 3.2.0"])
       s.add_development_dependency(%q<rspec>, [">= 0"])
       s.add_development_dependency(%q<bundler>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, [">= 0"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<rspec_tag_matchers>, [">= 0"])
     else
-      s.add_dependency(%q<formtastic>, [">= 0"])
-      s.add_dependency(%q<rails>, ["~> 3.1.0"])
+      s.add_dependency(%q<formtastic>, ["~> 2.2.0"])
+      s.add_dependency(%q<rails>, [">= 3.2.0"])
       s.add_dependency(%q<rspec>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 0"])
       s.add_dependency(%q<jeweler>, [">= 0"])
@@ -121,8 +134,8 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec_tag_matchers>, [">= 0"])
     end
   else
-    s.add_dependency(%q<formtastic>, [">= 0"])
-    s.add_dependency(%q<rails>, ["~> 3.1.0"])
+    s.add_dependency(%q<formtastic>, ["~> 2.2.0"])
+    s.add_dependency(%q<rails>, [">= 3.2.0"])
     s.add_dependency(%q<rspec>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 0"])
     s.add_dependency(%q<jeweler>, [">= 0"])

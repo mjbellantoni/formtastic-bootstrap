@@ -1,3 +1,6 @@
+module FakeHelpersModule
+end
+
 # This was lifted right out of Formtastic.
 module FormtasticSpecHelper
   include ActionPack
@@ -118,6 +121,18 @@ module FormtasticSpecHelper
     include ActiveModel::Conversion if defined?(ActiveModel::Conversion)
   end
 
+  ##
+  # We can't mock :respond_to?, so we need a concrete class override
+  class ::MongoidReflectionMock < RSpec::Mocks::Mock
+    def initialize(name=nil, stubs_and_options={})
+      super name, stubs_and_options
+    end
+
+    def respond_to?(sym)
+      sym == :options ? false : super
+    end
+  end
+
   def _routes
     url_helpers = mock('url_helpers')
     url_helpers.stub!(:hash_for_posts_path).and_return({})
@@ -132,7 +147,9 @@ module FormtasticSpecHelper
   end
 
   def controller
-    mock('controller', :controller_path= => '', :params => {})
+    env = mock('env', :[] => nil)
+    request = mock('request', :env => env)
+    mock('controller', :controller_path= => '', :params => {}, :request => request)
   end
 
   def default_url_options
@@ -263,7 +280,9 @@ module FormtasticSpecHelper
       when :main_post
         mock('reflection', :options => {}, :klass => ::Post, :macro => :belongs_to)
       when :mongoid_reviewer
-        mock('reflection', :options => nil, :klass => ::Author, :macro => :referenced_in, :foreign_key => "reviewer_id") # custom id
+        ::MongoidReflectionMock.new('reflection',
+          :options => Proc.new { raise NoMethodError, "Mongoid has no reflection.options" },
+          :klass => ::Author, :macro => :referenced_in, :foreign_key => "reviewer_id") # custom id
       end
     end
     ::Post.stub!(:find).and_return([@freds_post])
@@ -366,7 +385,7 @@ module FormtasticSpecHelper
       end
 
       def _helpers
-        FakeHelpersModule
+        ::FakeHelpersModule
       end
 
     end

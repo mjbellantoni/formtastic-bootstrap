@@ -16,7 +16,7 @@ describe 'file input' do
   end
 
   it_should_have_input_wrapper_with_class("file")
-  it_should_have_input_wrapper_with_class(:clearfix)
+  it_should_have_input_wrapper_with_class("control-group")
   it_should_have_input_class_in_the_right_place
   it_should_have_input_wrapper_with_id("post_body_input")
   it_should_have_label_with_text(/Body/)
@@ -29,7 +29,7 @@ describe 'file input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :file, :input_html => { :class => 'myclass' }))
     end)
-    output_buffer.should have_tag("form div.clearfix div.input input.myclass")
+    output_buffer.should have_tag("form div.control-group div.controls input.myclass")
   end
 
   describe "when namespace is provided" do
@@ -47,7 +47,35 @@ describe 'file input' do
     it_should_have_label_and_input_with_id("context2_post_body")
 
   end
-  
+
+  describe "when index is provided" do
+
+    before do
+      @output_buffer = ''
+      mock_everything
+
+      concat(semantic_form_for(@new_post) do |builder|
+        concat(builder.fields_for(:author, :index => 3) do |author|
+          concat(author.input(:name, :as => :file))
+        end)
+      end)
+    end
+
+    it 'should index the id of the wrapper' do
+      output_buffer.should have_tag("div#post_author_attributes_3_name_input")
+    end
+
+    it 'should index the id of the select tag' do
+      output_buffer.should have_tag("input#post_author_attributes_3_name")
+    end
+
+    it 'should index the name of the select tag' do
+      output_buffer.should have_tag("input[@name='post[author_attributes][3][name]']")
+    end
+
+  end
+
+
   context "when required" do
     it "should add the required attribute to the input's html options" do
       with_config :use_required_attribute, true do
@@ -58,6 +86,6 @@ describe 'file input' do
       end
     end
   end
-  
+
 end
 
