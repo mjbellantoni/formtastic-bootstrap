@@ -109,7 +109,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
-  formtastic (~> 2.2.0)
+  formtastic (~> 2.2.1)
   jeweler
   rails (>= 3.2.0)
   rcov

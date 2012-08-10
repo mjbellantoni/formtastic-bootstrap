@@ -2,7 +2,7 @@ source "http://rubygems.org"
 
 # Use until formtastic merges "critical" pull request
 
-gem 'formtastic', '~> 2.2.0'
+gem 'formtastic', '~> 2.2.1'
 gem 'rails', '>= 3.2.0'
 
 group :development, :test do

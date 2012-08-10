@@ -11,7 +11,7 @@ The specs are in need of a major cleanup since many tests have been commented ou
 
 It is currently hard to tell what should be the expected html result in many cases.
 
-The main specs that don't pass now are the `generic_actions_spec.rb` and this likely has more to do with the setup of I18n and not the gem itself?
+The `generic_action_spec.rb` has been renamed to `locale_action_spec.rb` and some of the formtastic tests removed and/or changed slightly. The FormtasticBootstrap action classes act as a very thin wrapper over the Formtastic equivalents so they really shouldn't have any significat effect with respect to functionality.
 
 One of the main reasons that this gem failed hard before was an insufficient setup in `spec_helper.rb`. It helped a lot to follow the latest `spec_helper.rb` example in the *formtastic* gem.
 
