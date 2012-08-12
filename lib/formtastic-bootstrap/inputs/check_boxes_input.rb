@@ -2,7 +2,6 @@ module FormtasticBootstrap
   module Inputs
     class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
       include Base
-      include Base::Choices
 
       # TODO Make sure help blocks work correctly.
       # TODO Support .inline
