@@ -27,76 +27,76 @@ describe 'check_boxes input' do
     it_should_call_find_on_association_class_when_no_collection_is_provided(:check_boxes)
     it_should_use_the_collection_when_provided(:check_boxes, 'input[@type="checkbox"]')
 
-    it 'should generate a legend containing a label with text for the input' do
-      output_buffer.should have_tag('form li fieldset legend.label label')
-      output_buffer.should have_tag('form li fieldset legend.label label', /Posts/)
+    it 'should generate a control label with text for the input' do
+      output_buffer.should have_tag('form div.control-group > label.control-label')
+      output_buffer.should have_tag('form div.control-group > label.control-label', /Posts/)
     end
 
     it 'should not link the label within the legend to any input' do
-      output_buffer.should_not have_tag('form li fieldset legend label[@for^="author_post_ids_"]')
+      output_buffer.should_not have_tag('form div.control-group > label[@for^="author_post_ids_"]')
     end
 
-    it 'should generate an ordered list with an li.choice for each choice' do
-      output_buffer.should have_tag('form li fieldset ol')
-      output_buffer.should have_tag('form li fieldset ol li.choice input[@type=checkbox]', :count => ::Post.all.size)
+    it 'should not generate an ordered list with an li.choice for each choice' do
+      output_buffer.should_not have_tag('form li fieldset ol')
+      output_buffer.should_not have_tag('form li fieldset ol li.choice input[@type=checkbox]', :count => ::Post.all.size)
     end
 
     it 'should have one option with a "checked" attribute' do
-      output_buffer.should have_tag('form li input[@checked]', :count => 1)
+      output_buffer.should have_tag('form div.control-group div.controls input[@checked]', :count => 1)
     end
 
     it 'should not generate hidden inputs with default value blank' do
-      output_buffer.should_not have_tag("form li fieldset ol li label input[@type='hidden'][@value='']")
+      output_buffer.should_not have_tag("form div.control-group div.controls label input[@type='hidden'][@value='']")
     end
 
-    it 'should not render hidden inputs inside the ol' do
-      output_buffer.should_not have_tag("form li fieldset ol li input[@type='hidden']")
+    it 'should not render hidden inputs inside div.controls' do
+      output_buffer.should_not have_tag("form div.controls input[@type='hidden']")
     end
 
     it 'should render one hidden input for each choice outside the ol' do
-      output_buffer.should have_tag("form li fieldset > input[@type='hidden']", :count => 1)
+      output_buffer.should have_tag("form div.control-group > input[@type='hidden']", :count => 1)
     end
 
     describe "each choice" do
       
-      it 'should not give the choice label the .label class' do
-        output_buffer.should_not have_tag('li.choice label.label')
+      it 'should not give the choice label the label class' do
+        output_buffer.should_not have_tag('div.controls label.label')
       end
       
       it 'should not be marked as required' do
-        output_buffer.should_not have_tag('li.choice input[@required]')
+        output_buffer.should_not have_tag('div.controls input[@required]')
       end
       
       it 'should contain a label for the radio input with a nested input and label text' do
         ::Post.all.each do |post|
-          output_buffer.should have_tag('form li fieldset ol li label', /#{post.to_label}/)
-          output_buffer.should have_tag("form li fieldset ol li label[@for='author_post_ids_#{post.id}']")
+          output_buffer.should have_tag('form div.control-group div.controls label', /#{post.to_label}/)
+          output_buffer.should have_tag("form div.control-group div.controls label[@for='author_post_ids_#{post.id}']")
         end
       end
 
-      it 'should use values as li.class when value_as_class is true' do
+      it 'should use values as label.class when value_as_class is true' do
         ::Post.all.each do |post|
-          output_buffer.should have_tag("form li fieldset ol li.post_#{post.id} label")
+          output_buffer.should have_tag("form div.control-group div.controls label.post_#{post.id}")
         end
       end
       
       it 'should have a checkbox input but no hidden field for each post' do
         ::Post.all.each do |post|
-          output_buffer.should have_tag("form li fieldset ol li label input#author_post_ids_#{post.id}")
-          output_buffer.should have_tag("form li fieldset ol li label input[@name='author[post_ids][]']", :count => 1)
+          output_buffer.should have_tag("form div.control-group div.controls label input#author_post_ids_#{post.id}")
+          output_buffer.should have_tag("form div.control-group div.controls label input[@name='author[post_ids][]']", :count => 1)
         end
       end
 
       it 'should have a hidden field with an empty array value for the collection to allow clearing of all checkboxes' do
-        output_buffer.should have_tag("form li fieldset > input[@type=hidden][@name='author[post_ids][]'][@value='']", :count => 1)
+        output_buffer.should have_tag("form div.control-group > input[@type=hidden][@name='author[post_ids][]'][@value='']", :count => 1)
       end
 
-      it 'the hidden field with an empty array value should be followed by the ol' do
-        output_buffer.should have_tag("form li fieldset > input[@type=hidden][@name='author[post_ids][]'][@value=''] + ol", :count => 1)
+      it 'the hidden field with an empty array value should be followed by the div.controls' do
+        output_buffer.should have_tag("form div.control-group > input[@type=hidden][@name='author[post_ids][]'][@value=''] + div.controls", :count => 1)
       end
 
       it 'should not have a hidden field with an empty string value for the collection' do
-        output_buffer.should_not have_tag("form li fieldset > input[@type=hidden][@name='author[post_ids]'][@value='']", :count => 1)
+        output_buffer.should_not have_tag("form div.control-group > input[@type=hidden][@name='author[post_ids]'][@value='']", :count => 1)
       end
 
       it 'should have a checkbox and a hidden field for each post with :hidden_field => true' do
@@ -107,15 +107,15 @@ describe 'check_boxes input' do
         end)
 
         ::Post.all.each do |post|
-          output_buffer.should have_tag("form li fieldset ol li label input#author_post_ids_#{post.id}")
-          output_buffer.should have_tag("form li fieldset ol li label input[@name='author[post_ids][]']", :count => 2)
+          output_buffer.should have_tag("form div.control-group div.controls label input#author_post_ids_#{post.id}")
+          output_buffer.should have_tag("form div.control-group div.controls label input[@name='author[post_ids][]']", :count => 2)
         end
 
       end
 
       it "should mark input as checked if it's the the existing choice" do
         ::Post.all.include?(@fred.posts.first).should be_true
-        output_buffer.should have_tag("form li fieldset ol li label input[@checked='checked']")
+        output_buffer.should have_tag("form div.control-group div.controls label input[@checked='checked']")
       end
     end
 
@@ -127,27 +127,31 @@ describe 'check_boxes input' do
         end)
       end
 
-      it 'should generate a fieldset with legend' do
-        output_buffer.should have_tag('form li fieldset legend', /Author/)
+      it 'should not generate a fieldset with legend' do
+        output_buffer.should_not have_tag('form li fieldset legend', /Author/)
       end
 
-      it 'shold generate an li tag for each item in the collection' do
-        output_buffer.should have_tag('form li fieldset ol li input[@type=checkbox]', :count => ::Author.all.size)
+      it 'should generate a div.control-group with a label' do
+        output_buffer.should have_tag('form div.control-group label.control-label', /Author/)
+      end
+
+      it 'should not generate an li tag for each item in the collection' do
+        output_buffer.should_not have_tag('form li fieldset ol li input[@type=checkbox]', :count => ::Author.all.size)
       end
 
       it 'should generate labels for each item' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag('form li fieldset ol li label', /#{author.to_label}/)
-          output_buffer.should have_tag("form li fieldset ol li label[@for='project_author_id_#{author.id}']")
+          output_buffer.should have_tag('form div.control-group div.controls label', /#{author.to_label}/)
+          output_buffer.should have_tag("form div.control-group div.controls label[@for='project_author_id_#{author.id}']")
         end
       end
 
       it 'should generate inputs for each item' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag("form li fieldset ol li label input#project_author_id_#{author.id}")
-          output_buffer.should have_tag("form li fieldset ol li label input[@type='checkbox']")
-          output_buffer.should have_tag("form li fieldset ol li label input[@value='#{author.id}']")
-          output_buffer.should have_tag("form li fieldset ol li label input[@name='project[author_id][]']")
+          output_buffer.should have_tag("form div.control-group div.controls label input#project_author_id_#{author.id}")
+          output_buffer.should have_tag("form div.control-group div.controls label input[@type='checkbox']")
+          output_buffer.should have_tag("form div.control-group div.controls label input[@value='#{author.id}']")
+          output_buffer.should have_tag("form div.control-group div.controls label input[@name='project[author_id][]']")
         end
       end
 
@@ -156,7 +160,7 @@ describe 'check_boxes input' do
           concat(builder.input(:author_id, :as => :check_boxes, :collection => [["<b>Item 1</b>", 1], ["<b>Item 2</b>", 2]]))
         end)
 
-        output_buffer.should have_tag('form li fieldset ol li label') do |label|
+        output_buffer.should have_tag('form div.control-group div.controls label') do |label|
           label.body.should match /&lt;b&gt;Item [12]&lt;\/b&gt;$/
         end
       end
@@ -174,18 +178,18 @@ describe 'check_boxes input' do
 
       it 'should have a checkbox input for each post' do
         ::Post.all.each do |post|
-          output_buffer.should have_tag("form li fieldset ol li label input#author_post_ids_#{post.id}")
-          output_buffer.should have_tag("form li fieldset ol li label input[@name='author[post_ids][]']", :count => ::Post.all.length)
+          output_buffer.should have_tag("form div.control-group div.controls label input#author_post_ids_#{post.id}")
+          output_buffer.should have_tag("form div.control-group div.controls label input[@name='author[post_ids][]']", :count => ::Post.all.length)
         end
       end
 
       it "should mark input as checked if it's the the existing choice" do
         ::Post.all.include?(@fred.posts.first).should be_true
-        output_buffer.should have_tag("form li fieldset ol li label input[@checked='checked']")
+        output_buffer.should have_tag("form div.control-group div.controls label input[@checked='checked']")
       end
 
       it 'should not generate empty hidden inputs' do
-        output_buffer.should_not have_tag("form li fieldset ol li label input[@type='hidden'][@value='']", :count => ::Post.all.length)
+        output_buffer.should_not have_tag("form div.control-group div.controls label input[@type='hidden'][@value='']", :count => ::Post.all.length)
       end
     end
 
@@ -204,7 +208,7 @@ describe 'check_boxes input' do
         end
 
         it 'should not have any disabled item(s)' do
-          output_buffer.should_not have_tag("form li fieldset ol li label input[@disabled='disabled']")
+          output_buffer.should_not have_tag("form div.control-group div.controls label input[@disabled='disabled']")
         end
       end
 
@@ -218,9 +222,9 @@ describe 'check_boxes input' do
         end
 
         it "should have one item disabled; the specified one" do
-          output_buffer.should have_tag("form li fieldset ol li label input[@disabled='disabled']", :count => 1)
-          output_buffer.should have_tag("form li fieldset ol li label[@for='post_author_ids_#{@fred.id}']", /fred/i)
-          output_buffer.should have_tag("form li fieldset ol li label input[@disabled='disabled'][@value='#{@fred.id}']")
+          output_buffer.should have_tag("form div.control-group div.controls label input[@disabled='disabled']", :count => 1)
+          output_buffer.should have_tag("form div.control-group div.controls label[@for='post_author_ids_#{@fred.id}']", /fred/i)
+          output_buffer.should have_tag("form div.control-group div.controls label input[@disabled='disabled'][@value='#{@fred.id}']")
         end
       end
 
@@ -234,11 +238,11 @@ describe 'check_boxes input' do
         end
 
         it "should have multiple items disabled; the specified ones" do
-          output_buffer.should have_tag("form li fieldset ol li label input[@disabled='disabled']", :count => 2)
-          output_buffer.should have_tag("form li fieldset ol li label[@for='post_author_ids_#{@bob.id}']", /bob/i)
-          output_buffer.should have_tag("form li fieldset ol li label input[@disabled='disabled'][@value='#{@bob.id}']")
-          output_buffer.should have_tag("form li fieldset ol li label[@for='post_author_ids_#{@fred.id}']", /fred/i)
-          output_buffer.should have_tag("form li fieldset ol li label input[@disabled='disabled'][@value='#{@fred.id}']")
+          output_buffer.should have_tag("form div.control-group div.controls label input[@disabled='disabled']", :count => 2)
+          output_buffer.should have_tag("form div.control-group div.controls label[@for='post_author_ids_#{@bob.id}']", /bob/i)
+          output_buffer.should have_tag("form div.control-group div.controls label input[@disabled='disabled'][@value='#{@bob.id}']")
+          output_buffer.should have_tag("form div.control-group div.controls label[@for='post_author_ids_#{@fred.id}']", /fred/i)
+          output_buffer.should have_tag("form div.control-group div.controls label input[@disabled='disabled'][@value='#{@fred.id}']")
         end
       end
 
@@ -261,7 +265,7 @@ describe 'check_boxes input' do
       end
 
       it "should do foo" do
-        output_buffer.should have_tag("legend.label label", /Translated/)
+        output_buffer.should have_tag("label.control-label", /Translated/)
       end
 
     end
@@ -275,7 +279,7 @@ describe 'check_boxes input' do
       end
 
       it "should output the correct label title" do
-        output_buffer.should have_tag("legend.label label", /The authors/)
+        output_buffer.should have_tag("label.control-label", /The authors/)
       end
     end
 
@@ -289,7 +293,7 @@ describe 'check_boxes input' do
       end
 
       it "should not output the legend" do
-        output_buffer.should_not have_tag("legend.label")
+        output_buffer.should_not have_tag("label.control-label")
       end
       
       it "should not cause escaped HTML" do
@@ -307,7 +311,7 @@ describe 'check_boxes input' do
       end
 
       it "should output the correct label title" do
-        output_buffer.should have_tag("legend.label label abbr")
+        output_buffer.should have_tag("label.control-label abbr")
       end
     end
 
@@ -371,8 +375,8 @@ describe 'check_boxes input' do
     end
     
     it 'should check the correct checkboxes' do
-      output_buffer.should have_tag("form li fieldset ol li label input[@value='fiction'][@checked='checked']")
-      output_buffer.should have_tag("form li fieldset ol li label input[@value='biography'][@checked='checked']")
+      output_buffer.should have_tag("form div.control-group div.controls label input[@value='fiction'][@checked='checked']")
+      output_buffer.should have_tag("form div.control-group div.controls label input[@value='biography'][@checked='checked']")
     end
   end
 
@@ -388,7 +392,7 @@ describe 'check_boxes input' do
     end
     
     it "should have a label for #context2_author_post_ids_19" do
-      output_buffer.should have_tag("form li label[@for='context2_author_post_ids_19']")
+      output_buffer.should have_tag("form div.control-group div.controls label[@for='context2_author_post_ids_19']")
     end
 
     it_should_have_input_with_id('context2_author_post_ids_19')
@@ -408,8 +412,8 @@ describe 'check_boxes input' do
       end)
     end
     
-    it 'should index the id of the wrapper' do
-      output_buffer.should have_tag("li#author_post_3_authors_input")
+    it 'should index the id of the control-group wrapper' do
+      output_buffer.should have_tag("div.control-group#author_post_3_authors_input")
     end
     
     it 'should index the id of the input tag' do
@@ -436,8 +440,8 @@ describe 'check_boxes input' do
 
     it "should use array items for labels and values" do
       @_collection.each do |post|
-        output_buffer.should have_tag('form li fieldset ol li label', /#{post.first}/)
-        output_buffer.should have_tag("form li fieldset ol li label[@for='author_post_ids_#{post.last}']")
+        output_buffer.should have_tag('form div.control-group div.controls label', /#{post.first}/)
+        output_buffer.should have_tag("form div.control-group div.controls label[@for='author_post_ids_#{post.last}']")
       end
     end
 
