@@ -46,13 +46,13 @@ module CustomMacros
 
     def it_should_have_label_with_text(string_or_regex)
       it "should have a label with text '#{string_or_regex}'" do
-        output_buffer.should have_tag("form li label", string_or_regex)
+        output_buffer.should have_tag("form div.control-group label.control-label", string_or_regex)
       end
     end
 
     def it_should_have_label_for(element_id)
       it "should have a label for ##{element_id}" do
-        output_buffer.should have_tag("form li label.label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.control-group label.control-label[@for='#{element_id}']")
       end
     end
     
@@ -76,13 +76,13 @@ module CustomMacros
 
     def it_should_have_input_with_type(input_type)
       it "should have a #{input_type} input" do
-        output_buffer.should have_tag("form li input[@type=\"#{input_type}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@type=\"#{input_type}\"]")
       end
     end
 
     def it_should_have_input_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form li input[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@name=\"#{name}\"]")
       end
     end
 
@@ -106,8 +106,8 @@ module CustomMacros
 
     def it_should_have_label_and_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form li input##{element_id}")
-        output_buffer.should have_tag("form li label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.control-group div.controls input##{element_id}")
+        output_buffer.should have_tag("form div.control-group label.control-label[@for='#{element_id}']")
       end
     end
 
@@ -117,7 +117,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form li input[@size='#{Formtastic::FormBuilder.default_text_field_size}']")
+          output_buffer.should have_tag("form div.control-group div.controls input[@size='#{Formtastic::FormBuilder.default_text_field_size}']")
         end
       end
     end
@@ -128,8 +128,8 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form li input")
-          output_buffer.should_not have_tag("form li input[@size]")
+          output_buffer.should have_tag("form div.control-group div.controls input")
+          output_buffer.should_not have_tag("form div.control-group div.controls input[@size]")
         end
       end
     end
@@ -139,7 +139,7 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :class => 'myclass' }))
         end)
-        output_buffer.should have_tag("form li input.myclass")
+        output_buffer.should have_tag("form div.control-group div.controls input.myclass")
       end
     end
 
@@ -148,14 +148,14 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :id => 'myid' }))
         end)
-        output_buffer.should have_tag('form li label[@for="myid"]')
+        output_buffer.should have_tag('form div.control-group label.control-label[@for="myid"]')
       end
     end
 
     def it_should_have_maxlength_matching_column_limit
       it 'should have a maxlength matching column limit' do
         @new_post.column_for_attribute(:title).limit.should == 50
-        output_buffer.should have_tag("form li input[@maxlength='50']")
+        output_buffer.should have_tag("form div.control-group div.controls input[@maxlength='50']")
       end
     end
 
