@@ -19,7 +19,7 @@ module FormtasticBootstrap
       # autoload :Html
       # autoload :Labelling
       # autoload :Naming
-      # autoload :Numeric
+      autoload :Numeric,   "formtastic-bootstrap/inputs/base/numeric"
       # autoload :Options
       # autoload :Placeholder
       autoload :Stringish, "formtastic-bootstrap/inputs/base/stringish"

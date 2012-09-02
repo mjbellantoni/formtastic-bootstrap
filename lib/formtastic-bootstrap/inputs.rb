@@ -15,7 +15,7 @@ module FormtasticBootstrap
     autoload :EmailInput,          "formtastic-bootstrap/inputs/email_input" 
     autoload :FileInput,           "formtastic-bootstrap/inputs/file_input" 
     autoload :HiddenInput,         "formtastic-bootstrap/inputs/hidden_input" 
-    # autoload :NumberInput
+    autoload :NumberInput,         "formtastic-bootstrap/inputs/number_input" 
     # autoload :NumericInput
     # autoload :PasswordInput
     # autoload :PhoneInput
