@@ -8,7 +8,6 @@ describe 'file input' do
   before do
     @output_buffer = ''
     mock_everything
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
 
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:body, :as => :file))
@@ -17,6 +16,7 @@ describe 'file input' do
 
   it_should_have_bootstrap_horizontal_wrapping
   it_should_have_input_wrapper_with_class("file")
+  it_should_have_input_wrapper_with_class(:input)
   it_should_have_input_wrapper_with_id("post_body_input")
   it_should_have_label_with_text(/Body/)
   it_should_have_label_for("post_body")
@@ -46,6 +46,34 @@ describe 'file input' do
     it_should_have_label_and_input_with_id("context2_post_body")
 
   end
+  
+  describe "when index is provided" do
+
+    before do
+      @output_buffer = ''
+      mock_everything
+
+      concat(semantic_form_for(@new_post) do |builder|
+        concat(builder.fields_for(:author, :index => 3) do |author|
+          concat(author.input(:name, :as => :file))
+        end)
+      end)
+    end
+    
+    it 'should index the id of the control group' do
+      output_buffer.should have_tag("div.control-group#post_author_attributes_3_name_input")
+    end
+    
+    it 'should index the id of the select tag' do
+      output_buffer.should have_tag("input#post_author_attributes_3_name")
+    end
+    
+    it 'should index the name of the select tag' do
+      output_buffer.should have_tag("input[@name='post[author_attributes][3][name]']")
+    end
+    
+  end
+  
   
   context "when required" do
     it "should add the required attribute to the input's html options" do
