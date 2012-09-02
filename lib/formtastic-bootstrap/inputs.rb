@@ -12,7 +12,7 @@ module FormtasticBootstrap
     autoload :DateSelectInput,     "formtastic-bootstrap/inputs/date_select_input"
     autoload :DatetimeInput,       "formtastic-bootstrap/inputs/datetime_input" 
     autoload :DatetimeSelectInput, "formtastic-bootstrap/inputs/datetime_select_input" 
-    # autoload :EmailInput
+    autoload :EmailInput,          "formtastic-bootstrap/inputs/email_input" 
     # autoload :FileInput
     # autoload :HiddenInput
     # autoload :NumberInput
