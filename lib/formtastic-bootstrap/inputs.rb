@@ -2,15 +2,15 @@ module FormtasticBootstrap
   module Inputs
 
     autoload :Base,            "formtastic-bootstrap/inputs/base"
-    # autoload :Basic
+    # autoload :Basic          
     autoload :BooleanInput,    "formtastic-bootstrap/inputs/boolean_input" 
     autoload :CheckBoxesInput, "formtastic-bootstrap/inputs/check_boxes_input"
-    # autoload :CountryInput
+    # autoload :CountryInput    # Come back to this.
     autoload :DateInput,       "formtastic-bootstrap/inputs/date_input" 
-    # autoload :DatePickerInput
+    # autoload :DatePickerInput # Come back to this.
     # autoload :DatetimePickerInput
     autoload :DateSelectInput, "formtastic-bootstrap/inputs/date_select_input"
-    # autoload :DatetimeInput
+    autoload :DatetimeInput,   "formtastic-bootstrap/inputs/datetime_input" 
     # autoload :DatetimeSelectInput
     # autoload :EmailInput
     # autoload :FileInput

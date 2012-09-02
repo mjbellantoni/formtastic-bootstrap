@@ -1,19 +1,10 @@
-# module FormtasticBootstrap
-#   module Inputs
-#     class DatetimeInput < Formtastic::Inputs::DatetimeInput
-#       include Base
-#       include Base::Stringish
-#       include Base::Timeish
-# 
-#       def to_html
-#         generic_input_wrapping do
-#           inline_inputs_div_wrapping do
-#             # This newline matters.
-#             date_input_html << "\n".html_safe << time_input_html
-#           end
-#         end
-#       end
-# 
-#     end
-#   end
-# end
+module FormtasticBootstrap
+  module Inputs
+    class DatetimeInput < Formtastic::Inputs::DatetimeInput
+      def to_html
+        ::ActiveSupport::Deprecation.warn("DatetimeInput (:as => :datetime) has been renamed to DatetimeSelectInput (:as => :datetime_select) and will be removed or changed in the next version of Formtastic, please update your forms.", caller(2))
+        super
+      end
+    end
+  end
+end
