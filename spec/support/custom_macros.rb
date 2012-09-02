@@ -70,7 +70,7 @@ module CustomMacros
 
     def it_should_have_select_with_id(element_id)
       it "should have a select box with id '#{element_id}'" do
-        output_buffer.should have_tag("form li select##{element_id}")
+        output_buffer.should have_tag("form div.control-group div.controls select##{element_id}")
       end
     end
 

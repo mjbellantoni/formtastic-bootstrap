@@ -28,10 +28,16 @@ module FormtasticBootstrap
         end
 
         def controls_wrapping(&block)
-          template.content_tag(:div, template.capture(&block).html_safe, {:class => "controls"})
+          template.content_tag(:div, template.capture(&block).html_safe, controls_wrapper_html_options)
           # I think error_html and hint_html will move here.
         end
         
+        def controls_wrapper_html_options
+          {
+            :class => "controls"
+          }
+        end
+
         def wrapper_html_options
           super.tap do |options|
             options[:class] << " control-group"
