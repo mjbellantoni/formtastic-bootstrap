@@ -25,7 +25,7 @@ module FormtasticBootstrap
     # autoload :SelectInput
     autoload :StringInput, "formtastic-bootstrap/inputs/string_input"
     # autoload :TextInput
-    # autoload :TimeInput
+    autoload :TimeInput,   "formtastic-bootstrap/inputs/time_input"
     # autoload :TimePickerInput
     # autoload :TimeSelectInput
     # autoload :TimeZoneInput
