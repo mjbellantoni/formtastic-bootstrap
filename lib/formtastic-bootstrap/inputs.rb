@@ -5,10 +5,10 @@ module FormtasticBootstrap
     # autoload :Basic          
     autoload :BooleanInput,        "formtastic-bootstrap/inputs/boolean_input" 
     autoload :CheckBoxesInput,     "formtastic-bootstrap/inputs/check_boxes_input"
-    # autoload :CountryInput       # Come back to this.
+    # autoload :CountryInput       # TODO Come back to this.
     autoload :DateInput,           "formtastic-bootstrap/inputs/date_input" 
-    # autoload :DatePickerInput    # Come back to this.
-    # autoload :DatetimePickerInput
+    # autoload :DatePickerInput    # TODO Come back to this.
+    # autoload :DatetimePickerInput # TODO Come back to this.
     autoload :DateSelectInput,     "formtastic-bootstrap/inputs/date_select_input"
     autoload :DatetimeInput,       "formtastic-bootstrap/inputs/datetime_input" 
     autoload :DatetimeSelectInput, "formtastic-bootstrap/inputs/datetime_select_input" 
@@ -16,8 +16,8 @@ module FormtasticBootstrap
     autoload :FileInput,           "formtastic-bootstrap/inputs/file_input" 
     autoload :HiddenInput,         "formtastic-bootstrap/inputs/hidden_input" 
     autoload :NumberInput,         "formtastic-bootstrap/inputs/number_input" 
-    # autoload :NumericInput
-    # autoload :PasswordInput
+    # autoload :NumericInput       # TODO Where does Formtastic actually define this?
+    autoload :PasswordInput,       "formtastic-bootstrap/inputs/password_input" 
     # autoload :PhoneInput
     # autoload :RadioInput
     # autoload :RangeInput
@@ -26,7 +26,7 @@ module FormtasticBootstrap
     autoload :StringInput,         "formtastic-bootstrap/inputs/string_input"
     # autoload :TextInput
     autoload :TimeInput,           "formtastic-bootstrap/inputs/time_input"
-    # autoload :TimePickerInput    # Come back to this.
+    # autoload :TimePickerInput    # TODO Come back to this.
     autoload :TimeSelectInput,     "formtastic-bootstrap/inputs/time_select_input"
     # autoload :TimeZoneInput
     # autoload :Timeish
