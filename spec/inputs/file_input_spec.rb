@@ -15,9 +15,8 @@ describe 'file input' do
     end)
   end
 
+  it_should_have_bootstrap_horizontal_wrapping
   it_should_have_input_wrapper_with_class("file")
-  it_should_have_input_wrapper_with_class(:clearfix)
-  it_should_have_input_class_in_the_right_place
   it_should_have_input_wrapper_with_id("post_body_input")
   it_should_have_label_with_text(/Body/)
   it_should_have_label_for("post_body")
@@ -29,7 +28,7 @@ describe 'file input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :file, :input_html => { :class => 'myclass' }))
     end)
-    output_buffer.should have_tag("form div.clearfix div.input input.myclass")
+    output_buffer.should have_tag("form div.control-group div.controls input.myclass")
   end
 
   describe "when namespace is provided" do
