@@ -10,7 +10,7 @@ module FormtasticBootstrap
       # autoload :DatetimePickerish
       # autoload :Associations
       # autoload :Collections
-      # autoload :Choices
+      autoload :Choices,   "formtastic-bootstrap/inputs/base/choices"
       # autoload :Database
       # autoload :Errors
       # autoload :Fileish

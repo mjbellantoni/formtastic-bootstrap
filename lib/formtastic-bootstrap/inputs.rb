@@ -19,7 +19,7 @@ module FormtasticBootstrap
     # autoload :NumericInput       # TODO Where does Formtastic actually define this?
     autoload :PasswordInput,       "formtastic-bootstrap/inputs/password_input" 
     autoload :PhoneInput,          "formtastic-bootstrap/inputs/phone_input" 
-    # autoload :RadioInput
+    autoload :RadioInput,          "formtastic-bootstrap/inputs/radio_input" 
     # autoload :RangeInput
     # autoload :SearchInput
     # autoload :SelectInput
