@@ -22,7 +22,7 @@ module FormtasticBootstrap
     autoload :RadioInput,          "formtastic-bootstrap/inputs/radio_input" 
     autoload :RangeInput,          "formtastic-bootstrap/inputs/range_input" 
     autoload :SearchInput,         "formtastic-bootstrap/inputs/search_input" 
-    # autoload :SelectInput
+    autoload :SelectInput,         "formtastic-bootstrap/inputs/select_input" 
     autoload :StringInput,         "formtastic-bootstrap/inputs/string_input"
     # autoload :TextInput
     autoload :TimeInput,           "formtastic-bootstrap/inputs/time_input"

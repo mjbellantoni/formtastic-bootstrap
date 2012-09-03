@@ -88,7 +88,7 @@ module CustomMacros
 
     def it_should_have_select_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form li select[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls select[@name=\"#{name}\"]")
       end
     end
 

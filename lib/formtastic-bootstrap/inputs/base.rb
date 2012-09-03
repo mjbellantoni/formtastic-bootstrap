@@ -9,23 +9,23 @@ module FormtasticBootstrap
 
       # autoload :DatetimePickerish
       # autoload :Associations
-      # autoload :Collections
-      autoload :Choices,   "formtastic-bootstrap/inputs/base/choices"
+      autoload :Collections,  "formtastic-bootstrap/inputs/base/collections"
+      autoload :Choices,      "formtastic-bootstrap/inputs/base/choices"
       # autoload :Database
       # autoload :Errors
       # autoload :Fileish
-      # autoload :GroupedCollections
+      autoload :GroupedCollections, "formtastic-bootstrap/inputs/base/grouped_collections"
       # autoload :Hints
       # autoload :Html
       # autoload :Labelling
       # autoload :Naming
-      autoload :Numeric,   "formtastic-bootstrap/inputs/base/numeric"
+      autoload :Numeric,      "formtastic-bootstrap/inputs/base/numeric"
       # autoload :Options
       # autoload :Placeholder
-      autoload :Stringish, "formtastic-bootstrap/inputs/base/stringish"
-      autoload :Timeish,   "formtastic-bootstrap/inputs/base/timeish"
+      autoload :Stringish,    "formtastic-bootstrap/inputs/base/stringish"
+      autoload :Timeish,      "formtastic-bootstrap/inputs/base/timeish"
       # autoload :Validations
-      autoload :Wrapping,  "formtastic-bootstrap/inputs/base/wrapping"
+      autoload :Wrapping,     "formtastic-bootstrap/inputs/base/wrapping"
       
       include Html
       # include Options
