@@ -2,6 +2,7 @@ module FormtasticBootstrap
   module Inputs
     class CheckBoxesInput < Formtastic::Inputs::CheckBoxesInput
       include Base
+      include Base::Choices
 
       # TODO Make sure help blocks work correctly.
       # TODO Support .inline
@@ -21,14 +22,9 @@ module FormtasticBootstrap
       def choice_wrapping_html_options(choice)
         super(choice).tap do |options|
           options[:class] = ((options[:class].split) << "checkbox").join(" ")
-          options[:for]   = choice_input_dom_id(choice)
         end
       end
 
-      def choice_label_html_options(choice)
-        choice_wrapping_html_options(choice)
-      end
-      
       def choice_html(choice)
         template.content_tag(:label,
           hidden_fields? ?
