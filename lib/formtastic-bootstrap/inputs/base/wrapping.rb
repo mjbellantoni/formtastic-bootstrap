@@ -11,10 +11,10 @@ module FormtasticBootstrap
             controls_wrapping do
               if options[:prepend]
                 prepended_input_wrapping do
-                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield].join("\n").html_safe
+                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, hint_html].join("\n").html_safe
                 end
               else
-                yield
+                [yield, hint_html].join("\n").html_safe
               end
             end
           end
@@ -22,14 +22,13 @@ module FormtasticBootstrap
 
         def control_group_wrapping(&block)
           template.content_tag(:div, 
-            [template.capture(&block), error_html, hint_html].join("\n").html_safe, 
+          [template.capture(&block), error_html].join("\n").html_safe, 
             wrapper_html_options
           )
         end
 
         def controls_wrapping(&block)
           template.content_tag(:div, template.capture(&block).html_safe, controls_wrapper_html_options)
-          # I think error_html and hint_html will move here.
         end
         
         def controls_wrapper_html_options
