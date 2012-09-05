@@ -3,7 +3,7 @@ module FormtasticBootstrap
     class HiddenInput < Formtastic::Inputs::HiddenInput
       include Base
       def to_html
-        generic_input_wrapping do
+        bootstrap_wrapping do
           builder.hidden_field(method, input_html_options)
         end
       end

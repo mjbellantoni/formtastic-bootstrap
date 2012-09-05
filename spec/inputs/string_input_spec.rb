@@ -8,7 +8,6 @@ describe 'string input' do
   before do
     @output_buffer = ''
     mock_everything
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
   end
 
   describe "when object is provided" do
@@ -17,11 +16,11 @@ describe 'string input' do
         concat(builder.input(:title, :as => :string))
       end)
     end
-
+    
+    it_should_have_bootstrap_horizontal_wrapping
     it_should_have_input_wrapper_with_class(:string)
-    it_should_have_input_wrapper_with_class(:clearfix)
+    it_should_have_input_wrapper_with_class(:input)
     it_should_have_input_wrapper_with_class(:stringish)
-    it_should_have_input_class_in_the_right_place
     it_should_have_input_wrapper_with_id("post_title_input")
     it_should_have_label_with_text(/Title/)
     it_should_have_label_for("post_title")
@@ -35,6 +34,7 @@ describe 'string input' do
     it_should_apply_custom_for_to_label_when_input_html_id_provided(:string)
     it_should_apply_error_logic_for_input_type(:string)
     
+    # This doesn't get called anywhere!
     def input_field_for_method_should_have_maxlength(method, maxlength)
       concat(semantic_form_for(@new_post) do |builder|
         concat(builder.input(method))
@@ -63,7 +63,7 @@ describe 'string input' do
             concat(builder.input(:title))
           end)
 
-          output_buffer.should have_tag("form div.clearfix div.input input##{@new_post.class.name.underscore}_title[@maxlength='#{maxlength}']")
+          output_buffer.should have_tag("form div.control-group div.controls input##{@new_post.class.name.underscore}_title[@maxlength='#{maxlength}']")
         end
 
         it 'should have maxlength if the optional :if or :unless options are not supplied' do
@@ -126,6 +126,34 @@ describe 'string input' do
   
   end
   
+  describe "when index is provided" do
+
+    before do
+      @output_buffer = ''
+      mock_everything
+
+      concat(semantic_form_for(@new_post) do |builder|
+        concat(builder.fields_for(:author, :index => 3) do |author|
+          concat(author.input(:name, :as => :string))
+        end)
+      end)
+    end
+    
+    it 'should index the id of the wrapper' do
+      output_buffer.should have_tag("div#post_author_attributes_3_name_input")
+    end
+    
+    it 'should index the id of the select tag' do
+      output_buffer.should have_tag("input#post_author_attributes_3_name")
+    end
+    
+    it 'should index the name of the select tag' do
+      output_buffer.should have_tag("input[@name='post[author_attributes][3][name]']")
+    end
+    
+  end
+  
+  
   describe "when no object is provided" do
     before do
       concat(semantic_form_for(:project, :url => 'http://test.host/') do |builder|
@@ -176,23 +204,6 @@ describe 'string input' do
       end
     end
     
-  end
-
-  describe "with string prepended", :now => true do
-    
-    before do
-      concat(semantic_form_for(:user) do |builder|
-        concat(builder.input(:handle, :as => :string, :prepend => '@'))
-      end)
-    end
-    
-    it "should generate span with desired prepend string" do
-      output_buffer.should have_tag('form div.input div.input-prepend span.add-on', '@')
-    end
-    
-    it "should wrap input in div.input-prepend" do
-      output_buffer.should have_tag('form div.input div.input-prepend input[name="user[handle]"]')
-    end
   end
 
 end

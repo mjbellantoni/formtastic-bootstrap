@@ -1,29 +1,36 @@
-require "formtastic-bootstrap/inputs/base"
-require "formtastic-bootstrap/inputs/boolean_input"
-require "formtastic-bootstrap/inputs/check_boxes_input"
-require "formtastic-bootstrap/inputs/date_input"
-require "formtastic-bootstrap/inputs/datetime_input"
-require "formtastic-bootstrap/inputs/email_input"
-require "formtastic-bootstrap/inputs/file_input"
-require "formtastic-bootstrap/inputs/hidden_input"
-require "formtastic-bootstrap/inputs/number_input"
-require "formtastic-bootstrap/inputs/password_input"
-require "formtastic-bootstrap/inputs/phone_input"
-require "formtastic-bootstrap/inputs/radio_input"
-require "formtastic-bootstrap/inputs/range_input"
-require "formtastic-bootstrap/inputs/search_input"
-require "formtastic-bootstrap/inputs/select_input"
-require "formtastic-bootstrap/inputs/string_input"
-require "formtastic-bootstrap/inputs/text_input"
-require "formtastic-bootstrap/inputs/time_input"
-require "formtastic-bootstrap/inputs/time_zone_input"
-require "formtastic-bootstrap/inputs/url_input"
-
 module FormtasticBootstrap
   module Inputs
 
-    include Base
+    autoload :Base,                "formtastic-bootstrap/inputs/base"
+    # autoload :Basic          
+    autoload :BooleanInput,        "formtastic-bootstrap/inputs/boolean_input" 
+    autoload :CheckBoxesInput,     "formtastic-bootstrap/inputs/check_boxes_input"
+    # autoload :CountryInput       # TODO Come back to this.
+    autoload :DateInput,           "formtastic-bootstrap/inputs/date_input" 
+    # autoload :DatePickerInput    # TODO Come back to this.
+    # autoload :DatetimePickerInput # TODO Come back to this.
+    autoload :DateSelectInput,     "formtastic-bootstrap/inputs/date_select_input"
+    autoload :DatetimeInput,       "formtastic-bootstrap/inputs/datetime_input" 
+    autoload :DatetimeSelectInput, "formtastic-bootstrap/inputs/datetime_select_input" 
+    autoload :EmailInput,          "formtastic-bootstrap/inputs/email_input" 
+    autoload :FileInput,           "formtastic-bootstrap/inputs/file_input" 
+    autoload :HiddenInput,         "formtastic-bootstrap/inputs/hidden_input" 
+    autoload :NumberInput,         "formtastic-bootstrap/inputs/number_input" 
+    # autoload :NumericInput       # TODO Where does Formtastic actually define this?
+    autoload :PasswordInput,       "formtastic-bootstrap/inputs/password_input" 
+    autoload :PhoneInput,          "formtastic-bootstrap/inputs/phone_input" 
+    autoload :RadioInput,          "formtastic-bootstrap/inputs/radio_input" 
+    autoload :RangeInput,          "formtastic-bootstrap/inputs/range_input" 
+    autoload :SearchInput,         "formtastic-bootstrap/inputs/search_input" 
+    autoload :SelectInput,         "formtastic-bootstrap/inputs/select_input" 
+    autoload :StringInput,         "formtastic-bootstrap/inputs/string_input"
+    autoload :TextInput,           "formtastic-bootstrap/inputs/text_input"
+    autoload :TimeInput,           "formtastic-bootstrap/inputs/time_input"
+    # autoload :TimePickerInput    # TODO Come back to this.
+    autoload :TimeSelectInput,     "formtastic-bootstrap/inputs/time_select_input"
+    autoload :TimeZoneInput,       "formtastic-bootstrap/inputs/time_zone_input"      
+    # autoload :Timeish            # This seems like a mistake.
+    autoload :UrlInput,            "formtastic-bootstrap/inputs/url_input"
 
   end
 end
-

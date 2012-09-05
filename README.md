@@ -8,7 +8,7 @@ You can follow [FormBoot on twitter](http://twitter.com/FormBoot) for update ann
 
 ### Dependencies
 
-Formtastic Bootstrap has only been tested with Ruby 1.9.2, Rails 3.1, Formtastic 2.0 and Twitter Bootstrap 1.3.
+Formtastic Bootstrap has only been tested with Ruby 1.9.2, Rails 3.2.x, Formtastic 2.2.x and Twitter Bootstrap 2.x.
 
 #### Installation
 
@@ -39,6 +39,7 @@ Make sure you've already downloaded and installed Formtastic!
 
 ## Formtastic vs. Formtastic Bootstrap
 
+THIS SECTION IS OUT OF DATE.
 
 ### Overview
 
@@ -96,6 +97,8 @@ made to generate the HTML expected by Bootstrap while still generating the rich 
     </form>
 
 ### Major Difference in Behavior
+
+THIS SECTION IS OUT OF DATE
 
 * Formtastic Bootstrap omits the <tt>label</tt> class on label tags since Twitter Bootstrap uses this tag in another context (and it makes bad things happen.)
 * Formtastic Bootstrap puts the <tt>input</tt> label in a different place because it makes Bootstrap behave correctly.

@@ -5,7 +5,7 @@ module FormtasticBootstrap
       include Base::Stringish
 
       def to_html
-        generic_input_wrapping do
+        bootstrap_wrapping do
           builder.range_field(method, input_html_options)
         end
       end

@@ -5,57 +5,45 @@ module FormtasticBootstrap
 
         include Formtastic::Inputs::Base::Wrapping
 
-        def generic_input_wrapping(&block)
-          clearfix_div_wrapping do
-            label_html <<
-            input_div_wrapping do
+        def bootstrap_wrapping(&block)
+          control_group_wrapping do
+            control_label_html <<
+            controls_wrapping do
               if options[:prepend]
                 prepended_input_wrapping do
-                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield].join("\n").html_safe
+                  [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, hint_html].join("\n").html_safe
                 end
               else
-                yield
+                [yield, hint_html].join("\n").html_safe
               end
             end
           end
         end
 
-        def clearfix_div_wrapping(&block)
-          template.content_tag(:div, wrapper_html_options) do
-            yield
-          end
+        def control_group_wrapping(&block)
+          template.content_tag(:div, 
+          [template.capture(&block), error_html].join("\n").html_safe, 
+            wrapper_html_options
+          )
         end
 
-        def input_div_wrapping(inline_or_block_errors = :inline)
-          template.content_tag(:div, :class => "input") do 
-            [yield, error_html(inline_or_block_errors), hint_html(inline_or_block_errors)].join("\n").html_safe  
-          end
+        def controls_wrapping(&block)
+          template.content_tag(:div, template.capture(&block).html_safe, controls_wrapper_html_options)
         end
-
-        def inline_inputs_div_wrapping(&block)
-          template.content_tag(:div, :class => "inline-inputs") do
-            yield
-          end
+        
+        def controls_wrapper_html_options
+          {
+            :class => "controls"
+          }
         end
 
         def wrapper_html_options
-          opts = options[:wrapper_html] || {}
-          opts[:class] ||= []
-          opts[:class] = [opts[:class].to_s] unless opts[:class].is_a?(Array)
-          opts[:class] << as
-          opts[:class] << "clearfix"
-          # opts[:class] << "input"
-          opts[:class] << "error" if errors?
-          opts[:class] << "optional" if optional?
-          opts[:class] << "required" if required?
-          opts[:class] << "autofocus" if autofocus?
-          opts[:class] = opts[:class].join(' ')
-        
-          opts[:id] ||= wrapper_dom_id
-      
-          opts
+          super.tap do |options|
+            options[:class] << " control-group"
+          end
         end
         
+        # Bootstrap prepend feature
         def prepended_input_wrapping(&block)
           template.content_tag(:div, :class => 'input-prepend') do
             yield
