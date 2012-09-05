@@ -3,32 +3,52 @@ module FormtasticBootstrap
     module Base
       module Timeish
 
-        def label_html
-          # TODO Supress the "for" field?
-          template.content_tag(:label, label_html_options) do
-            render_label? ? label_text : "".html_safe
+        def to_html
+          control_group_wrapping do
+            control_label_html <<
+            controls_wrapping do
+              hidden_fragments <<
+              fragments.map do |fragment|
+                fragment_input_html(fragment)
+              end.join.html_safe
+            end
           end
         end
 
-        def date_input_html
-          fragment_input_html(:date, "small")
+        def controls_wrapper_html_options
+          super.tap do |options|
+            options[:class] = (options[:class].split << "controls-row").join(" ")
+          end
         end
 
-        def time_input_html
-          fragment_input_html(:time, "mini")
+        def fragment_input_html(fragment)
+          opts = input_options.merge(:prefix => fragment_prefix, :field_name => fragment_name(fragment), :default => value, :include_blank => include_blank?)
+          template.send(:"select_#{fragment}", value, opts, fragment_input_html_options(fragment))
         end
-        
-        def fragment_id(fragment)
-          # TODO is this right?
-          # "#{input_html_options[:id]}_#{position(fragment)}i"
-          "#{input_html_options[:id]}[#{fragment}]"
+
+        def fragment_input_html_options(fragment)
+          input_html_options.tap do |options|
+            options[:id] = fragment_id(fragment)
+            options[:class] = ((options[:class] || "").split << fragment_class(fragment)).join(" ")
+            options[:placeholder] = fragment_placeholder(fragment)
+          end
         end
-        
-        def fragment_input_html(fragment, klass)
-          opts = input_options.merge(:prefix => object_name, :field_name => fragment_name(fragment), :default => value, :include_blank => include_blank?)
-          template.send(:"text_field_#{fragment}", value, opts, input_html_options.merge(:id => fragment_id(fragment), :class => klass))
+
+        def fragment_class(fragment) 
+          { 
+            :year   => "span1", 
+            :month  => "span2",
+            :day    => "span1",
+            :hour   => "span1",
+            :minute => "span1",
+            :second => "span1"
+          }[fragment]
         end
-     
+
+        def fragment_placeholder(fragment)
+          "." + fragment_class(fragment) 
+        end
+
       end
     end
   end

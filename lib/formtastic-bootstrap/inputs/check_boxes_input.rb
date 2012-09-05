@@ -4,19 +4,24 @@ module FormtasticBootstrap
       include Base
       include Base::Choices
 
+      # TODO Make sure help blocks work correctly.
+      # TODO Support .inline
+
       def to_html
-        clearfix_div_wrapping do
-          legend_html <<
+        control_group_wrapping do
+          control_label_html <<
           hidden_field_for_all <<
-          input_div_wrapping do
-            choices_group_wrapping do
-              collection.map { |choice|
-                choice_wrapping(choice_wrapping_html_options(choice)) do
-                  choice_html(choice)
-                end
-              }.join("\n").html_safe
-            end
+          controls_wrapping do
+            collection.map { |choice|
+              choice_html(choice)
+            }.join("\n").html_safe
           end
+        end
+      end
+
+      def choice_wrapping_html_options(choice)
+        super(choice).tap do |options|
+          options[:class] = ((options[:class].split) << "checkbox").join(" ")
         end
       end
 
@@ -26,7 +31,7 @@ module FormtasticBootstrap
             check_box_with_hidden_input(choice) :
             check_box_without_hidden_input(choice) <<
           choice_label(choice),
-          label_html_options.merge(:for => choice_input_dom_id(choice), :class => nil)
+          label_html_options.merge(choice_label_html_options(choice))
         )
       end
 

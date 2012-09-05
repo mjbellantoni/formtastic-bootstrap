@@ -14,15 +14,6 @@ module CustomMacros
       end
     end
 
-    # This is one of the things we move for Bootstrap.  In vanilla Formtastic
-    # it's located on the outer wrapper.  We move it to the inner wrapper.
-    def it_should_have_input_class_in_the_right_place
-      it "should have 'input' class in the right place" do
-        output_buffer.should have_tag("form div.clearfix div.input")
-        output_buffer.should_not have_tag("form div.clearfix.input")
-      end
-    end
-
     def it_should_have_input_wrapper_with_id(id_string)
       it "should have input wrapper with id '#{id_string}'" do
         output_buffer.should have_tag("form div##{id_string}")
@@ -47,91 +38,76 @@ module CustomMacros
       end
     end
     
-    def it_should_have_a_nested_div
-      it "should have a nested div" do
-        output_buffer.should have_tag("form div.clearfix div")
-      end
-    end
-
-    def it_should_have_a_nested_div_with_class(klass)
-      it "should have a nested div with class #{klass}" do
-        output_buffer.should have_tag("form div.clearfix div.#{klass}")
-      end
-    end
-    
     def it_should_have_a_nested_ordered_list_with_class(klass)
       it "should have a nested fieldset with class #{klass}" do
         output_buffer.should have_tag("form li ol.#{klass}")
       end
     end
 
-    def it_should_have_a_nested_unordered_list_with_class(klass)
-      it "should have a nested unordered list with class #{klass}" do
-        output_buffer.should have_tag("form div.clearfix div ul.#{klass}")
-      end
-    end
-
     def it_should_have_label_with_text(string_or_regex)
       it "should have a label with text '#{string_or_regex}'" do
-        output_buffer.should have_tag("form div.clearfix label", string_or_regex)
+        output_buffer.should have_tag("form div.control-group label.control-label", string_or_regex)
       end
     end
 
     def it_should_have_label_for(element_id)
       it "should have a label for ##{element_id}" do
-        # output_buffer.should have_tag("form div label.label[@for='#{element_id}']")
-        output_buffer.should have_tag("form div.clearfix label[@for='#{element_id}']")
-        output_buffer.should_not have_tag("form div.clearfix label.label")
+        output_buffer.should have_tag("form div.control-group label.control-label[@for='#{element_id}']")
       end
     end
     
     def it_should_have_an_inline_label_for(element_id)
       it "should have a label for ##{element_id}" do
-        output_buffer.should have_tag("form li label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.control-group div.controls label[@for='#{element_id}']")
       end
     end
 
     def it_should_have_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        # output_buffer.should have_tag("form div.clearfix div.input input##{element_id}")
-        output_buffer.should have_tag("form div.clearfix div.input input[@id=\"#{element_id}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@id=\"#{element_id}\"]")
       end
     end
 
     def it_should_have_select_with_id(element_id)
       it "should have a select box with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.clearfix div.input select##{element_id}")
+        output_buffer.should have_tag("form div.control-group div.controls select##{element_id}")
       end
     end
 
     def it_should_have_input_with_type(input_type)
       it "should have a #{input_type} input" do
-        output_buffer.should have_tag("form div.clearfix div.input input[@type=\"#{input_type}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@type=\"#{input_type}\"]")
       end
     end
 
     def it_should_have_input_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form div.clearfix div.input input[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls input[@name=\"#{name}\"]")
+      end
+    end
+
+    def it_should_have_select_with_name(name)
+      it "should have an input named #{name}" do
+        output_buffer.should have_tag("form div.control-group div.controls select[@name=\"#{name}\"]")
       end
     end
 
     def it_should_have_textarea_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form div.clearfix div.input textarea[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.control-group div.controls textarea[@name=\"#{name}\"]")
       end
     end
 
     def it_should_have_textarea_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.clearfix div.input textarea##{element_id}")
+        output_buffer.should have_tag("form div.control-group div.controls textarea##{element_id}")
       end
     end
 
     def it_should_have_label_and_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.clearfix div.input input##{element_id}")
-        output_buffer.should have_tag("form div.clearfix label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.control-group div.controls input##{element_id}")
+        output_buffer.should have_tag("form div.control-group label.control-label[@for='#{element_id}']")
       end
     end
 
@@ -141,7 +117,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.clearfix div.input input[@size='#{FormtasticBootstrap::FormBuilder.default_text_field_size}']")
+          output_buffer.should have_tag("form div.control-group div.controls input[@size='#{Formtastic::FormBuilder.default_text_field_size}']")
         end
       end
     end
@@ -152,8 +128,8 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.clearfix div.input input")
-          output_buffer.should_not have_tag("form div.clearfix div.input input[@size]")
+          output_buffer.should have_tag("form div.control-group div.controls input")
+          output_buffer.should_not have_tag("form div.control-group div.controls input[@size]")
         end
       end
     end
@@ -163,7 +139,7 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :class => 'myclass' }))
         end)
-        output_buffer.should have_tag("form div.clearfix div.input input.myclass")
+        output_buffer.should have_tag("form div.control-group div.controls input.myclass")
       end
     end
 
@@ -172,14 +148,14 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :id => 'myid' }))
         end)
-        output_buffer.should have_tag('form div.clearfix label[@for="myid"]')
+        output_buffer.should have_tag('form div.control-group label.control-label[@for="myid"]')
       end
     end
 
     def it_should_have_maxlength_matching_column_limit
       it 'should have a maxlength matching column limit' do
         @new_post.column_for_attribute(:title).limit.should == 50
-        output_buffer.should have_tag("form div.clearfix div.input input[@maxlength='50']")
+        output_buffer.should have_tag("form div.control-group div.controls input[@maxlength='50']")
       end
     end
 
@@ -198,25 +174,14 @@ module CustomMacros
 
     def it_should_apply_error_logic_for_input_type(type, inline_or_block = :inline)
       describe 'when there are errors on the object for this method' do
-
-        before(:each) do
+        before do
           @title_errors = ['must not be blank', 'must be longer than 10 characters', 'must be awesome']
           @errors = mock('errors')
-          @errors.stub!(:[]).with(:title).and_return(@title_errors)
+          @errors.stub!(:[]).with(errors_matcher(:title)).and_return(@title_errors)
           Formtastic::FormBuilder.file_metadata_suffixes.each do |suffix|
-            @errors.stub!(:[]).with("title_#{suffix}".to_sym).and_return(nil)
+            @errors.stub!(:[]).with(errors_matcher("title_#{suffix}".to_sym)).and_return(nil)
           end
           @new_post.stub!(:errors).and_return(@errors)
-
-          @orig_inline_errors      = FormtasticBootstrap::FormBuilder.inline_errors
-          @orig_inline_error_class = FormtasticBootstrap::FormBuilder.default_inline_error_class
-          @orig_error_list_class   = FormtasticBootstrap::FormBuilder.default_error_list_class
-        end
-
-        after(:each) do
-          FormtasticBootstrap::FormBuilder.inline_errors              = @orig_inline_errors
-          FormtasticBootstrap::FormBuilder.default_inline_error_class = @orig_inline_error_class
-          FormtasticBootstrap::FormBuilder.default_error_list_class   = @orig_error_list_class
         end
 
         it 'should apply an errors class to the list item' do
@@ -263,16 +228,15 @@ module CustomMacros
         end
 
         it 'should not apply an errors class to the list item' do
-          output_buffer.should_not have_tag('form div.error')
+          output_buffer.should_not have_tag('form li.error')
         end
 
         it 'should not render a paragraph for the errors' do
-          # output_buffer.should_not have_tag('form div.error p.inline-errors')
-          output_buffer.should_not have_tag('form div.error span.help-inline')
+          output_buffer.should_not have_tag('form li.error p.inline-errors')
         end
 
         it 'should not display an error list' do
-          output_buffer.should_not have_tag('form div.error ul.errors')
+          output_buffer.should_not have_tag('form li.error ul.errors')
         end
       end
 
@@ -284,16 +248,15 @@ module CustomMacros
         end
 
         it 'should not apply an errors class to the list item' do
-          output_buffer.should_not have_tag('form div.error')
+          output_buffer.should_not have_tag('form li.error')
         end
 
         it 'should not render a paragraph for the errors' do
-          # output_buffer.should_not have_tag('form div.error p.inline-errors')
-          output_buffer.should_not have_tag('form div.error span.help-inline')
+          output_buffer.should_not have_tag('form li.error p.inline-errors')
         end
 
         it 'should not display an error list' do
-          output_buffer.should_not have_tag('form div.error ul.errors')
+          output_buffer.should_not have_tag('form li.error ul.errors')
         end
       end
     end
@@ -308,6 +271,10 @@ module CustomMacros
     end
 
     def it_should_use_the_collection_when_provided(as, countable)
+
+      # Set control-div 'as' class.
+      cd_as = (as == :radio) ? :radio_buttons : as
+
       describe 'when the :collection option is provided' do
 
         before do
@@ -319,7 +286,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:author, :as => as, :collection => @authors))
           end)
-          output_buffer.should have_tag("form div.#{as} #{countable}", :count => @authors.size + (as == :select ? 1 : 0))
+          output_buffer.should have_tag("form div.#{cd_as} #{countable}", :count => @authors.size + (as == :select ? 1 : 0))
         end
 
         describe 'and the :collection is an array of strings' do
@@ -333,8 +300,8 @@ module CustomMacros
             end)
 
             @categories.each do |value|
-              output_buffer.should have_tag("form div.#{as}", /#{value}/)
-              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value}']")
+              output_buffer.should have_tag("form div.#{cd_as}", /#{value}/)
+              output_buffer.should have_tag("form div.#{cd_as} #{countable}[@value='#{value}']")
             end
           end
 
@@ -347,10 +314,10 @@ module CustomMacros
                 end
                 concat(fields)
               end)
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_general']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_design']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_development']")
-              output_buffer.should have_tag("form div div ul li label[@for='post_author_category_name_quasi-serious_inventions']")
+              output_buffer.should have_tag("form div.control-group div.controls label[@for='post_author_category_name_general']")
+              output_buffer.should have_tag("form div.control-group div.controls label[@for='post_author_category_name_design']")
+              output_buffer.should have_tag("form div.control-group div.controls label[@for='post_author_category_name_development']")
+              output_buffer.should have_tag("form div.control-group div.controls label[@for='post_author_category_name_quasi-serious_inventions']")
             end
           end
         end
@@ -366,8 +333,8 @@ module CustomMacros
             end)
 
             @categories.each do |label, value|
-              output_buffer.should have_tag("form div.#{as}", /#{label}/)
-              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value}']")
+              output_buffer.should have_tag("form div.#{cd_as}", /#{label}/)
+              output_buffer.should have_tag("form div.#{cd_as} #{countable}[@value='#{value}']")
             end
           end
         end
@@ -384,9 +351,9 @@ module CustomMacros
 
             @categories.each do |text, value|
               label = as == :select ? :option : :label
-              output_buffer.should have_tag("form div.#{as} #{label}", /#{text}/i)
-              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value.to_s}']")
-              output_buffer.should have_tag("form div.#{as} #{countable}#post_category_name_#{value.to_s}") if as == :radio
+              output_buffer.should have_tag("form div.#{cd_as} #{label}", /#{text}/i)
+              output_buffer.should have_tag("form div.#{cd_as} #{countable}[@value='#{value.to_s}']")
+              output_buffer.should have_tag("form div.#{cd_as} #{countable}#post_category_name_#{value.to_s}") if as == :radio
             end
           end
         end
@@ -402,8 +369,8 @@ module CustomMacros
                 concat(builder.input(:category_name, :as => as, :collection => @choices))
               end)
 
-              output_buffer.should have_tag("form div.#{as} #{countable}#post_category_name_true")
-              output_buffer.should have_tag("form div.#{as} #{countable}#post_category_name_false")
+              output_buffer.should have_tag("form div.#{cd_as} #{countable}#post_category_name_true")
+              output_buffer.should have_tag("form div.#{cd_as} #{countable}#post_category_name_false")
             end
           end
         end
@@ -420,8 +387,8 @@ module CustomMacros
 
             @categories.each do |value|
               label = as == :select ? :option : :label
-              output_buffer.should have_tag("form div.#{as} #{label}", /#{value}/i)
-              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value.to_s}']")
+              output_buffer.should have_tag("form div.#{cd_as} #{label}", /#{value}/i)
+              output_buffer.should have_tag("form div.#{cd_as} #{countable}[@value='#{value.to_s}']")
             end
           end
         end
@@ -437,8 +404,8 @@ module CustomMacros
             end)
 
             @categories.each do |label, value|
-              output_buffer.should have_tag("form div.#{as}", /#{label}/)
-              output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{value}']")
+              output_buffer.should have_tag("form div.#{cd_as}", /#{label}/)
+              output_buffer.should have_tag("form div.#{cd_as} #{countable}[@value='#{value}']")
             end
           end
 
@@ -455,7 +422,7 @@ module CustomMacros
 
             it 'should have options with text content from the specified method' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login}/)
+                output_buffer.should have_tag("form div.#{cd_as}", /#{author.login}/)
               end
             end
           end
@@ -469,7 +436,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
+                output_buffer.should have_tag("form div.#{cd_as}", /#{author.login.reverse}/)
               end
             end
           end
@@ -486,7 +453,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
+                output_buffer.should have_tag("form div.#{cd_as}", /#{author.login.reverse}/)
               end
             end
           end
@@ -507,7 +474,7 @@ module CustomMacros
 
               it "should render the options with #{label_method} as the label" do
                 ::Author.all.each do |author|
-                  output_buffer.should have_tag("form div.#{as}", /The Label Text/)
+                  output_buffer.should have_tag("form div.#{cd_as}", /The Label Text/)
                 end
               end
             end
@@ -526,7 +493,7 @@ module CustomMacros
 
             it 'should have options with values from specified method' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login}']")
+                output_buffer.should have_tag("form div.#{cd_as} #{countable}[@value='#{author.login}']")
               end
             end
           end
@@ -540,7 +507,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each value' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
+                output_buffer.should have_tag("form div.#{cd_as} #{countable}[@value='#{author.login.reverse}']")
               end
             end
           end
@@ -557,141 +524,7 @@ module CustomMacros
 
             it 'should have options with the proc applied to each value' do
               ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
-              end
-            end
-          end
-        end
-
-        describe 'when the deprecated :label_method option is provided' do
-          
-          describe 'as a symbol' do
-            before do
-              with_deprecation_silenced do
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :label_method => :login))
-                end)
-              end
-            end
-
-            it 'should have options with text content from the specified method' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login}/)
-              end
-            end
-          end
-
-          describe 'as a proc' do
-            
-            before do
-              with_deprecation_silenced do
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :label_method => Proc.new {|a| a.login.reverse }))
-                end)
-              end
-            end
-
-            it 'should have options with the proc applied to each' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
-              end
-            end
-          end
-
-          describe 'as a method object' do
-            before do
-              def reverse_login(a)
-                a.login.reverse
-              end
-              with_deprecation_silenced do 
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :label_method => method(:reverse_login)))
-                end)
-              end
-            end
-
-            it 'should have options with the proc applied to each' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as}", /#{author.login.reverse}/)
-              end
-            end
-          end
-        end
-
-        describe 'when the deprecated :label_method option is not provided' do
-          Formtastic::FormBuilder.collection_label_methods.each do |label_method|
-
-            describe "when the collection objects respond to #{label_method}" do
-              before do
-                @fred.stub!(:respond_to?).and_return { |m| m.to_s == label_method || m.to_s == 'id' }
-                ::Author.all.each { |a| a.stub!(label_method).and_return('The Label Text') }
-
-                with_deprecation_silenced do 
-                  concat(semantic_form_for(@new_post) do |builder|
-                    concat(builder.input(:author, :as => as))
-                  end)
-                end
-              end
-
-              it "should render the options with #{label_method} as the label" do
-                ::Author.all.each do |author|
-                  output_buffer.should have_tag("form div.#{as}", /The Label Text/)
-                end
-              end
-            end
-
-          end
-        end
-
-        describe 'when the deprecated :value_method option is provided' do
-
-          describe 'as a symbol' do
-            before do
-              with_deprecation_silenced do 
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :value_method => :login))
-                end)
-              end
-            end
-
-            it 'should have options with values from specified method' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login}']")
-              end
-            end
-          end
-
-          describe 'as a proc' do
-            before do
-              with_deprecation_silenced do 
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :value_method => Proc.new {|a| a.login.reverse }))
-                end)
-              end
-            end
-
-            it 'should have options with the proc applied to each value' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
-              end
-            end
-          end
-
-          describe 'as a method object' do
-            before do
-              def reverse_login(a)
-                a.login.reverse
-              end
-              with_deprecation_silenced do 
-                concat(semantic_form_for(@new_post) do |builder|
-                  concat(builder.input(:author, :as => as, :value_method => method(:reverse_login)))
-                end)
-              end
-            end
-
-            it 'should have options with the proc applied to each value' do
-              ::Author.all.each do |author|
-                output_buffer.should have_tag("form div.#{as} #{countable}[@value='#{author.login.reverse}']")
+                output_buffer.should have_tag("form div.#{cd_as} #{countable}[@value='#{author.login.reverse}']")
               end
             end
           end
