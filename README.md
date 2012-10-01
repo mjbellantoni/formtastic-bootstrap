@@ -147,6 +147,15 @@ To create a Prepended Text field, use the ```:prepend``` option.  This works on 
       <% end %>
     <% end %>
 
+#### Appended Text
+To create an Appended Text field, use the ```:append``` option.  This works on any text field input type, like ```:url```, ```:search```, and of course ```:string```
+
+    <%= semantic_form_for @user do |f| %>
+      <%= f.inputs do %>
+        <%= f.input :handle, :append => '%' %>
+      <% end %>
+    <% end %>
+
 ## Contributing
  
 ### Contributors
