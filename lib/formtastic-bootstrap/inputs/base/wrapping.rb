@@ -13,6 +13,10 @@ module FormtasticBootstrap
                 prepended_input_wrapping do
                   [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, hint_html].join("\n").html_safe
                 end
+              elsif options[:append]
+                appended_input_wrapping do
+                  [yield, template.content_tag(:span, options[:append], :class => 'add-on'), hint_html].join("\n").html_safe
+                end
               else
                 [yield, hint_html].join("\n").html_safe
               end
@@ -46,6 +50,13 @@ module FormtasticBootstrap
         # Bootstrap prepend feature
         def prepended_input_wrapping(&block)
           template.content_tag(:div, :class => 'input-prepend') do
+            yield
+          end
+        end
+
+        # Bootstrap append feature
+        def appended_input_wrapping(&block)
+          template.content_tag(:div, :class => 'input-append') do
             yield
           end
         end
