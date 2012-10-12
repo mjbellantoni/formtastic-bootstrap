@@ -6,7 +6,7 @@ module FormtasticBootstrap
       
       def to_html
         control_group_wrapping do
-          control_label_html <<
+          #control_label_html <<
           hidden_field_html <<
           controls_wrapping do
             label_with_nested_checkbox

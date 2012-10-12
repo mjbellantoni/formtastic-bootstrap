@@ -30,24 +30,24 @@ module FormtasticBootstrap
           input_html_options.tap do |options|
             options[:id] = fragment_id(fragment)
             options[:class] = ((options[:class] || "").split << fragment_class(fragment)).join(" ")
-            options[:placeholder] = fragment_placeholder(fragment)
+            #options[:placeholder] = fragment_placeholder(fragment)
           end
         end
 
         def fragment_class(fragment) 
           { 
-            :year   => "span1", 
-            :month  => "span2",
-            :day    => "span1",
-            :hour   => "span1",
-            :minute => "span1",
-            :second => "span1"
+            :year   => "input-mini", 
+            :month  => "input-small",
+            :day    => "input-mini",
+            :hour   => "input-mini",
+            :minute => "input-mini",
+            :second => "input-mini"
           }[fragment]
         end
 
-        def fragment_placeholder(fragment)
-          "." + fragment_class(fragment) 
-        end
+        #def fragment_placeholder(fragment)
+        #  "." + fragment_class(fragment) 
+        #end
 
       end
     end

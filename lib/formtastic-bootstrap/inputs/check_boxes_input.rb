@@ -14,7 +14,7 @@ module FormtasticBootstrap
           controls_wrapping do
             collection.map { |choice|
               choice_html(choice)
-            }.join("\n").html_safe
+            }.join("\n").html_safe + hint_html
           end
         end
       end
