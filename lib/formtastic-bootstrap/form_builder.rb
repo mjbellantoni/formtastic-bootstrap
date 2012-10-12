@@ -33,7 +33,7 @@ module FormtasticBootstrap
     include FormtasticBootstrap::Helpers::InputsHelper
     include FormtasticBootstrap::Helpers::ActionHelper
     include FormtasticBootstrap::Helpers::ActionsHelper
-    # include Formtastic::Helpers::ErrorsHelper
+    include FormtasticBootstrap::Helpers::ErrorsHelper
 
   end
 
