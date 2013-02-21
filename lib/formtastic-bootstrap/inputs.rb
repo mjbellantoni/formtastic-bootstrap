@@ -7,8 +7,8 @@ module FormtasticBootstrap
     autoload :CheckBoxesInput,     "formtastic-bootstrap/inputs/check_boxes_input"
     autoload :CountryInput,        "formtastic-bootstrap/inputs/country_input" 
     autoload :DateInput,           "formtastic-bootstrap/inputs/date_input" 
-    # autoload :DatePickerInput    # TODO Come back to this.
-    # autoload :DatetimePickerInput # TODO Come back to this.
+    autoload :DatePickerInput,     "formtastic-bootstrap/inputs/date_picker_input" 
+    autoload :DatetimePickerInput, "formtastic-bootstrap/inputs/datetime_picker_input" 
     autoload :DateSelectInput,     "formtastic-bootstrap/inputs/date_select_input"
     autoload :DatetimeInput,       "formtastic-bootstrap/inputs/datetime_input" 
     autoload :DatetimeSelectInput, "formtastic-bootstrap/inputs/datetime_select_input" 

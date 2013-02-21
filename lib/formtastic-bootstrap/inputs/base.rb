@@ -7,7 +7,7 @@ module FormtasticBootstrap
   module Inputs
     module Base
 
-      # autoload :DatetimePickerish
+      autoload :DatetimePickerish,  "formtastic-bootstrap/inputs/base/datetime_pickerish"
       # autoload :Associations
       autoload :Collections,  "formtastic-bootstrap/inputs/base/collections"
       autoload :Choices,      "formtastic-bootstrap/inputs/base/choices"
@@ -21,7 +21,7 @@ module FormtasticBootstrap
       # autoload :Naming
       autoload :Numeric,      "formtastic-bootstrap/inputs/base/numeric"
       # autoload :Options
-      # autoload :Placeholder
+      autoload :Placeholder,  "formtastic-bootstrap/inputs/base/placeholder"
       autoload :Stringish,    "formtastic-bootstrap/inputs/base/stringish"
       autoload :Timeish,      "formtastic-bootstrap/inputs/base/timeish"
       # autoload :Validations
