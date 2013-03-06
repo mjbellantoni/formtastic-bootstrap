@@ -53,8 +53,8 @@ made to generate the HTML expected by Bootstrap while still generating the rich 
       <%= f.inputs do %>
         <%= f.input :title, :hint => "This is the title!" %>
       <% end %>
-      <%= f.buttons do %>
-        <%= f.commit_button %>
+      <%= f.actions do %>
+        <%= f.submit %>
       <% end %>
     <% end %>
 
