@@ -2,11 +2,11 @@
 module FormtasticBootstrap
   module Inputs
     class BooleanInput < Formtastic::Inputs::BooleanInput
-      include Base      
-      
+      include Base
+
       def to_html
         control_group_wrapping do
-          options[:label_outside] ? control_label_html : "".html_safe <<
+          (options[:label_outside] ? control_label_html : "".html_safe) <<
           hidden_field_html <<
           controls_wrapping do
             label_with_nested_checkbox
