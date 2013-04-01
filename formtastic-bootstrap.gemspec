@@ -24,7 +24,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
 
-  s.add_dependency('formtastic-bootstrap', [">= 0"])
   s.add_dependency('formtastic', ["~> 2.2"])
 
   s.add_development_dependency('ammeter', [">= 0"])
@@ -35,4 +34,3 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rspec_tag_matchers', [">= 0"])
   s.add_development_dependency('tzinfo')
 end
-
