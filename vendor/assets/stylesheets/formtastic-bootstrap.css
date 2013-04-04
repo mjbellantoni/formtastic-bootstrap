@@ -1,3 +1,7 @@
 .hidden {
 	display: none;
 }
+
+.alert.alert-error .error-list {
+  margin: 0px;
+}
