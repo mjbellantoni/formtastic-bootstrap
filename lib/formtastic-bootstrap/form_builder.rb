@@ -31,6 +31,7 @@ module FormtasticBootstrap
 
     include FormtasticBootstrap::Helpers::InputHelper # Revisit
     include FormtasticBootstrap::Helpers::InputsHelper
+    include FormtasticBootstrap::Helpers::ErrorsHelper
     include FormtasticBootstrap::Helpers::ActionHelper
     include FormtasticBootstrap::Helpers::ActionsHelper
     # include Formtastic::Helpers::ErrorsHelper
