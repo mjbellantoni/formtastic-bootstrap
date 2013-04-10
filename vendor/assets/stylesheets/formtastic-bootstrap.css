@@ -2,6 +2,6 @@
 	display: none;
 }
 
-.alert.alert-error .error-list {
-  margin: 0px;
+.alert.alert-error > ul.error-list {
+  margin-bottom: 0px;
 }
