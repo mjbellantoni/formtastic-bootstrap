@@ -1,3 +1,3 @@
 module FormtasticBootstrap
-  VERSION = "2.0.1pre"
+  VERSION = "2.1.0"
 end
