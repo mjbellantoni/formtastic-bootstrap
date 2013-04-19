@@ -3,8 +3,8 @@ require File.expand_path('../lib/formtastic-bootstrap/version', __FILE__)
 Gem::Specification.new do |s|
   s.name = "formtastic-bootstrap"
   s.version = FormtasticBootstrap::VERSION
-  s.authors = ["Matthew Bellantoni"]
-  s.email = "mjbellantoni@yahoo.com"
+  s.authors = ["Matthew Bellantoni", "Aaron Stone"]
+  s.email = ["mjbellantoni@yahoo.com", "aaron@serendipity.cx"]
   s.homepage = "http://github.com/mjbellantoni/formtastic-bootstrap"
   s.description = "Formtastic form builder to generate Twitter Bootstrap-friendly markup."
   s.summary = "Formtastic form builder to generate Twitter Bootstrap-friendly markup."
