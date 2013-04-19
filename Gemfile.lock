@@ -3,7 +3,6 @@ PATH
   specs:
     formtastic-bootstrap (2.0.1pre)
       formtastic (~> 2.2)
-      formtastic-bootstrap
 
 GEM
   remote: http://rubygems.org/
