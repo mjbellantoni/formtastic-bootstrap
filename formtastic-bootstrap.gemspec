@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.md",
     "VERSION",
-    "lib/**/*",
+    "lib/**/*.rb",
     "vendor/assets/stylesheets/formtastic-bootstrap.css"
   ]
   s.licenses = ["MIT"]
