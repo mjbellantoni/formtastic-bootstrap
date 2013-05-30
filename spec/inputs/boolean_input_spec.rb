@@ -153,6 +153,14 @@ describe 'boolean input' do
     output_buffer.should have_tag('form div.control-group div.controls label input[@type="checkbox"]')
     output_buffer.should have_tag('form div.control-group div.controls label input[@name="project[allow_comments]"]')
   end
+
+  it "should render hints" do
+    concat(semantic_form_for(@new_post) do |builder|
+      concat(builder.input(:allow_comments, :as => :boolean, :hint => 'Allow user to post comment'))
+    end)
+
+    output_buffer.should have_tag("form div.control-group div.controls span.help-block")
+  end
   
   context "when required" do
     
