@@ -9,7 +9,7 @@ module FormtasticBootstrap
             controls_wrapping do
               hidden_fragments <<
               fragments.map do |fragment|
-                fragment_input_html(fragment)
+                fragment_input_html(fragment.to_sym)
               end.join.html_safe
             end
           end
