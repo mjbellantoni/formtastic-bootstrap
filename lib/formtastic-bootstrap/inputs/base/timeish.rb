@@ -9,7 +9,7 @@ module FormtasticBootstrap
             controls_wrapping do
               hidden_fragments <<
               fragments.map do |fragment|
-                fragment_input_html(fragment)
+                fragment_input_html(fragment.to_sym)
               end.join.html_safe
             end
           end
@@ -34,9 +34,9 @@ module FormtasticBootstrap
           end
         end
 
-        def fragment_class(fragment) 
-          { 
-            :year   => "span1", 
+        def fragment_class(fragment)
+          {
+            :year   => "span1",
             :month  => "span2",
             :day    => "span1",
             :hour   => "span1",
@@ -46,7 +46,7 @@ module FormtasticBootstrap
         end
 
         def fragment_placeholder(fragment)
-          "." + fragment_class(fragment) 
+          "." + fragment_class(fragment)
         end
 
       end
