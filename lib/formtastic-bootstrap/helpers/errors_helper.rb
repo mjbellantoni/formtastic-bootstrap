@@ -57,7 +57,7 @@ module FormtasticBootstrap
         else
           html_options[:class] = "alert alert-error " + html_options[:class]
         end
-        
+
         template.content_tag(:div, html_options) do
           template.content_tag(:button, "&times;".html_safe, :class => "close", "data-dismiss" => "alert") +
           template.content_tag(:ul, {:class => "error-list"}) do
