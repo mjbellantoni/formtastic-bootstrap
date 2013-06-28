@@ -6,28 +6,36 @@ module FormtasticBootstrap
         include Formtastic::Inputs::Base::Wrapping
 
         def bootstrap_wrapping(&block)
+          input_content = [
+            add_on_content(options[:prepend]),
+            options[:prepend_content],
+            yield,
+            add_on_content(options[:append]),
+            options[:append_content],
+            hint_html
+          ].compact.join("\n").html_safe
+
           control_group_wrapping do
             control_label_html <<
             controls_wrapping do
-              if options[:prepend] || options[:append]
-                if options[:prepend] && options[:append]
-                  prepended_and_appended_input_wrapping do
-                    [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, template.content_tag(:span, options[:append], :class => 'add-on'), hint_html].join("\n").html_safe
-                  end
-                elsif options[:prepend]
-                  prepended_input_wrapping do
-                    [template.content_tag(:span, options[:prepend], :class => 'add-on'), yield, hint_html].join("\n").html_safe
-                  end
-                elsif options[:append]
-                  appended_input_wrapping do
-                    [yield, template.content_tag(:span, options[:append], :class => 'add-on'), hint_html].join("\n").html_safe
-                  end
+              if prepended_or_appended?(options)
+                template.content_tag(:div, :class => add_on_wrapper_classes(options).join(" ")) do
+                  input_content
                 end
               else
-                [yield, hint_html].join("\n").html_safe
+                input_content
               end
             end
           end
+        end
+
+        def prepended_or_appended?(options)
+          options[:prepend] || options[:prepend_content] || options[:append] || options[:append_content]
+        end
+
+        def add_on_content(content)
+          return nil unless content
+          template.content_tag(:span, content, :class => 'add-on')
         end
 
         def control_group_wrapping(&block)
@@ -55,28 +63,13 @@ module FormtasticBootstrap
             options[:class] << " control-group"
           end
         end
-        
-        # Bootstrap prepend feature
-        def prepended_input_wrapping(&block)
-          template.content_tag(:div, :class => 'input-prepend') do
-            yield
+
+
+        def add_on_wrapper_classes(options)
+          [:prepend, :append, :prepend_content, :append_content].map do |key|
+            "input-#{key.to_s.gsub('_content', '')}" if options[key]
           end
         end
-
-        # Bootstrap append feature
-        def appended_input_wrapping(&block)
-          template.content_tag(:div, :class => 'input-append') do
-            yield
-          end
-        end
-
-        # Bootstrap prepend and append feature
-        def prepended_and_appended_input_wrapping(&block)
-          template.content_tag(:div, :class => 'input-prepend input-append') do
-            yield
-          end
-        end
-
       end
     end
   end
