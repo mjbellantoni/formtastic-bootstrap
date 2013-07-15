@@ -156,6 +156,16 @@ To create an Appended Text field, use the ```:append``` option.  This works on a
       <% end %>
     <% end %>
 
+#### Appended Content
+To add appended elements that are not contained within an add-on span
+use the ```:append_content``` or ```:prepend_content``` option.
+
+    <%= semantic_form_for @user do |f| %>
+      <%= f.inputs do %>
+        <%= f.input :handle, :append_content => content_tag(:a, "Click Here", :class => 'btn') %>
+      <% end %>
+    <% end %>
+
 ## Contributing
  
 ### Contributors
