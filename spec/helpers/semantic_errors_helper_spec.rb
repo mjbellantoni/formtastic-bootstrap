@@ -95,7 +95,7 @@ describe 'FormtasticBootstrap::FormBuilder#semantic_errors' do
       end
     end
   end
-  
+
   describe 'when :base is passed in as an argument' do
     before do
       @errors.stub!(:[]).with(errors_matcher(:base)).and_return(@base_error)
@@ -108,5 +108,5 @@ describe 'FormtasticBootstrap::FormBuilder#semantic_errors' do
       end
     end
   end
-  
+
 end

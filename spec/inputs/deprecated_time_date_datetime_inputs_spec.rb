@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe 'deprecated time, datetime and date inputs' do
   include FormtasticSpecHelper
-  
+
   before do
     @output_buffer = ''
     mock_everything
   end
-  
+
   it 'should warn :time is deprecated' do
     ::ActiveSupport::Deprecation.should_receive(:warn)
     semantic_form_for(@new_post) do |f|
@@ -21,14 +21,14 @@ describe 'deprecated time, datetime and date inputs' do
       concat(f.input :created_at, :as => :datetime)
     end
   end
-  
+
   it 'should warn :date is deprecated' do
     ::ActiveSupport::Deprecation.should_receive(:warn)
     semantic_form_for(@new_post) do |f|
       concat(f.input :created_at, :as => :date)
     end
   end
-  
+
   it 'should use wrapper css class based off :as, not off their parent class' do
     with_deprecation_silenced do
       concat(semantic_form_for(@new_post) do |f|

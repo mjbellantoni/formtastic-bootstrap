@@ -31,13 +31,13 @@ module CustomMacros
         output_buffer.should have_tag("form li fieldset")
       end
     end
-    
+
     def it_should_have_a_nested_fieldset_with_class(klass)
       it "should have a nested_fieldset with class #{klass}" do
         output_buffer.should have_tag("form li fieldset.#{klass}")
       end
     end
-    
+
     def it_should_have_a_nested_ordered_list_with_class(klass)
       it "should have a nested fieldset with class #{klass}" do
         output_buffer.should have_tag("form li ol.#{klass}")
@@ -55,7 +55,7 @@ module CustomMacros
         output_buffer.should have_tag("form div.control-group label.control-label[@for='#{element_id}']")
       end
     end
-    
+
     def it_should_have_an_inline_label_for(element_id)
       it "should have a label for ##{element_id}" do
         output_buffer.should have_tag("form div.control-group div.controls label[@for='#{element_id}']")

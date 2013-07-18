@@ -8,7 +8,7 @@ describe 'hidden input' do
   before do
     @output_buffer = ''
     mock_everything
-    
+
     with_deprecation_silenced do
       concat(semantic_form_for(@new_post) do |builder|
         concat(builder.input(:secret, :as => :hidden))
@@ -35,7 +35,7 @@ describe 'hidden input' do
   it "should get value from the object" do
     output_buffer.should have_tag("form div.control-group div.controls input#post_secret[@type=\"hidden\"][@value=\"1\"]")
   end
-  
+
   it "should pass any explicitly specified value - using :value" do
     output_buffer.should have_tag("form div.control-group div.controls input#post_author_id[@type=\"hidden\"][@value=\"99\"]")
   end
@@ -80,7 +80,7 @@ describe 'hidden input' do
     before do
       @output_buffer = ''
       mock_everything
-      
+
       with_deprecation_silenced do
         concat(semantic_form_for(@new_post, :namespace => 'context2') do |builder|
           concat(builder.input(:secret, :as => :hidden))
@@ -102,7 +102,7 @@ describe 'hidden input' do
     end
 
   end
-  
+
   describe "when index is provided" do
 
     before do
@@ -115,22 +115,22 @@ describe 'hidden input' do
         end)
       end)
     end
-    
+
     it 'should index the id of the control group' do
       output_buffer.should have_tag("div.control-group#post_author_attributes_3_name_input")
     end
-    
+
     it 'should index the id of the select tag' do
       output_buffer.should have_tag("input#post_author_attributes_3_name")
     end
-    
+
     it 'should index the name of the select tag' do
       output_buffer.should have_tag("input[@name='post[author_attributes][3][name]']")
     end
-    
+
   end
-  
-  
+
+
   context "when required" do
     it "should not add the required attribute to the input's html options" do
       concat(semantic_form_for(@new_post) do |builder|

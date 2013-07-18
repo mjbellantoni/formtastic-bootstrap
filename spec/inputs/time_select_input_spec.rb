@@ -35,7 +35,7 @@ describe 'time select input' do
       end
 
     end
-    
+
     describe "with :ignore_date => false" do
       before do
         @new_post.stub(:publish_at).and_return(Time.parse('2010-11-07'))
@@ -141,10 +141,10 @@ describe 'time select input' do
       output_buffer.should have_tag('#form2_post_publish_at_5i')
     end
   end
-  
+
   describe "when required" do
     it "should add the required attribute to the input's html options" do
-      with_config :use_required_attribute, true do 
+      with_config :use_required_attribute, true do
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => :time_select, :required => true))
         end)
@@ -152,7 +152,7 @@ describe 'time select input' do
       end
     end
   end
-  
+
   describe "when index is provided" do
 
     before do
@@ -184,7 +184,7 @@ describe 'time select input' do
     end
 
   end
-  
+
 end
 
 

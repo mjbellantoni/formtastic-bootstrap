@@ -25,6 +25,6 @@ RSpec.configure do |config|
 end
 
 # RSpec.configure do |config|
-#   config.include RspecTagMatchers  
+#   config.include RspecTagMatchers
 #   config.include CustomMacros
 # end

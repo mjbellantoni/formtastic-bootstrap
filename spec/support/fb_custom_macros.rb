@@ -17,7 +17,7 @@ module FbCustomMacros
         output_buffer.should have_tag("form div.controls label.#{class_name}")
       end
     end
-    
+
   end
-  
+
 end
