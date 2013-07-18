@@ -3,7 +3,7 @@ module FormtasticBootstrap
     module FieldsetWrapper
 
       include Formtastic::Helpers::FieldsetWrapper
-      
+
       protected
 
       def field_set_and_list_wrapping(*args, &block) #:nodoc:

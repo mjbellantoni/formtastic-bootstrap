@@ -40,8 +40,8 @@ module ActionView
         @options[:discard_day]    ||= true if @options[:discard_month] || !order.include?(:day)
 
         # Save this so we can restore it.
-        original_datetime_separator_separator = @options[:datetime_separator] 
-        original_date_separator = @options[:date_separator] 
+        original_datetime_separator_separator = @options[:datetime_separator]
+        original_date_separator = @options[:date_separator]
 
         @options[:datetime_separator] = ""
         @options[:date_separator] = " "
@@ -71,8 +71,8 @@ module ActionView
 
         # Save this so we can restore it.
         original_datetime_separator = @options[:datetime_separator]
-        original_time_separator = @options[:time_separator] 
-        original_date_separator = @options[:date_separator] 
+        original_time_separator = @options[:time_separator]
+        original_date_separator = @options[:date_separator]
 
         @options[:datetime_separator] = ''
         @options[:time_separator] = ':'
@@ -85,7 +85,7 @@ module ActionView
 
         build_text_field_from_types(order).tap do
           # Restore.
-          @options[:datetime_separator] = original_datetime_separator 
+          @options[:datetime_separator] = original_datetime_separator
           @options[:date_separator] = original_date_separator
           @options[:time_separator] = original_time_separator
         end
@@ -131,7 +131,7 @@ module ActionView
         input = ''
         order.reverse.each do |type|
           separator = separator(type) unless type == order.first # don't add on last field
-          input.insert(0, separator.to_s + send("text_field_#{type}").to_s) 
+          input.insert(0, separator.to_s + send("text_field_#{type}").to_s)
         end
         text_field_tag("", input.html_safe, @html_options).html_safe
       end

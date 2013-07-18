@@ -27,7 +27,7 @@ module FormtasticBootstrap
           # end
           # template.content_tag(:ul, Formtastic::Util.html_safe(list_elements.join("\n")), :class => error_class)
         end
-        
+
         def error_first_html(inline_or_block = :inline)
           error_class = if inline_or_block == :inline
             options[:error_class] || builder.default_inline_error_class

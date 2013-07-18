@@ -39,8 +39,8 @@ module FormtasticBootstrap
         end
 
         def control_group_wrapping(&block)
-          template.content_tag(:div, 
-            template.capture(&block).html_safe, 
+          template.content_tag(:div,
+            template.capture(&block).html_safe,
             wrapper_html_options
           )
         end
@@ -51,7 +51,7 @@ module FormtasticBootstrap
             controls_wrapper_html_options
           )
         end
-        
+
         def controls_wrapper_html_options
           {
             :class => "controls"

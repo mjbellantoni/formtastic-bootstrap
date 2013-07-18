@@ -2,7 +2,7 @@ module FormtasticBootstrap
   module Inputs
     module Base
       module Hints
-        
+
         include Formtastic::Inputs::Base::Hints
 
         def hint_html(inline_or_block = :block)
@@ -13,8 +13,8 @@ module FormtasticBootstrap
               options[:hint_class] || builder.default_block_hint_class
             end
             template.content_tag(
-              :span, 
-              Formtastic::Util.html_safe(hint_text), 
+              :span,
+              Formtastic::Util.html_safe(hint_text),
               :class => hint_class
             )
           end

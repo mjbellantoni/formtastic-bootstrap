@@ -5,7 +5,7 @@ module FormtasticBootstrap
         def inputs(*args, &block)
           wrap_it = @already_in_an_inputs_block ? true : false
           @already_in_an_inputs_block = true
-        
+
           title = field_set_title_from_args(*args)
           html_options = args.extract_options!
           html_options[:class] ||= "inputs"
@@ -24,7 +24,7 @@ module FormtasticBootstrap
               field_set_and_list_wrapping(*((args << html_options) << contents))
             end
           end
-        
+
           @already_in_an_inputs_block = false
           out
         end

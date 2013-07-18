@@ -26,7 +26,7 @@ module FormtasticBootstrap
       autoload :Timeish,      "formtastic-bootstrap/inputs/base/timeish"
       # autoload :Validations
       autoload :Wrapping,     "formtastic-bootstrap/inputs/base/wrapping"
-      
+
       include Html
       # include Options
       # include Database

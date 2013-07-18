@@ -7,7 +7,7 @@ module FormtasticBootstrap
 
         def input_html_options
           if errors?
-            { 
+            {
               :class => "error"
             }.merge(super)
           else

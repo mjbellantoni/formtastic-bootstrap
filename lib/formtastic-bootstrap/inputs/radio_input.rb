@@ -33,14 +33,14 @@ module FormtasticBootstrap
         end
       end
 
-      def choice_html(choice)        
+      def choice_html(choice)
         template.content_tag(:label,
-          builder.radio_button(input_name, choice_value(choice), input_html_options.merge(choice_html_options(choice)).merge(:required => false)) << 
+          builder.radio_button(input_name, choice_value(choice), input_html_options.merge(choice_html_options(choice)).merge(:required => false)) <<
           choice_label(choice),
           label_html_options.merge(choice_label_html_options(choice))
         )
       end
-      
+
     end
   end
 end

@@ -11,10 +11,10 @@ module FormtasticBootstrap
       end
 
       def default_button_html
-        { 
+        {
           :accesskey => accesskey,
           :class => "btn"
-         }
+        }
       end
 
     end

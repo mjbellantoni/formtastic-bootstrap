@@ -12,7 +12,7 @@ module FormtasticBootstrap
             # options[:class] << "control-label"
           end
         end
-        
+
         def control_label_html_options
           label_html_options.tap do |options|
             options[:class] << "control-label"

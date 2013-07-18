@@ -9,7 +9,7 @@ module FormtasticBootstrap
           builder.number_field(method, input_html_options)
         end
       end
-      
+
     end
   end
 end

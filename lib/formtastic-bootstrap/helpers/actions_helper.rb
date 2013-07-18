@@ -4,12 +4,12 @@ module FormtasticBootstrap
 
       include Formtastic::Helpers::ActionsHelper
       include FormtasticBootstrap::Helpers::FieldsetWrapper
-      
+
       def actions(*args, &block)
 
         html_options = args.extract_options!
         html_options[:class] ||= "form-actions"
-      
+
         if block_given?
           field_set_and_list_wrapping(html_options, &block)
         else
@@ -18,7 +18,7 @@ module FormtasticBootstrap
           field_set_and_list_wrapping(html_options, contents)
         end
       end
-      
+
     end
   end
 end
