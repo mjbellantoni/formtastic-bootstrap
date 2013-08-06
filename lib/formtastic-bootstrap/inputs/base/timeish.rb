@@ -46,9 +46,15 @@ module FormtasticBootstrap
         end
 
         def fragment_placeholder(fragment)
-          "." + fragment_class(fragment)
+          {
+            :year   => "YYYY",
+            :month  => "MM",
+            :day    => "DD",
+            :hour   => "hh",
+            :minute => "mm",
+            :second => "ss"
+          }[fragment]
         end
-
       end
     end
   end
