@@ -4,17 +4,22 @@ module FormtasticBootstrap
 
       # Bootstrap doesn't have wrappers.
       def wrapper(&block)
-        # TODO Detect if user passed wrapper_html_options and issue
-        #      a warning that they're ignored. (See the original in
-        #      Formtastic.)
         template.capture(&block)
       end
 
+      # Default button class
+      def default_wrapper_classes
+        ["btn"]
+      end
+
+      # :wrapper_html member :class is prefixed with btn
+      # :button_html member :class is all encompassing
       def default_button_html
         {
           :accesskey => accesskey,
-          :class => "btn"
-        }
+          :class => wrapper_class.strip,
+          :id => wrapper_id
+         }
       end
 
     end
