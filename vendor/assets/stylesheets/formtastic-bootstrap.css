@@ -5,3 +5,9 @@
 .alert.alert-error > ul.error-list {
   margin-bottom: 0px;
 }
+
+.form-control[type=checkbox],
+.form-control[type=radio] {
+  width: auto;
+  height: auto;
+}
