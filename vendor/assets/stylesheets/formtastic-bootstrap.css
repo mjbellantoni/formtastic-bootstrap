@@ -11,3 +11,8 @@
   width: auto;
   height: auto;
 }
+
+.controls-row > select.form-control {
+  display: inline-block;
+  width: auto;
+}
