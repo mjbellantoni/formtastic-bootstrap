@@ -6,12 +6,10 @@ module FormtasticBootstrap
         def to_html
           form_group_wrapping do
             label_html <<
-            controls_wrapping do
-              hidden_fragments <<
-              fragments.map do |fragment|
-                fragment_input_html(fragment.to_sym)
-              end.join.html_safe
-            end
+            hidden_fragments <<
+            fragments.map do |fragment|
+              fragment_input_html(fragment.to_sym)
+            end.join.html_safe
           end
         end
 

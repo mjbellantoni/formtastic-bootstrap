@@ -10,11 +10,9 @@ module FormtasticBootstrap
       def to_html
         form_group_wrapping do
           label_html <<
-          controls_wrapping do
-            collection.map { |choice|
-              choice_html(choice)
-            }.join("\n").html_safe
-          end
+          collection.map { |choice|
+            choice_html(choice)
+          }.join("\n").html_safe
         end
       end
 

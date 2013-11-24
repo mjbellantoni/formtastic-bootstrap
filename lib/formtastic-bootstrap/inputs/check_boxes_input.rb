@@ -11,11 +11,9 @@ module FormtasticBootstrap
         form_group_wrapping do
           label_html <<
           hidden_field_for_all <<
-          controls_wrapping do
-            collection.map { |choice|
-              choice_html(choice)
-            }.join("\n").html_safe
-          end
+          collection.map { |choice|
+            choice_html(choice)
+          }.join("\n").html_safe
         end
       end
 
