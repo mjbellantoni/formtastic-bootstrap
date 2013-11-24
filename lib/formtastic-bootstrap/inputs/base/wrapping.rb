@@ -15,7 +15,7 @@ module FormtasticBootstrap
             hint_html
           ].compact.join("\n").html_safe
 
-          control_group_wrapping do
+          form_group_wrapping do
             control_label_html <<
             controls_wrapping do
               if prepended_or_appended?(options)
@@ -38,7 +38,7 @@ module FormtasticBootstrap
           template.content_tag(:span, content, :class => 'add-on')
         end
 
-        def control_group_wrapping(&block)
+        def form_group_wrapping(&block)
           template.content_tag(:div,
             template.capture(&block).html_safe,
             wrapper_html_options
@@ -60,7 +60,7 @@ module FormtasticBootstrap
 
         def wrapper_html_options
           super.tap do |options|
-            options[:class] << " control-group"
+            options[:class] << " form-group"
           end
         end
 

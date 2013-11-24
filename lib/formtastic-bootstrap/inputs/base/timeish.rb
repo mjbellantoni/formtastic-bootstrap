@@ -4,7 +4,7 @@ module FormtasticBootstrap
       module Timeish
 
         def to_html
-          control_group_wrapping do
+          form_group_wrapping do
             control_label_html <<
             controls_wrapping do
               hidden_fragments <<

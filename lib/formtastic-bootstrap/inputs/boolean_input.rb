@@ -5,7 +5,7 @@ module FormtasticBootstrap
       include Base
 
       def to_html
-        control_group_wrapping do
+        form_group_wrapping do
           (options[:label_outside] ? control_label_html : "".html_safe) <<
           hidden_field_html <<
           controls_wrapping do

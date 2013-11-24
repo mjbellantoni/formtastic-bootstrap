@@ -8,7 +8,7 @@ module FormtasticBootstrap
       # TODO Support .inline
 
       def to_html
-        control_group_wrapping do
+        form_group_wrapping do
           control_label_html <<
           hidden_field_for_all <<
           controls_wrapping do
