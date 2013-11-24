@@ -16,7 +16,7 @@ module FormtasticBootstrap
           ].compact.join("\n").html_safe
 
           form_group_wrapping do
-            control_label_html <<
+            label_html <<
             controls_wrapping do
               if prepended_or_appended?(options)
                 template.content_tag(:div, :class => add_on_wrapper_classes(options).join(" ")) do

@@ -6,7 +6,7 @@ module FormtasticBootstrap
 
       def to_html
         form_group_wrapping do
-          (options[:label_outside] ? control_label_html : "".html_safe) <<
+          (options[:label_outside] ? label_html : "".html_safe) <<
           hidden_field_html <<
           controls_wrapping do
             [label_with_nested_checkbox, hint_html].join("\n").html_safe
