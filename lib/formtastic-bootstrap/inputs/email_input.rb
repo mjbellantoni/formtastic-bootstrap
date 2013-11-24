@@ -6,7 +6,7 @@ module FormtasticBootstrap
 
       def to_html
         bootstrap_wrapping do
-          builder.email_field(method, input_html_options)
+          builder.email_field(method, form_control_input_html_options)
         end
       end
 

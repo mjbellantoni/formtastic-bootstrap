@@ -5,3 +5,35 @@
 .alert.alert-error > ul.error-list {
   margin-bottom: 0px;
 }
+
+
+/*
+** Timeish fixes.
+*/
+
+.datetime_select .form-control,
+.date_select .form-control,
+.time_select .form-control,
+.datetime .form-control,
+.date .form-control,
+.time .form-control
+ {
+  border: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+	padding: 0px 0px;
+}
+
+.datetime_select .form-control select,
+.date_select .form-control select,
+.time_select .form-control select,
+.datetime .form-control select,
+.date .form-control select,
+.time .form-control select 
+{
+	/* This works for me in FireFox but does not work in
+	   Safari or Chrome (31.)  If I set a background-color
+	   it will suddenly work in both of those browsers.
+	*/
+	height: 34px; 
+}

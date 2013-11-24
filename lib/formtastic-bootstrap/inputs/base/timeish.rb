@@ -7,16 +7,23 @@ module FormtasticBootstrap
           form_group_wrapping do
             label_html <<
             hidden_fragments <<
-            fragments.map do |fragment|
-              fragment_input_html(fragment.to_sym)
-            end.join.html_safe
+            form_control_row_wrapping do
+              fragments.map do |fragment|
+                fragment_input_html(fragment.to_sym)
+              end.join.html_safe
+            end
           end
         end
 
-        def controls_wrapper_html_options
-          super.tap do |options|
-            options[:class] = (options[:class].split << "controls-row").join(" ")
-          end
+        def form_control_row_wrapping(&block)
+          template.content_tag(:div,
+            template.capture(&block).html_safe,
+            form_control_row_wrapper_html_options
+          )
+        end
+
+        def form_control_row_wrapper_html_options
+          { :class => "form-control" }
         end
 
         def fragment_input_html(fragment)
@@ -34,16 +41,17 @@ module FormtasticBootstrap
 
         def fragment_class(fragment)
           {
-            :year   => "span1",
-            :month  => "span2",
-            :day    => "span1",
-            :hour   => "span1",
-            :minute => "span1",
-            :second => "span1"
+            :year   => "col-xs-1",
+            :month  => "col-xs-2",
+            :day    => "col-xs-1",
+            :hour   => "col-xs-1",
+            :minute => "col-xs-1",
+            :second => "col-xs-1"
           }[fragment]
         end
 
         def fragment_placeholder(fragment)
+          # TODO This sets a useless placeholer right now.
           "." + fragment_class(fragment)
         end
 
