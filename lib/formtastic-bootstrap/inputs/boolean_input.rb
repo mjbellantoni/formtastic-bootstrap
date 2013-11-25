@@ -5,9 +5,8 @@ module FormtasticBootstrap
       include Base
 
       def to_html
-        form_group_wrapping do
-          (options[:label_outside] ? label_html : "".html_safe) <<
-          hidden_field_html <<
+        checkbox_wrapping do
+          "".html_safe <<
           [label_with_nested_checkbox, hint_html].join("\n").html_safe
         end
       end
@@ -15,11 +14,22 @@ module FormtasticBootstrap
       def label_with_nested_checkbox
         builder.label(
           method,
-          options[:label_outside] ? check_box_html : label_text_with_embedded_checkbox,
-          label_html_options.tap do |options|
-            options[:class] << "checkbox"
-          end
+          label_text_with_embedded_checkbox,
+          label_html_options
         )
+      end
+
+      def checkbox_wrapping(&block)
+        template.content_tag(:div,
+          template.capture(&block).html_safe,
+          wrapper_html_options
+        )
+      end
+
+      def wrapper_html_options
+        super.tap do |options|
+          options[:class] = (options[:class].split - ["form-group"] + ["checkbox"]).join(" ")
+        end
       end
 
     end
