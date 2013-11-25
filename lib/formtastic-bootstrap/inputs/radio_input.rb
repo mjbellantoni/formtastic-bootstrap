@@ -24,21 +24,24 @@ module FormtasticBootstrap
         end
       end
 
-      # This came from check_boxes.  Do needed refactoring.
-      def choice_wrapping_html_options(choice)
-        super(choice).tap do |options|
-          options[:class] = ((options[:class].split) << "radio").join(" ")
+      def choice_html(choice)
+        radio_wrapping do
+          template.content_tag(:label,
+            builder.radio_button(input_name, choice_value(choice), input_html_options.merge(choice_html_options(choice)).merge(:required => false)) <<
+            choice_label(choice),
+            label_html_options.merge(choice_label_html_options(choice))
+          )
         end
       end
 
-      def choice_html(choice)
-        template.content_tag(:label,
-          builder.radio_button(input_name, choice_value(choice), input_html_options.merge(choice_html_options(choice)).merge(:required => false)) <<
-          choice_label(choice),
-          label_html_options.merge(choice_label_html_options(choice))
+      def radio_wrapping(&block)
+        template.content_tag(:div,
+          template.capture(&block).html_safe,
+          :class => "radio"
         )
       end
 
     end
   end
 end
+
