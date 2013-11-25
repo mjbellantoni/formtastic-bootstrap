@@ -8,30 +8,31 @@ module FormtasticBootstrap
       # TODO Support .inline
 
       def to_html
-        control_group_wrapping do
-          control_label_html <<
-          hidden_field_for_all <<
-          controls_wrapping do
-            collection.map { |choice|
-              choice_html(choice)
-            }.join("\n").html_safe
-          end
-        end
-      end
-
-      def choice_wrapping_html_options(choice)
-        super(choice).tap do |options|
-          options[:class] = ((options[:class].split) << "checkbox").join(" ")
+        form_group_wrapping do
+          label_html <<
+          hidden_field_for_all << # Might need to remove this guy.
+          collection.map { |choice|
+            choice_html(choice)
+          }.join("\n").html_safe
         end
       end
 
       def choice_html(choice)
-        template.content_tag(:label,
-          hidden_fields? ?
-            check_box_with_hidden_input(choice) :
-            check_box_without_hidden_input(choice) <<
-          choice_label(choice),
-          label_html_options.merge(choice_label_html_options(choice))
+        checkbox_wrapping do
+          template.content_tag(:label,
+            hidden_fields? ?
+              check_box_with_hidden_input(choice) :
+              check_box_without_hidden_input(choice) <<
+            choice_label(choice),
+            label_html_options.merge(choice_label_html_options(choice))
+          )
+        end
+      end
+
+      def checkbox_wrapping(&block)
+        template.content_tag(:div,
+          template.capture(&block).html_safe,
+          :class => "checkbox"
         )
       end
 

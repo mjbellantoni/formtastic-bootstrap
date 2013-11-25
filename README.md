@@ -8,7 +8,27 @@ You can follow [FormBoot on twitter](http://twitter.com/FormBoot) for update ann
 
 ### Dependencies
 
-Formtastic Bootstrap has only been tested with Ruby 1.9.2, Rails 3.2.x, Formtastic 2.2.x and Twitter Bootstrap 2.x.
+This version of Formtastic Bootstrap should support the following:
+
+*Bootstrap*
+
+* Bootstrap 3.x
+
+*Rails*
+
+* Rails 3.2.x
+* Rails 4.0.x
+
+*Formtastic*
+
+* Formtastic 2.2.x
+* Formtastic 2.3.x
+
+*Ruby*
+
+* 1.9.2
+* 1.9.3
+* 2.0.x
 
 #### Installation
 
@@ -43,58 +63,12 @@ THIS SECTION IS OUT OF DATE.
 
 ### Overview
 
-In general, Formtastic creates very verbose HTML whereas Bootstrap expects simpler HTML.  Every attempt has been
-made to generate the HTML expected by Bootstrap while still generating the rich HTML provided by Formtastic.  Here's a pretty typical (simplified) example of what Formtastic generates and what Formtastic Bootstrap generates.
+In general, Formtastic creates very verbose HTML whereas 
+Bootstrap expects (ever) simpler HTML.  Every attempt has been
+made to generate the HTML expected by Bootstrap while still 
+generating the rich HTML provided by Formtastic.  When there
+is a conflict, Bootstrap wins.
 
-#### ERB
-
-    <%= semantic_form_for @post do |f| %>
-      <%= f.semantic_errors %>
-      <%= f.inputs do %>
-        <%= f.input :title, :hint => "This is the title!" %>
-      <% end %>
-      <%= f.actions do %>
-        <%= f.action :submit %>
-      <% end %>
-    <% end %>
-
-#### Formtastic
-
-    <form accept-charset="UTF-8" action="/posts" class="formtastic post" id="new_post" method="post">
-      <fieldset class="inputs">
-        <ol>
-          <li class="string input optional stringish" id="post_title_input">
-            <label class=" label" for="post_title">Title</label>
-            <input id="post_title" maxlength="255" name="post[title]" type="text" value="" />
-            <p class="inline-hints">This is the title!</p>
-          </li>
-        </ol>
-      </fieldset>
-      <fieldset class="buttons">
-        <ol>
-          <li class="commit button">
-            <input class="create" name="commit" type="submit" value="Create Post" />
-          </li>
-        </ol>
-      </fieldset>
-    </form>
-
-#### Formtastic Bootstrap
-
-    <form accept-charset="UTF-8" action="/posts" class="formtastic post" id="new_post" method="post">
-      <fieldset class="inputs">
-        <div class="string clearfix optional stringish" id="post_title_input">
-          <label class="" for="post_title">Title</label>
-          <div class="input">
-            <input id="post_title" maxlength="255" name="post[title]" type="text" value="" />
-            <span class="help-inline">This is the title!</span>
-          </div>
-        </div>
-      </fieldset>
-      <div class="actions">
-        <input class="btn create commit" name="commit" type="submit" value="Create Post" />
-      </div>
-    </form>
 
 ### Major Difference in Behavior
 
@@ -114,7 +88,10 @@ The gem also provides some "shim" CSS where Bootstrap is missing styles provided
 
 ### Other
 
-A lot of the code (especially the test suite) was copied over from Formtastic and then beaten into submission.  I'm sure you'll find some ugliness in there.  In general, I mimicked the Formtastic code structure as much as possible.
+A lot of the code (especially the test suite) was copied 
+over from Formtastic and then beaten into submission.  I'm 
+sure you'll find some ugliness in there.  In general, I 
+mimicked the Formtastic code structure as much as possible.
 
 In particular:
 
@@ -130,7 +107,7 @@ In particular:
 Contributions are welcome!
 
 * Formtastic's <tt>:country</tt> has not yet been implemented.
-* Twitter Bootstrap's Date Range, Prepend Checkbox and Appended Checkbox controls have not yet been implemented.
+* I'm sure there's lots ...
 
 ## Usage
 
@@ -208,16 +185,16 @@ Source contributions are very welcome!  Most of the recent work on this package 
  * As rich functionally as their Rails counterparts.
  * Extract into a standalone gem.
 * Tests
+ * Get them passing!
  * Refactor
  * More -- See if I'm making sure the Bootstrap classes are present.
 * Documentation
 * Refactor :boolean to use common "choices" code (if possible.) (Not sure it is.)
 * Boostrap
-  * Ask why they use 'inline-inputs' class instead of a fieldset tag.
   * Why 'help-inline' and 'help-block' when they could have done p.help and span.help?
 
 
 ## Copyright
 
-Copyright (c) 2011 Matthew Bellantoni. See LICENSE.txt for further details.
+Copyright (c) 2013 Matthew Bellantoni. See LICENSE.txt for further details.
 
