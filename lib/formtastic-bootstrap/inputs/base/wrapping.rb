@@ -46,6 +46,7 @@ module FormtasticBootstrap
         def wrapper_html_options
           super.tap do |options|
             options[:class] << " form-group"
+            options[:class] << " has-error" if errors?
           end
         end
 

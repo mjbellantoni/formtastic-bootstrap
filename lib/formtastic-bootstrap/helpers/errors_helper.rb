@@ -53,9 +53,9 @@ module FormtasticBootstrap
         return nil if full_errors.blank?
 
         if html_options[:class].blank?
-          html_options[:class] = "alert alert-error"
+          html_options[:class] = "alert alert-danger"
         else
-          html_options[:class] = "alert alert-error " + html_options[:class]
+          html_options[:class] = "alert alert-danger " + html_options[:class]
         end
 
         template.content_tag(:div, html_options) do
