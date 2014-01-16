@@ -6,9 +6,14 @@ module FormtasticBootstrap
 
       def to_html
         checkbox_wrapping do
+          hidden_field_html <<
           "".html_safe <<
           [label_with_nested_checkbox, hint_html].join("\n").html_safe
         end
+      end
+
+      def hidden_field_html
+        template.hidden_field_tag(input_html_options[:name], unchecked_value, :id => nil, :disabled => input_html_options[:disabled] )
       end
 
       def label_with_nested_checkbox
