@@ -7,8 +7,7 @@ module FormtasticBootstrap
       # TODO Make sure help blocks work correctly.
 
       def to_html
-        form_group_wrapping do
-          label_html <<
+        bootstrap_wrapping do
           collection.map { |choice|
             choice_html(choice)
           }.join("\n").html_safe

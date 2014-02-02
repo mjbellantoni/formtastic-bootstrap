@@ -16,7 +16,13 @@ module FormtasticBootstrap
 
         # def control_label_html
         def label_html
-          render_label? ? builder.label(input_name, label_text, label_html_options) : "".html_safe
+          if render_label?
+            template.content_tag(:span, :class => 'form-label') do
+              builder.label(input_name, label_text, label_html_options)
+            end
+          else
+            "".html_safe
+          end
         end
 
       end
