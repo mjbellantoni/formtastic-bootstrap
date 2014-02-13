@@ -6,24 +6,29 @@ module FormtasticBootstrap
         include Formtastic::Inputs::Base::Wrapping
 
         def bootstrap_wrapping(&block)
-          input_content = [
+          form_group_wrapping do
+            label_html <<
+            template.content_tag(:span, :class => 'form-wrapper') do
+              input_content(&block) <<
+              hint_html <<
+              error_html(:block)
+            end
+          end
+        end
+
+        def input_content(&block)
+          content = [
             add_on_content(options[:prepend]),
             options[:prepend_content],
             yield,
             add_on_content(options[:append]),
-            options[:append_content],
-            hint_html
+            options[:append_content]
           ].compact.join("\n").html_safe
 
-          form_group_wrapping do
-            label_html <<
-            if prepended_or_appended?(options)
-              template.content_tag(:div, :class => add_on_wrapper_classes(options).join(" ")) do
-                input_content
-              end
-            else
-              input_content
-            end
+          if prepended_or_appended?(options)
+            template.content_tag(:div, content, :class => add_on_wrapper_classes(options).join(" "))
+          else
+            content
           end
         end
 
@@ -33,7 +38,7 @@ module FormtasticBootstrap
 
         def add_on_content(content)
           return nil unless content
-          template.content_tag(:span, content, :class => 'add-on')
+          template.content_tag(:span, content, :class => 'input-group-addon')
         end
 
         def form_group_wrapping(&block)
@@ -51,9 +56,9 @@ module FormtasticBootstrap
         end
 
         def add_on_wrapper_classes(options)
-          [:prepend, :append, :prepend_content, :append_content].map do |key|
-            "input-#{key.to_s.gsub('_content', '')}" if options[key]
-          end
+          [:prepend, :append, :prepend_content, :append_content].find do |key|
+            options.has_key?(key)
+          end ? ['input-group'] : []
         end
 
       end
