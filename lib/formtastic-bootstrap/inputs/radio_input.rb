@@ -5,7 +5,6 @@ module FormtasticBootstrap
       include Base::Choices
 
       # TODO Make sure help blocks work correctly.
-      # TODO Support .inline
 
       def to_html
         form_group_wrapping do
@@ -35,9 +34,11 @@ module FormtasticBootstrap
       end
 
       def radio_wrapping(&block)
+        class_name = "radio"
+        class_name += " radio-inline" if options[:inline]
         template.content_tag(:div,
           template.capture(&block).html_safe,
-          :class => "radio"
+          :class => class_name
         )
       end
 
