@@ -5,7 +5,7 @@ module FormtasticBootstrap
 
       def to_html
         bootstrap_wrapping do
-          builder.country_select(method, priority_countries, input_options, input_html_options)
+          builder.country_select(method, priority_countries, input_options, form_control_input_html_options)
         end
       end
 
