@@ -6,24 +6,29 @@ module FormtasticBootstrap
         include Formtastic::Inputs::Base::Wrapping
 
         def bootstrap_wrapping(&block)
-          input_content = [
+          form_group_wrapping do
+            label_html <<
+            template.content_tag(:span, :class => 'form-wrapper') do
+              input_content(&block) <<
+              hint_html <<
+              error_html(:block)
+            end
+          end
+        end
+
+        def input_content(&block)
+          content = [
             add_on_content(options[:prepend]),
             options[:prepend_content],
             yield,
             add_on_content(options[:append]),
-            options[:append_content],
-            hint_html
+            options[:append_content]
           ].compact.join("\n").html_safe
 
-          form_group_wrapping do
-            label_html <<
-            if prepended_or_appended?(options)
-              template.content_tag(:div, :class => add_on_wrapper_classes(options).join(" ")) do
-                input_content
-              end
-            else
-              input_content
-            end
+          if prepended_or_appended?(options)
+            template.content_tag(:div, content, :class => add_on_wrapper_classes(options).join(" "))
+          else
+            content
           end
         end
 
