@@ -8,12 +8,10 @@ module FormtasticBootstrap
 
       def to_html
         bootstrap_wrapping do
-          form_group_wrapping do
-            hidden_field_for_all << # Might need to remove this guy.
-              collection.map { |choice|
-              choice_html(choice)
-            }.join("\n").html_safe
-          end
+          hidden_field_for_all << # Might need to remove this guy.
+          collection.map { |choice|
+            choice_html(choice)
+          }.join("\n").html_safe
         end
       end
 
