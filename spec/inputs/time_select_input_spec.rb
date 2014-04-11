@@ -101,11 +101,11 @@ describe 'time select input' do
       it_should_apply_error_logic_for_input_type(:time_select)
 
       it 'should have a legend and label with the label text inside the fieldset' do
-        output_buffer.should have_tag('form div.control-group.time_select label.control-label', /Publish at/)
+        output_buffer.should have_tag('form div.form-group.time_select label.control-label', /Publish at/)
       end
 
       it 'should have two selects for hour and minute' do
-        output_buffer.should have_tag('form div.control-group.time_select div.controls select', :count => 2)
+        output_buffer.should have_tag('form div.form-group.time_select div.controls select', :count => 2)
       end
     end
 
@@ -117,7 +117,7 @@ describe 'time select input' do
       end
 
       it 'should have three selects for hour, minute and seconds' do
-        output_buffer.should have_tag('form div.control-group.time_select div.controls select', :count => 3)
+        output_buffer.should have_tag('form div.form-group.time_select div.controls select', :count => 3)
       end
     end
   end
@@ -163,8 +163,8 @@ describe 'time select input' do
       end)
     end
 
-    it 'should index the id of the control-group' do
-      output_buffer.should have_tag("div.control-group#post_author_attributes_3_created_at_input")
+    it 'should index the id of the form-group' do
+      output_buffer.should have_tag("div.form-group#post_author_attributes_3_created_at_input")
     end
 
     it 'should index the id of the select tag' do

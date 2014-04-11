@@ -27,11 +27,11 @@ describe 'datetime select input' do
     it_should_apply_error_logic_for_input_type(:datetime_select)
 
     it 'should have a legend and label with the label text inside the fieldset' do
-      output_buffer.should have_tag('form div.control-group.datetime_select label.control-label', /Publish at/)
+      output_buffer.should have_tag('form div.form-group.datetime_select label.control-label', /Publish at/)
     end
 
     it 'should have five selects' do
-      output_buffer.should have_tag('form div.control-group.datetime_select div.controls select', :count => 5)
+      output_buffer.should have_tag('form div.form-group.datetime_select div.controls select', :count => 5)
     end
   end
 
@@ -66,8 +66,8 @@ describe 'datetime select input' do
       end)
     end
 
-    it 'should index the id of the control-group' do
-      output_buffer.should have_tag("div.control-group#post_author_attributes_3_created_at_input")
+    it 'should index the id of the form-group' do
+      output_buffer.should have_tag("div.form-group#post_author_attributes_3_created_at_input")
     end
 
     it 'should index the id of the select tag' do

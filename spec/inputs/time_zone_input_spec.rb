@@ -21,22 +21,22 @@ describe 'time_zone input' do
   it_should_apply_error_logic_for_input_type(:time_zone)
 
   it 'should generate a label for the input' do
-    output_buffer.should have_tag('form div.control-group label.control-label')
-    output_buffer.should have_tag('form div.control-group label.control-label[@for="post_time_zone"]')
-    output_buffer.should have_tag('form div.control-group label.control-label', /Time zone/)
+    output_buffer.should have_tag('form div.form-group label.control-label')
+    output_buffer.should have_tag('form div.form-group label.control-label[@for="post_time_zone"]')
+    output_buffer.should have_tag('form div.form-group label.control-label', /Time zone/)
   end
 
   it "should generate a select" do
-    output_buffer.should have_tag("form div.control-group div.controls select")
-    output_buffer.should have_tag("form div.control-group div.controls select#post_time_zone")
-    output_buffer.should have_tag("form div.control-group div.controls select[@name=\"post[time_zone]\"]")
+    output_buffer.should have_tag("form div.form-group div.controls select")
+    output_buffer.should have_tag("form div.form-group div.controls select#post_time_zone")
+    output_buffer.should have_tag("form div.form-group div.controls select[@name=\"post[time_zone]\"]")
   end
 
   it 'should use input_html to style inputs' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:time_zone, :input_html => { :class => 'myclass' }))
     end)
-    output_buffer.should have_tag("form div.control-group div.controls select.myclass")
+    output_buffer.should have_tag("form div.form-group div.controls select.myclass")
   end
 
   describe "when namespace is provided" do
@@ -70,7 +70,7 @@ describe 'time_zone input' do
     end
 
     it 'should index the id of the control group' do
-      output_buffer.should have_tag("div.control-group#post_author_attributes_3_name_input")
+      output_buffer.should have_tag("div.form-group#post_author_attributes_3_name_input")
     end
 
     it 'should index the id of the select tag' do
@@ -92,15 +92,15 @@ describe 'time_zone input' do
     end
 
     it 'should generate labels' do
-      output_buffer.should have_tag('form div.control-group label.control-label')
-      output_buffer.should have_tag('form div.control-group label.control-label[@for="project_time_zone"]')
-      output_buffer.should have_tag('form div.control-group label.control-label', /Time zone/)
+      output_buffer.should have_tag('form div.form-group label.control-label')
+      output_buffer.should have_tag('form div.form-group label.control-label[@for="project_time_zone"]')
+      output_buffer.should have_tag('form div.form-group label.control-label', /Time zone/)
     end
 
     it 'should generate select inputs' do
-      output_buffer.should have_tag("form div.control-group div.controls select")
-      output_buffer.should have_tag("form div.control-group div.controls select#project_time_zone")
-      output_buffer.should have_tag("form div.control-group div.controls select[@name=\"project[time_zone]\"]")
+      output_buffer.should have_tag("form div.form-group div.controls select")
+      output_buffer.should have_tag("form div.form-group div.controls select#project_time_zone")
+      output_buffer.should have_tag("form div.form-group div.controls select[@name=\"project[time_zone]\"]")
     end
   end
 

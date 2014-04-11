@@ -28,7 +28,7 @@ describe 'file input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :file, :input_html => { :class => 'myclass' }))
     end)
-    output_buffer.should have_tag("form div.control-group div.controls input.myclass")
+    output_buffer.should have_tag("form div.form-group div.controls input.myclass")
   end
 
   describe "when namespace is provided" do
@@ -61,7 +61,7 @@ describe 'file input' do
     end
 
     it 'should index the id of the control group' do
-      output_buffer.should have_tag("div.control-group#post_author_attributes_3_name_input")
+      output_buffer.should have_tag("div.form-group#post_author_attributes_3_name_input")
     end
 
     it 'should index the id of the select tag' do

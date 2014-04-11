@@ -57,7 +57,7 @@ describe 'email input' do
     end
 
     it 'should index the id of the wrapper' do
-      output_buffer.should have_tag("div.control-group#post_author_attributes_3_name_input")
+      output_buffer.should have_tag("div.form-group#post_author_attributes_3_name_input")
     end
 
     it 'should index the id of the select tag' do

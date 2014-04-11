@@ -56,8 +56,8 @@ describe 'url input' do
       end)
     end
 
-    it 'should index the id of the control-group' do
-      output_buffer.should have_tag("div.control-group#post_author_attributes_3_name_input")
+    it 'should index the id of the form-group' do
+      output_buffer.should have_tag("div.form-group#post_author_attributes_3_name_input")
     end
 
     it 'should index the id of the select tag' do

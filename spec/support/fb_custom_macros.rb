@@ -8,7 +8,7 @@ module FbCustomMacros
 
     def it_should_have_bootstrap_horizontal_wrapping
       it "should have 'input' class in the right place" do
-        output_buffer.should have_tag("form div.control-group div.controls")
+        output_buffer.should have_tag("form div.form-group div.controls")
       end
     end
 

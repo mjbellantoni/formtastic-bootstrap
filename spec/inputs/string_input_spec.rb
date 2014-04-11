@@ -63,7 +63,7 @@ describe 'string input' do
             concat(builder.input(:title))
           end)
 
-          output_buffer.should have_tag("form div.control-group div.controls input##{@new_post.class.name.underscore}_title[@maxlength='#{maxlength}']")
+          output_buffer.should have_tag("form div.form-group div.controls input##{@new_post.class.name.underscore}_title[@maxlength='#{maxlength}']")
         end
 
         it 'should have maxlength if the optional :if or :unless options are not supplied' do
