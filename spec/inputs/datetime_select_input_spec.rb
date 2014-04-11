@@ -31,7 +31,7 @@ describe 'datetime select input' do
     end
 
     it 'should have five selects' do
-      output_buffer.should have_tag('form div.form-group.datetime_select div.controls select', :count => 5)
+      output_buffer.should have_tag('form div.form-group.datetime_select span.form-wrapper select', :count => 5)
     end
   end
 

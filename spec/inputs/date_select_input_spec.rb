@@ -35,14 +35,14 @@ describe 'date select input' do
     end
 
     it 'should not have three labels for year, month and day' do
-      output_buffer.should_not have_tag('form div.form-group div.controls label', :count => 3)
-      output_buffer.should_not have_tag('form div.form-group div.controls label', /year/i)
-      output_buffer.should_not have_tag('form div.form-group div.controls label', /month/i)
-      output_buffer.should_not have_tag('form div.form-group div.controls label', /day/i)
+      output_buffer.should_not have_tag('form div.form-group span.form-wrapper label', :count => 3)
+      output_buffer.should_not have_tag('form div.form-group span.form-wrapper label', /year/i)
+      output_buffer.should_not have_tag('form div.form-group span.form-wrapper label', /month/i)
+      output_buffer.should_not have_tag('form div.form-group span.form-wrapper label', /day/i)
     end
 
     it 'should have three selects for year, month and day' do
-      output_buffer.should have_tag('form div.form-group div.controls select', :count => 3)
+      output_buffer.should have_tag('form div.form-group span.form-wrapper select', :count => 3)
     end
   end
 

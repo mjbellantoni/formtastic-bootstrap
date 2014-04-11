@@ -105,7 +105,7 @@ describe 'time select input' do
       end
 
       it 'should have two selects for hour and minute' do
-        output_buffer.should have_tag('form div.form-group.time_select div.controls select', :count => 2)
+        output_buffer.should have_tag('form div.form-group.time_select span.form-wrapper select', :count => 2)
       end
     end
 
@@ -117,7 +117,7 @@ describe 'time select input' do
       end
 
       it 'should have three selects for hour, minute and seconds' do
-        output_buffer.should have_tag('form div.form-group.time_select div.controls select', :count => 3)
+        output_buffer.should have_tag('form div.form-group.time_select span.form-wrapper select', :count => 3)
       end
     end
   end

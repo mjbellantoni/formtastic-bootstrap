@@ -28,7 +28,7 @@ describe 'file input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :file, :input_html => { :class => 'myclass' }))
     end)
-    output_buffer.should have_tag("form div.form-group div.controls input.myclass")
+    output_buffer.should have_tag("form div.form-group span.form-wrapper input.myclass")
   end
 
   describe "when namespace is provided" do

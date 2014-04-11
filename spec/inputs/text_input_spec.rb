@@ -29,7 +29,7 @@ describe 'text input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :text, :input_html => { :class => 'myclass' }))
     end)
-    output_buffer.should have_tag("form div.form-group div.controls textarea.myclass")
+    output_buffer.should have_tag("form div.form-group span.form-wrapper textarea.myclass")
   end
 
   it "should have a cols attribute when :cols is a number in :input_html" do
@@ -37,7 +37,7 @@ describe 'text input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :text, :input_html => { :cols => 42 }))
     end)
-    output_buffer.should have_tag("form div.form-group div.controls textarea[@cols='42']")
+    output_buffer.should have_tag("form div.form-group span.form-wrapper textarea[@cols='42']")
   end
 
   it "should not have a cols attribute when :cols is nil in :input_html" do
@@ -45,7 +45,7 @@ describe 'text input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :text, :input_html => { :cols => nil }))
     end)
-    output_buffer.should_not have_tag("form div.form-group div.controls textarea[@cols]")
+    output_buffer.should_not have_tag("form div.form-group span.form-wrapper textarea[@cols]")
   end
 
   it "should have a rows attribute when :rows is a number in :input_html" do
@@ -53,7 +53,7 @@ describe 'text input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :text, :input_html => { :rows => 42 }))
     end)
-    output_buffer.should have_tag("form div.form-group div.controls textarea[@rows='42']")
+    output_buffer.should have_tag("form div.form-group span.form-wrapper textarea[@rows='42']")
 
   end
 
@@ -62,7 +62,7 @@ describe 'text input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:title, :as => :text, :input_html => { :rows => nil }))
     end)
-    output_buffer.should_not have_tag("form div.form-group div.controls textarea[@rows]")
+    output_buffer.should_not have_tag("form div.form-group span.form-wrapper textarea[@rows]")
   end
 
   describe "when namespace is provided" do
@@ -144,7 +144,7 @@ describe 'text input' do
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => :text))
         end)
-        output_buffer.should have_tag("form div.form-group div.controls textarea[@rows='12']")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper textarea[@rows='12']")
       end
     end
 
@@ -153,7 +153,7 @@ describe 'text input' do
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => :text))
         end)
-        output_buffer.should_not have_tag("form div.form-group div.controls textarea[@rows]")
+        output_buffer.should_not have_tag("form div.form-group span.form-wrapper textarea[@rows]")
       end
 
     end
@@ -169,7 +169,7 @@ describe 'text input' do
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => :text))
         end)
-        output_buffer.should have_tag("form div.form-group div.controls textarea[@cols='10']")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper textarea[@cols='10']")
       end
     end
 
@@ -178,7 +178,7 @@ describe 'text input' do
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => :text))
         end)
-        output_buffer.should_not have_tag("form div.form-group div.controls textarea[@cols]")
+        output_buffer.should_not have_tag("form div.form-group span.form-wrapper textarea[@cols]")
       end
 
     end

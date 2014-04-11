@@ -23,38 +23,38 @@ describe 'boolean input' do
 
   it 'should generate a label containing the input' do
     output_buffer.should_not have_tag('label.label')
-    output_buffer.should have_tag('form div.form-group div.controls label', :count => 1)
-    output_buffer.should have_tag('form div.form-group div.controls label.checkbox', :count => 1)
-    output_buffer.should have_tag('form div.form-group div.controls label[@for="post_allow_comments"]')
-    output_buffer.should have_tag('form div.form-group div.controls label', /Allow comments/)
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"]', :count => 1)
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label', :count => 1)
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label.checkbox', :count => 1)
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label[@for="post_allow_comments"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label', /Allow comments/)
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"]', :count => 1)
     output_buffer.should have_tag('form div.form-group input[@type="hidden"]', :count => 1)
-    output_buffer.should_not have_tag('form div.form-group div.controls label input[@type="hidden"]', :count => 1) # invalid HTML5
+    output_buffer.should_not have_tag('form div.form-group span.form-wrapper label input[@type="hidden"]', :count => 1) # invalid HTML5
   end
 
   it 'should not add a "name" attribute to the label' do
-    output_buffer.should_not have_tag('form div.form-group div.controls label[@name]')
+    output_buffer.should_not have_tag('form div.form-group span.form-wrapper label[@name]')
   end
 
   it 'should generate a checkbox input' do
-    output_buffer.should have_tag('form div.form-group div.controls label input')
-    output_buffer.should have_tag('form div.form-group div.controls label input#post_allow_comments')
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"]')
-    output_buffer.should have_tag('form div.form-group div.controls label input[@name="post[allow_comments]"]')
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"][@value="1"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input#post_allow_comments')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@name="post[allow_comments]"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"][@value="1"]')
   end
 
   it 'should generate a checked input if object.method returns true' do
-    output_buffer.should have_tag('form div.form-group div.controls label input[@checked="checked"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@checked="checked"]')
     output_buffer.should have_tag('form div.form-group input[@name="post[allow_comments]"]', :count => 2)
-    output_buffer.should have_tag('form div.form-group div.controls input#post_allow_comments', :count => 1)
+    output_buffer.should have_tag('form div.form-group span.form-wrapper input#post_allow_comments', :count => 1)
   end
 
   it 'should generate a checked input if :input_html is passed :checked => checked' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:answer_comments, :as => :boolean, :input_html => {:checked => 'checked'}))
     end)
-    output_buffer.should have_tag('form div.form-group div.controls label input[@checked="checked"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@checked="checked"]')
   end
 
   it 'should name the hidden input with the :name html_option' do
@@ -87,17 +87,17 @@ describe 'boolean input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:allow_comments, :as => :boolean, :input_html => {:id => 'custom_id'}))
     end)
-    output_buffer.should have_tag('form div.form-group div.controls label input[@id="custom_id"]')
-    output_buffer.should have_tag('form div.form-group div.controls label[@for="custom_id"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@id="custom_id"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label[@for="custom_id"]')
   end
 
   it 'should allow checked and unchecked values to be sent' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'checked', :unchecked_value => 'unchecked'))
     end)
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"][@value="checked"]:not([@unchecked_value][@checked_value])')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"][@value="checked"]:not([@unchecked_value][@checked_value])')
     output_buffer.should have_tag('form div.form-group input[@type="hidden"][@value="unchecked"]')
-    output_buffer.should_not have_tag('form div.form-group div.controls label input[@type="hidden"]') # invalid HTML5
+    output_buffer.should_not have_tag('form div.form-group span.form-wrapper label input[@type="hidden"]') # invalid HTML5
   end
 
   it 'should generate a checked input if object.method returns checked value' do
@@ -107,7 +107,7 @@ describe 'boolean input' do
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'yes', :unchecked_value => 'no'))
     end)
 
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"][@value="yes"][@checked="checked"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"][@value="yes"][@checked="checked"]')
   end
 
   it 'should not generate a checked input if object.method returns unchecked value' do
@@ -117,7 +117,7 @@ describe 'boolean input' do
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'yes', :unchecked_value => 'no'))
     end)
 
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"][@value="yes"]:not([@checked])')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"][@value="yes"]:not([@checked])')
   end
 
   it 'should generate a checked input if object.method returns checked value' do
@@ -127,7 +127,7 @@ describe 'boolean input' do
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'yes', :unchecked_value => 'no'))
     end)
 
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"][@value="yes"][@checked="checked"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"][@value="yes"][@checked="checked"]')
   end
 
   it 'should not generate a checked input if object.method returns unchecked value' do
@@ -137,7 +137,7 @@ describe 'boolean input' do
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'yes', :unchecked_value => 'no'))
     end)
 
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"][@value="yes"]:not([@checked])')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"][@value="yes"]:not([@checked])')
   end
 
   it 'should generate a label and a checkbox even if no object is given' do
@@ -145,13 +145,13 @@ describe 'boolean input' do
       concat(builder.input(:allow_comments, :as => :boolean))
     end)
 
-    output_buffer.should have_tag('form div.form-group div.controls label[@for="project_allow_comments"]')
-    output_buffer.should have_tag('form div.form-group div.controls label', /Allow comments/)
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label[@for="project_allow_comments"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label', /Allow comments/)
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"]')
 
-    output_buffer.should have_tag('form div.form-group div.controls label input#project_allow_comments')
-    output_buffer.should have_tag('form div.form-group div.controls label input[@type="checkbox"]')
-    output_buffer.should have_tag('form div.form-group div.controls label input[@name="project[allow_comments]"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input#project_allow_comments')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"]')
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@name="project[allow_comments]"]')
   end
 
   it "should render hints" do
@@ -159,7 +159,7 @@ describe 'boolean input' do
       concat(builder.input(:allow_comments, :as => :boolean, :hint => 'Allow user to post comment'))
     end)
 
-    output_buffer.should have_tag("form div.form-group div.controls span.help-block")
+    output_buffer.should have_tag("form div.form-group span.form-wrapper span.help-block")
   end
 
   context "when required" do

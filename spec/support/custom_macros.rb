@@ -58,55 +58,55 @@ module CustomMacros
 
     def it_should_have_an_inline_label_for(element_id)
       it "should have a label for ##{element_id}" do
-        output_buffer.should have_tag("form div.form-group div.controls label[@for='#{element_id}']")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper label[@for='#{element_id}']")
       end
     end
 
     def it_should_have_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.form-group div.controls input[@id=\"#{element_id}\"]")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper input[@id=\"#{element_id}\"]")
       end
     end
 
     def it_should_have_select_with_id(element_id)
       it "should have a select box with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.form-group div.controls select##{element_id}")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper select##{element_id}")
       end
     end
 
     def it_should_have_input_with_type(input_type)
       it "should have a #{input_type} input" do
-        output_buffer.should have_tag("form div.form-group div.controls input[@type=\"#{input_type}\"]")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper input[@type=\"#{input_type}\"]")
       end
     end
 
     def it_should_have_input_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form div.form-group div.controls input[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper input[@name=\"#{name}\"]")
       end
     end
 
     def it_should_have_select_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form div.form-group div.controls select[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper select[@name=\"#{name}\"]")
       end
     end
 
     def it_should_have_textarea_with_name(name)
       it "should have an input named #{name}" do
-        output_buffer.should have_tag("form div.form-group div.controls textarea[@name=\"#{name}\"]")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper textarea[@name=\"#{name}\"]")
       end
     end
 
     def it_should_have_textarea_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.form-group div.controls textarea##{element_id}")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper textarea##{element_id}")
       end
     end
 
     def it_should_have_label_and_input_with_id(element_id)
       it "should have an input with id '#{element_id}'" do
-        output_buffer.should have_tag("form div.form-group div.controls input##{element_id}")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper input##{element_id}")
         output_buffer.should have_tag("form div.form-group label.control-label[@for='#{element_id}']")
       end
     end
@@ -117,7 +117,7 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.form-group div.controls input[@size='#{Formtastic::FormBuilder.default_text_field_size}']")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper input[@size='#{Formtastic::FormBuilder.default_text_field_size}']")
         end
       end
     end
@@ -128,8 +128,8 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => as))
           end)
-          output_buffer.should have_tag("form div.form-group div.controls input")
-          output_buffer.should_not have_tag("form div.form-group div.controls input[@size]")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper input")
+          output_buffer.should_not have_tag("form div.form-group span.form-wrapper input[@size]")
         end
       end
     end
@@ -139,7 +139,7 @@ module CustomMacros
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:title, :as => as, :input_html => { :class => 'myclass' }))
         end)
-        output_buffer.should have_tag("form div.form-group div.controls input.myclass")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper input.myclass")
       end
     end
 
@@ -155,7 +155,7 @@ module CustomMacros
     def it_should_have_maxlength_matching_column_limit
       it 'should have a maxlength matching column limit' do
         @new_post.column_for_attribute(:title).limit.should == 50
-        output_buffer.should have_tag("form div.form-group div.controls input[@maxlength='50']")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper input[@maxlength='50']")
       end
     end
 
@@ -314,10 +314,10 @@ module CustomMacros
                 end
                 concat(fields)
               end)
-              output_buffer.should have_tag("form div.form-group div.controls label[@for='post_author_category_name_general']")
-              output_buffer.should have_tag("form div.form-group div.controls label[@for='post_author_category_name_design']")
-              output_buffer.should have_tag("form div.form-group div.controls label[@for='post_author_category_name_development']")
-              output_buffer.should have_tag("form div.form-group div.controls label[@for='post_author_category_name_quasi-serious_inventions']")
+              output_buffer.should have_tag("form div.form-group span.form-wrapper label[@for='post_author_category_name_general']")
+              output_buffer.should have_tag("form div.form-group span.form-wrapper label[@for='post_author_category_name_design']")
+              output_buffer.should have_tag("form div.form-group span.form-wrapper label[@for='post_author_category_name_development']")
+              output_buffer.should have_tag("form div.form-group span.form-wrapper label[@for='post_author_category_name_quasi-serious_inventions']")
             end
           end
         end

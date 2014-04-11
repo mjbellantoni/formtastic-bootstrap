@@ -33,39 +33,39 @@ describe 'radio input' do
     end
 
     it 'should have one option with a "checked" attribute' do
-      output_buffer.should have_tag('form div.form-group div.controls input[@checked]', :count => 1)
+      output_buffer.should have_tag('form div.form-group span.form-wrapper input[@checked]', :count => 1)
     end
 
     describe "each choice" do
 
       it 'should not give the choice label the .label class' do
-        output_buffer.should_not have_tag('div.controls label.label')
+        output_buffer.should_not have_tag('span.form-wrapper label.label')
       end
 
       it 'should not add the required attribute to each input' do
-        output_buffer.should_not have_tag('div.controls input[@required]')
+        output_buffer.should_not have_tag('span.form-wrapper input[@required]')
       end
 
 
       it 'should contain a label for the radio input with a nested input and label text' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag('form div.form-group div.controls label', /#{author.to_label}/)
-          output_buffer.should have_tag("form div.form-group div.controls label[@for='post_author_id_#{author.id}']")
+          output_buffer.should have_tag('form div.form-group span.form-wrapper label', /#{author.to_label}/)
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label[@for='post_author_id_#{author.id}']")
         end
       end
 
       it 'should use values as li.class when value_as_class is true' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag("form div.form-group div.controls label.author_#{author.id}")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label.author_#{author.id}")
         end
       end
 
       it "should have a radio input" do
         ::Author.all.each do |author|
-          output_buffer.should have_tag("form div.form-group div.controls label input#post_author_id_#{author.id}")
-          output_buffer.should have_tag("form div.form-group div.controls label input[@type='radio']")
-          output_buffer.should have_tag("form div.form-group div.controls label input[@value='#{author.id}']")
-          output_buffer.should have_tag("form div.form-group div.controls label input[@name='post[author_id]']")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label input#post_author_id_#{author.id}")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@type='radio']")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@value='#{author.id}']")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@name='post[author_id]']")
         end
       end
 
@@ -78,7 +78,7 @@ describe 'radio input' do
           concat(builder.input(:author, :as => :radio))
         end)
 
-        output_buffer.should have_tag("form div.form-group div.controls label input[@checked='checked']")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@checked='checked']")
       end
 
       it "should mark the input as disabled if options attached for disabling" do
@@ -86,8 +86,8 @@ describe 'radio input' do
           concat(builder.input(:author, :as => :radio, :collection => [["Test", 'test'], ["Try", "try", {:disabled => true}]]))
         end)
 
-        output_buffer.should_not have_tag("form div.form-group div.controls label input[@value='test'][@disabled='disabled']")
-        output_buffer.should have_tag("form div.form-group div.controls label input[@value='try'][@disabled='disabled']")
+        output_buffer.should_not have_tag("form div.form-group span.form-wrapper label input[@value='test'][@disabled='disabled']")
+        output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@value='try'][@disabled='disabled']")
       end
 
       it "should not contain invalid HTML attributes" do
@@ -111,8 +111,8 @@ describe 'radio input' do
 
       it 'should generate labels for each item' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag('form div.form-group div.controls label', /#{author.to_label}/)
-          output_buffer.should have_tag("form div.form-group div.controls label[@for='project_author_id_#{author.id}']")
+          output_buffer.should have_tag('form div.form-group span.form-wrapper label', /#{author.to_label}/)
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label[@for='project_author_id_#{author.id}']")
         end
       end
 
@@ -120,17 +120,17 @@ describe 'radio input' do
         concat(semantic_form_for(:project, :url => 'http://test.host') do |builder|
           concat(builder.input(:author_id, :as => :radio, :collection => [["<b>Item 1</b>", 1], ["<b>Item 2</b>", 2]]))
         end)
-        output_buffer.should have_tag('form div.form-group div.controls label') do |label|
+        output_buffer.should have_tag('form div.form-group span.form-wrapper label') do |label|
           label.body.should match /&lt;b&gt;Item [12]&lt;\/b&gt;$/
         end
       end
 
       it 'should generate inputs for each item' do
         ::Author.all.each do |author|
-          output_buffer.should have_tag("form div.form-group div.controls label input#project_author_id_#{author.id}")
-          output_buffer.should have_tag("form div.form-group div.controls label input[@type='radio']")
-          output_buffer.should have_tag("form div.form-group div.controls label input[@value='#{author.id}']")
-          output_buffer.should have_tag("form div.form-group div.controls label input[@name='project[author_id]']")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label input#project_author_id_#{author.id}")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@type='radio']")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@value='#{author.id}']")
+          output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@name='project[author_id]']")
         end
       end
     end
@@ -258,9 +258,9 @@ describe 'radio input' do
     end
 
     it 'should output the correct labels' do
-      output_buffer.should have_tag("div.controls label", /1/)
-      output_buffer.should have_tag("div.controls label", /2/)
-      output_buffer.should have_tag("div.controls label", /3/)
+      output_buffer.should have_tag("span.form-wrapper label", /1/)
+      output_buffer.should have_tag("span.form-wrapper label", /2/)
+      output_buffer.should have_tag("span.form-wrapper label", /3/)
     end
   end
 
