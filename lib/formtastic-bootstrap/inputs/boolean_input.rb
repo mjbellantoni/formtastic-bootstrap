@@ -4,11 +4,15 @@ module FormtasticBootstrap
     class BooleanInput < Formtastic::Inputs::BooleanInput
       include Base
 
+      # Skip rendering of .form-label in #bootstrap_wrapping
+      def render_label?
+        false
+      end
+
       def to_html
         bootstrap_wrapping do
           hidden_field_html <<
-          "".html_safe <<
-          [label_with_nested_checkbox, hint_html].join("\n").html_safe
+          label_with_nested_checkbox
         end
       end
 
