@@ -929,6 +929,21 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
     end
 
+    describe 'when it searching for new input defined with namespace' do
+      subject { Class.new {extend FormtasticBootstrap::Helpers::InputHelper} }
+
+      before do
+        stub_const 'FormtasticBootstrap::Inputs::NewStringInput', double
+      end
+
+      it 'should use FormtasticBootstrap::Inputs as default scope' do
+        Rails.application.config.stub(:cache_classes).and_return(true)
+        expect(subject.input_class_with_const_defined(:new_string))
+          .to_not raise_error(Formtastic::UnknownInputError)
+      end
+
+    end
+
   end
 
 end
