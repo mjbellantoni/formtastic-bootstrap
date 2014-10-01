@@ -16,6 +16,20 @@ module FormtasticBootstrap
           raise Formtastic::UnknownInputError, "Unable to find input class #{input_class_name}"
         end
       end
+      
+      def input_class_by_trying(as)
+        begin
+          custom_input_class_name(as).constantize
+        rescue NameError
+          begin
+            standard_input_class_name(as).constantize
+          rescue
+            standard_formtastic_class_name(as).constantize
+          end
+        end
+      rescue NameError
+        raise Formtastic::UnknownInputError, "Unable to find input class for #{as}"
+      end
 
       def standard_input_class_name(as)
         "FormtasticBootstrap::Inputs::#{as.to_s.camelize}Input"
