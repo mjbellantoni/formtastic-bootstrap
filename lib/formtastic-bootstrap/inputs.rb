@@ -5,6 +5,7 @@ module FormtasticBootstrap
     # autoload :Basic
     autoload :BooleanInput,        "formtastic-bootstrap/inputs/boolean_input"
     autoload :CheckBoxesInput,     "formtastic-bootstrap/inputs/check_boxes_input"
+    autoload :ColorInput,        "formtastic-bootstrap/inputs/color_input"
     autoload :CountryInput,        "formtastic-bootstrap/inputs/country_input"
     autoload :DateInput,           "formtastic-bootstrap/inputs/date_input"
     autoload :DatePickerInput,     "formtastic-bootstrap/inputs/date_picker_input"
