@@ -1,9 +1,9 @@
 module FormtasticBootstrap
   module Inputs
     class SelectInput < Formtastic::Inputs::SelectInput
+
       include Base
       include Base::Collections
-      include Base::GroupedCollections
 
       def select_html
         builder.select(input_name, collection, input_options, form_control_input_html_options)

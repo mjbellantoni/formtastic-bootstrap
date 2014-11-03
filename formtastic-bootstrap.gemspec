@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.10"
 
-  s.add_dependency('formtastic', [">= 2.2"])
+  s.add_dependency('formtastic', [">= 3.0"])
 
   s.add_development_dependency('rake')
   s.add_development_dependency('tzinfo')
