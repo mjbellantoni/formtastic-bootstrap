@@ -9,9 +9,9 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
     @output_buffer = ''
     mock_everything
 
-    @errors = mock('errors')
-    @errors.stub!(:[]).and_return([])
-    @new_post.stub!(:errors).and_return(@errors)
+    @errors = double('errors')
+    @errors.stub(:[]).and_return([])
+    @new_post.stub(:errors).and_return(@errors)
   end
 
   after do
@@ -72,7 +72,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         end
 
         it 'should set and "optional" class also when there is presence validator' do
-          @new_post.class.should_receive(:validators_on).with(:title).any_number_of_times.and_return([
+          @new_post.class.stub(:validators_on).with(:title).and_return([
             active_model_presence_validator([:title])
           ])
           concat(semantic_form_for(@new_post) do |builder|
@@ -112,20 +112,20 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
         describe 'and an object with :validators_on was given (ActiveModel, Active Resource)' do
           before do
-            @new_post.stub!(:class).and_return(::PostModel)
+            @new_post.stub(:class).and_return(::PostModel)
           end
 
           after do
-            @new_post.stub!(:class).and_return(::Post)
+            @new_post.stub(:class).and_return(::Post)
           end
           describe 'and validates_presence_of was called for the method' do
             it 'should be required' do
 
-              @new_post.class.should_receive(:validators_on).with(:title).any_number_of_times.and_return([
+              @new_post.class.stub(:validators_on).with(:title).and_return([
                 active_model_presence_validator([:title])
               ])
 
-              @new_post.class.should_receive(:validators_on).with(:body).any_number_of_times.and_return([
+              @new_post.class.stub(:validators_on).with(:body).and_return([
                 active_model_presence_validator([:body], {:if => true})
               ])
 
@@ -139,7 +139,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
             it 'should be required when there is :on => :create option on create' do
               with_config :required_string, " required yo!" do
-                @new_post.class.should_receive(:validators_on).with(:title).any_number_of_times.and_return([
+                @new_post.class.stub(:validators_on).with(:title).and_return([
                   active_model_presence_validator([:title], {:on => :create})
                 ])
                 concat(semantic_form_for(@new_post) do |builder|
@@ -152,7 +152,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
             it 'should be required when there is :on => :save option on create' do
               with_config :required_string, " required yo!" do
-                @new_post.class.should_receive(:validators_on).with(:title).any_number_of_times.and_return([
+                @new_post.class.stub(:validators_on).with(:title).and_return([
                   active_model_presence_validator([:title], {:on => :save})
                 ])
                 concat(semantic_form_for(@new_post) do |builder|
@@ -165,7 +165,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
             it 'should be required when there is :on => :save option on update' do
               with_config :required_string, " required yo!" do
-                @fred.class.should_receive(:validators_on).with(:login).any_number_of_times.and_return([
+                @fred.class.stub(:validators_on).with(:login).and_return([
                   active_model_presence_validator([:login], {:on => :save})
                 ])
                 concat(semantic_form_for(@fred) do |builder|
@@ -177,7 +177,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
             end
 
             it 'should not be required when there is :on => :create option on update' do
-              @fred.class.should_receive(:validators_on).with(:login).any_number_of_times.and_return([
+              @fred.class.stub(:validators_on).with(:login).and_return([
                 active_model_presence_validator([:login], {:on => :create})
               ])
               concat(semantic_form_for(@fred) do |builder|
@@ -188,7 +188,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
             end
 
             it 'should not be required when there is :on => :update option on create' do
-              @new_post.class.should_receive(:validators_on).with(:title).any_number_of_times.and_return([
+              @new_post.class.stub(:validators_on).with(:title).and_return([
                 active_model_presence_validator([:title], {:on => :update})
               ])
               concat(semantic_form_for(@new_post) do |builder|
@@ -241,14 +241,14 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
           describe 'and validates_inclusion_of was called for the method' do
             it 'should be required' do
-              @new_post.class.should_receive(:validators_on).with(:published).any_number_of_times.and_return([
+              @new_post.class.stub(:validators_on).with(:published).and_return([
                 active_model_inclusion_validator([:published], {:in => [false, true]})
               ])
               should_be_required(:tag => :published, :required => true)
             end
 
             it 'should not be required if allow_blank is true' do
-              @new_post.class.should_receive(:validators_on).with(:published).any_number_of_times.and_return([
+              @new_post.class.stub(:validators_on).with(:published).and_return([
                 active_model_inclusion_validator([:published], {:in => [false, true], :allow_blank => true})
               ])
               should_be_required(:tag => :published, :required => false)
@@ -282,15 +282,15 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
           end
 
           def add_presence_validator(options)
-            @new_post.class.stub!(:validators_on).with(options[:tag]).and_return([
+            @new_post.class.stub(:validators_on).with(options[:tag]).and_return([
               active_model_presence_validator([options[:tag]], options[:options])
             ])
           end
 
           def add_length_validator(options)
-            @new_post.class.should_receive(:validators_on).with(options[:tag]).any_number_of_times {[
+            @new_post.class.stub(:validators_on).with(options[:tag]).and_return([
               active_model_length_validator([options[:tag]], options[:options])
-            ]}
+            ])
           end
 
           # TODO make a matcher for this?
@@ -377,32 +377,32 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         end
 
         it 'should default to a string for methods on objects that don\'t respond to "column_for_attribute"' do
-          @new_post.stub!(:method_without_a_database_column)
-          @new_post.stub!(:column_for_attribute).and_return(nil)
+          @new_post.stub(:method_without_a_database_column)
+          @new_post.stub(:column_for_attribute).and_return(nil)
           default_input_type(nil, :method_without_a_database_column).should == :string
         end
 
         it 'should default to :password for methods that don\'t have a column in the database but "password" is in the method name' do
-          @new_post.stub!(:password_method_without_a_database_column)
-          @new_post.stub!(:column_for_attribute).and_return(nil)
+          @new_post.stub(:password_method_without_a_database_column)
+          @new_post.stub(:column_for_attribute).and_return(nil)
           default_input_type(nil, :password_method_without_a_database_column).should == :password
         end
 
         it 'should default to :password for methods on objects that don\'t respond to "column_for_attribute" but "password" is in the method name' do
-          @new_post.stub!(:password_method_without_a_database_column)
-          @new_post.stub!(:column_for_attribute).and_return(nil)
+          @new_post.stub(:password_method_without_a_database_column)
+          @new_post.stub(:column_for_attribute).and_return(nil)
           default_input_type(nil, :password_method_without_a_database_column).should == :password
         end
 
         it 'should default to :number for "integer" column with name ending in "_id"' do
-          @new_post.stub!(:aws_instance_id)
-          @new_post.stub!(:column_for_attribute).with(:aws_instance_id).and_return(mock('column', :type => :integer))
+          @new_post.stub(:aws_instance_id)
+          @new_post.stub(:column_for_attribute).with(:aws_instance_id).and_return(double('column', :type => :integer))
           default_input_type(:integer, :aws_instance_id).should == :number
         end
 
         it 'should default to :select for associations' do
-          @new_post.class.stub!(:reflect_on_association).with(:user_id).and_return(mock('ActiveRecord::Reflection::AssociationReflection'))
-          @new_post.class.stub!(:reflect_on_association).with(:section_id).and_return(mock('ActiveRecord::Reflection::AssociationReflection'))
+          @new_post.class.stub(:reflect_on_association).with(:user_id).and_return(double('ActiveRecord::Reflection::AssociationReflection'))
+          @new_post.class.stub(:reflect_on_association).with(:section_id).and_return(double('ActiveRecord::Reflection::AssociationReflection'))
           default_input_type(:integer, :user_id).should == :select
           default_input_type(:integer, :section_id).should == :select
         end
@@ -473,11 +473,11 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         describe 'defaulting to file column' do
           Formtastic::FormBuilder.file_methods.each do |method|
             it "should default to :file for attributes that respond to ##{method}" do
-              column = mock('column')
+              column = double('column')
 
               Formtastic::FormBuilder.file_methods.each do |test|
                 ### TODO: Check if this is ok
-                column.stub!(method).with(test).and_return(method == test)
+                column.stub(method).with(test).and_return(method == test)
               end
 
               @new_post.should_receive(method).and_return(column)
@@ -493,10 +493,10 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
       it 'should call the corresponding input class with .to_html' do
         [:select, :time_zone, :radio, :date_select, :datetime_select, :time_select, :boolean, :check_boxes, :hidden, :string, :password, :number, :text, :file].each do |input_style|
-          @new_post.stub!(:generic_column_name)
-          @new_post.stub!(:column_for_attribute).and_return(mock('column', :type => :string, :limit => 255))
+          @new_post.stub(:generic_column_name)
+          @new_post.stub(:column_for_attribute).and_return(double('column', :type => :string, :limit => 255))
           semantic_form_for(@new_post) do |builder|
-            input_instance = mock('Input instance')
+            input_instance = double('Input instance')
             input_class = "#{input_style.to_s}_input".classify
             input_constant = "FormtasticBootstrap::Inputs::#{input_class}".constantize
 
@@ -542,7 +542,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
               it 'should render a label with localized text and not apply the label_str_method' do
                 with_config :label_str_method, :reverse do
                   @localized_label_text = 'Localized title'
-                  @new_post.stub!(:meta_description)
+                  @new_post.stub(:meta_description)
                   ::I18n.backend.store_translations :en,
                     :formtastic => {
                       :labels => {
@@ -575,7 +575,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
           describe 'and object is given' do
             it 'should delegate the label logic to class human attribute name and pass it down to the label tag' do
-              @new_post.stub!(:meta_description) # a two word method name
+              @new_post.stub(:meta_description) # a two word method name
               @new_post.class.should_receive(:human_attribute_name).with('meta_description').and_return('meta_description'.humanize)
 
               concat(semantic_form_for(@new_post) do |builder|
@@ -588,7 +588,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
           describe 'and object is given with label_str_method set to :capitalize' do
             it 'should capitalize method name, passing it down to the label tag' do
               with_config :label_str_method, :capitalize do
-                @new_post.stub!(:meta_description)
+                @new_post.stub(:meta_description)
 
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:meta_description))
@@ -653,16 +653,12 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
       describe 'when provided' do
 
-        after do
-          Formtastic::FormBuilder.default_hint_class = "inline-hints"
-        end
-
         it 'should be passed down to the paragraph tag' do
           hint_text = "this is the title of the post"
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :hint => hint_text))
           end)
-          output_buffer.should have_tag("form div p.inline-hints", hint_text)
+          output_buffer.should have_tag("form div span.help-block", hint_text)
         end
 
 				it 'should have a custom hint class if I ask for one' do
@@ -671,17 +667,24 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
             concat(semantic_form_for(@new_post) do |builder|
               concat(builder.input(:title, :hint => hint_text, :hint_class => 'custom-hint-class'))
             end)
-            output_buffer.should have_tag("form div p.custom-hint-class", hint_text)
+            output_buffer.should have_tag("form div span.custom-hint-class", hint_text)
           end
         end
-
-        it 'should have a custom hint class defaulted for all forms' do
-          hint_text = "this is the title of the post"
-          Formtastic::FormBuilder.default_hint_class = "custom-hint-class"
-          concat(semantic_form_for(@new_post) do |builder|
-            concat(builder.input(:title, :hint => hint_text))
-          end)
-          output_buffer.should have_tag("form div p.custom-hint-class", hint_text)
+        context "defaults" do
+          before do
+            @default_block_hint_class = FormtasticBootstrap::FormBuilder.default_block_hint_class
+          end
+          after do
+            FormtasticBootstrap::FormBuilder.default_block_hint_class = @default_block_hint_class
+          end
+          it 'should have a custom hint class defaulted for all forms' do
+            hint_text = "this is the title of the post"
+            FormtasticBootstrap::FormBuilder.default_block_hint_class = "custom-hint-class"
+            concat(semantic_form_for(@new_post) do |builder|
+              concat(builder.input(:title, :hint => hint_text))
+            end)
+            output_buffer.should have_tag("form div span.custom-hint-class", hint_text)
+          end
         end
       end
 
@@ -716,7 +719,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:title, :hint => true))
                 end)
-                output_buffer.should have_tag('form div p.inline-hints', @localized_hint_text)
+                output_buffer.should have_tag('form div span.help-block', @localized_hint_text)
               end
             end
 
@@ -735,7 +738,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                     concat(builder.input(:title, :hint => true, :hint_class => 'custom-hint-class'))
                   end)
                 end
-                output_buffer.should have_tag('form div p.custom-hint-class', @localized_hint_text)
+                output_buffer.should have_tag('form div span.custom-hint-class', @localized_hint_text)
               end
             end
 
@@ -744,7 +747,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:title, :hint => true))
                 end)
-                output_buffer.should have_tag('form div p.inline-hints', @default_localized_hint_text)
+                output_buffer.should have_tag('form div span.help-block', @default_localized_hint_text)
               end
             end
           end
@@ -755,7 +758,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
                 concat(semantic_form_for(@new_post) do |builder|
                   concat(builder.input(:title, :hint => false))
                 end)
-                output_buffer.should_not have_tag('form div p.inline-hints', @localized_hint_text)
+                output_buffer.should_not have_tag('form div span.help-block', @localized_hint_text)
               end
             end
           end
@@ -838,15 +841,15 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
     describe ':collection option' do
 
       it "should be required on polymorphic associations" do
-        @new_post.stub!(:commentable)
-        @new_post.class.stub!(:reflections).and_return({
-          :commentable => mock('macro_reflection', :options => { :polymorphic => true }, :macro => :belongs_to)
+        @new_post.stub(:commentable)
+        @new_post.class.stub(:reflections).and_return({
+          :commentable => double('macro_reflection', :options => { :polymorphic => true }, :macro => :belongs_to)
         })
-        @new_post.stub!(:column_for_attribute).with(:commentable).and_return(
-          mock('column', :type => :integer)
+        @new_post.stub(:column_for_attribute).with(:commentable).and_return(
+          double('column', :type => :integer)
         )
-        @new_post.class.stub!(:reflect_on_association).with(:commentable).and_return(
-          mock('reflection', :macro => :belongs_to, :options => { :polymorphic => true })
+        @new_post.class.stub(:reflect_on_association).with(:commentable).and_return(
+          double('reflection', :macro => :belongs_to, :options => { :polymorphic => true })
         )
         expect {
           concat(semantic_form_for(@new_post) do |builder|
@@ -892,7 +895,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
     context 'when a customized top-level class does not exist' do
 
       it 'should instantiate the Formtastic input' do
-        input = mock('input', :to_html => 'some HTML')
+        input = double('input', :to_html => 'some HTML')
         Formtastic::Inputs::StringInput.should_receive(:new).and_return(input)
         concat(semantic_form_for(@new_post) do |builder|
           builder.input(:title, :as => :string)
@@ -906,8 +909,8 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         class ::StringInput < Formtastic::Inputs::StringInput
         end
 
-        input = mock('input', :to_html => 'some HTML')
-        Formtastic::Inputs::StringInput.should_not_receive(:new).and_return(input)
+        input = double('input', :to_html => 'some HTML')
+        Formtastic::Inputs::StringInput.should_not_receive(:new)
         ::StringInput.should_receive(:new).and_return(input)
 
         concat(semantic_form_for(@new_post) do |builder|
@@ -916,23 +919,10 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
       end
     end
 
-    describe 'when instantiated multiple times with the same input type' do
-
-      it "should be cached (not calling the internal methods)" do
-        # TODO this is really tied to the underlying implementation
-        concat(semantic_form_for(@new_post) do |builder|
-          builder.should_receive(:custom_input_class_name).with(:string).once.and_return(::Formtastic::Inputs::StringInput)
-          builder.input(:title, :as => :string)
-          builder.input(:title, :as => :string)
-        end)
-      end
-
-    end
-
     describe 'when it searching for new input defined with namespace' do
       context 'on production enviroment' do
-        subject { Class.new {extend FormtasticBootstrap::Helpers::InputHelper} }
 
+        subject { Formtastic::InputClassFinder.new(builder) }
         let(:formtastic_input) { double(:formtastic_input) }
         let(:formtastic_bootstrap_input) { double(:formtastic_bootstrap_input) }
 
@@ -942,21 +932,24 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
 
         it 'should use FormtasticBootstrap::Inputs as default scope' do
           stub_const 'FormtasticBootstrap::Inputs::NewStringInput', formtastic_bootstrap_input
-          expect(subject.input_class_with_const_defined(:new_string))
-            .to_not raise_error(Formtastic::UnknownInputError)
+
+          expect {
+            subject.class_name(:new_string)
+          }.not_to raise_error
         end
 
         it 'should using Formtastic::Inputs namespace if there is no class in FormtasticBootstrap::Inputs' do
           stub_const 'Formtastic::Inputs::NewStringInput', formtastic_input
-          expect(subject.input_class_with_const_defined(:new_string))
-            .to_not raise_error(Formtastic::UnknownInputError)
+          expect {
+            subject.class_name(:new_string)
+          }.not_to raise_error
         end
 
         it 'should prefate FormtasticBootstrap namespace to Formtastic' do
           stub_const 'FormtasticBootstrap::Inputs::NewStringInput',
             formtastic_bootstrap_input
           stub_const 'Formtastic::Inputs::NewStringInput', formtastic_input
-          subject.input_class_with_const_defined(:new_string).should
+          subject.class_name(:new_string).should
             eql formtastic_bootstrap_input
         end
       end

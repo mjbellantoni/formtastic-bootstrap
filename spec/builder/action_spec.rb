@@ -53,7 +53,7 @@ describe 'FormtasticBootstrap::FormBuilder#action' do
       it 'should call the corresponding action class with .to_html' do
         [:input, :button, :link].each do |action_style|
           semantic_form_for(:project, :url => "http://test.host") do |builder|
-            action_instance = mock('Action instance')
+            action_instance = double('Action instance')
             action_class = "#{action_style.to_s}_action".classify
             action_constant = "FormtasticBootstrap::Actions::#{action_class}".constantize
 
@@ -270,7 +270,7 @@ describe 'FormtasticBootstrap::FormBuilder#action' do
     context 'when a customized top-level class does not exist' do
 
       it 'should instantiate the Formtastic action' do
-        action = mock('action', :to_html => 'some HTML')
+        action = double('action', :to_html => 'some HTML')
         FormtasticBootstrap::Actions::ButtonAction.should_receive(:new).and_return(action)
         concat(semantic_form_for(@new_post) do |builder|
           builder.action(:commit, :as => :button)
@@ -284,27 +284,14 @@ describe 'FormtasticBootstrap::FormBuilder#action' do
         class ::ButtonAction < Formtastic::Actions::ButtonAction
         end
 
-        action = mock('action', :to_html => 'some HTML')
-        FormtasticBootstrap::Actions::ButtonAction.should_not_receive(:new).and_return(action)
+        action = double('action', :to_html => 'some HTML')
+        FormtasticBootstrap::Actions::ButtonAction.should_not_receive(:new)
         ::ButtonAction.should_receive(:new).and_return(action)
 
         concat(semantic_form_for(@new_post) do |builder|
           builder.action(:commit, :as => :button)
         end)
       end
-    end
-
-    describe 'when instantiated multiple times with the same action type' do
-
-      it "should be cached (not calling the internal methods)" do
-        # TODO this is really tied to the underlying implementation
-        concat(semantic_form_for(@new_post) do |builder|
-          builder.should_receive(:custom_action_class_name).with(:button).once.and_return(::FormtasticBootstrap::Actions::ButtonAction)
-          builder.action(:submit, :as => :button)
-          builder.action(:submit, :as => :button)
-        end)
-      end
-
     end
 
     describe 'support for :as on each action' do
@@ -330,35 +317,35 @@ describe 'FormtasticBootstrap::FormBuilder#action' do
       end
 
       it "should not raise an error when the action does not support the :as" do
-        lambda {
+        expect {
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.action(:cancel, :as => :link))
           end)
-        }.should_not raise_error(Formtastic::UnsupportedMethodForAction)
+        }.to_not raise_error
 
-        lambda {
+        expect {
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.action(:submit, :as => :input))
           end)
-        }.should_not raise_error(Formtastic::UnsupportedMethodForAction)
+        }.to_not raise_error
 
-        lambda {
+        expect {
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.action(:submit, :as => :button))
           end)
-        }.should_not raise_error(Formtastic::UnsupportedMethodForAction)
+        }.to_not raise_error
 
-        lambda {
+        expect {
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.action(:reset, :as => :input))
           end)
-        }.should_not raise_error(Formtastic::UnsupportedMethodForAction)
+        }.to_not raise_error
 
-        lambda {
+        expect {
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.action(:reset, :as => :button))
           end)
-        }.should_not raise_error(Formtastic::UnsupportedMethodForAction)
+        }.to_not raise_error
       end
 
     end
