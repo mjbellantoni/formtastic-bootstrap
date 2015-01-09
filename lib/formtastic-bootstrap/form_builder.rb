@@ -1,6 +1,3 @@
-require 'formtastic-bootstrap/inputs'
-require 'formtastic-bootstrap/actions'
-
 module FormtasticBootstrap
 
   class FormBuilder < Formtastic::FormBuilder
@@ -16,7 +13,6 @@ module FormtasticBootstrap
     # TODO: remove both class finders after formtastic 4 (where it will be default)
     self.input_class_finder = ::Formtastic::InputClassFinder
     self.action_class_finder = ::Formtastic::ActionClassFinder
-
 
     def self.default_error_class
       # self.default_inline_error_class
@@ -43,7 +39,6 @@ module FormtasticBootstrap
     include FormtasticBootstrap::Helpers::InputsHelper
     include FormtasticBootstrap::Helpers::ErrorsHelper
     include FormtasticBootstrap::Helpers::ActionsHelper
-    # include Formtastic::Helpers::ErrorsHelper
 
   end
 

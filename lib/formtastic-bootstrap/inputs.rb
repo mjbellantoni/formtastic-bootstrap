@@ -1,5 +1,6 @@
 module FormtasticBootstrap
   module Inputs
+    extend ActiveSupport::Autoload
 
     autoload :Base,                "formtastic-bootstrap/inputs/base"
     # autoload :Basic

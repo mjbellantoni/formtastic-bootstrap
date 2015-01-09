@@ -6,6 +6,7 @@ require "formtastic-bootstrap/inputs/base/labelling"
 module FormtasticBootstrap
   module Inputs
     module Base
+      extend ActiveSupport::Autoload
 
       autoload :DatetimePickerish,  "formtastic-bootstrap/inputs/base/datetime_pickerish"
       # autoload :Associations
@@ -14,7 +15,6 @@ module FormtasticBootstrap
       # autoload :Database
       # autoload :Errors
       # autoload :Fileish
-      autoload :GroupedCollections, "formtastic-bootstrap/inputs/base/grouped_collections"
       # autoload :Hints
       # autoload :Html
       # autoload :Labelling
