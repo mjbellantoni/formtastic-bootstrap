@@ -7,7 +7,7 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
   before do
     @output_buffer = ''
     mock_everything
-    @new_post.stub!(:author).and_return(::Author.new)
+    @new_post.stub(:author).and_return(::Author.new)
 
     Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
   end
@@ -78,7 +78,7 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
     end
 
     it 'should sanitize html id for li tag' do
-      @bob.stub!(:column_for_attribute).and_return(mock('column', :type => :string, :limit => 255))
+      @bob.stub(:column_for_attribute).and_return(double('column', :type => :string, :limit => 255))
       concat(semantic_form_for(@new_post) do |builder|
         concat(builder.semantic_fields_for(@bob, :index => 1) do |nested_builder|
           concat(nested_builder.inputs(:login))
@@ -91,7 +91,7 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
     end
 
     it 'should use namespace provided in nested fields' do
-      @bob.stub!(:column_for_attribute).and_return(mock('column', :type => :string, :limit => 255))
+      @bob.stub(:column_for_attribute).and_return(double('column', :type => :string, :limit => 255))
       concat(semantic_form_for(@new_post, :namespace => 'context2') do |builder|
         concat(builder.semantic_fields_for(@bob, :index => 1) do |nested_builder|
           concat(nested_builder.inputs(:login))
@@ -107,8 +107,8 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
       output_buffer.replace ''
 
       @fred.posts.size.should == 1
-      @fred.posts.first.stub!(:persisted?).and_return(true)
-      @fred.stub!(:posts_attributes=)
+      @fred.posts.first.stub(:persisted?).and_return(true)
+      @fred.stub(:posts_attributes=)
 
       concat(semantic_form_for(@fred) do |builder|
         concat(builder.semantic_fields_for(:posts) do |nested_builder|

@@ -99,7 +99,7 @@ describe 'FormtasticBootstrap::FormBuilder#action' do
     #          it 'should render a label with localized text and not apply the label_str_method' do
     #            with_config :label_str_method, :reverse do
     #              @localized_label_text = 'Localized title'
-    #              @new_post.stub!(:meta_description)
+    #              @new_post.stub(:meta_description)
     #              ::I18n.backend.store_translations :en,
     #                :formtastic => {
     #                  :labels => {
@@ -132,7 +132,7 @@ describe 'FormtasticBootstrap::FormBuilder#action' do
     #
     #      describe 'and object is given' do
     #        it 'should delegate the label logic to class human attribute name and pass it down to the label tag' do
-    #          @new_post.stub!(:meta_description) # a two word method name
+    #          @new_post.stub(:meta_description) # a two word method name
     #          @new_post.class.should_receive(:human_attribute_name).with('meta_description').and_return('meta_description'.humanize)
     #
     #          concat(semantic_form_for(@new_post) do |builder|
@@ -145,7 +145,7 @@ describe 'FormtasticBootstrap::FormBuilder#action' do
     #      describe 'and object is given with label_str_method set to :capitalize' do
     #        it 'should capitalize method name, passing it down to the label tag' do
     #          with_config :label_str_method, :capitalize do
-    #            @new_post.stub!(:meta_description)
+    #            @new_post.stub(:meta_description)
     #
     #            concat(semantic_form_for(@new_post) do |builder|
     #              concat(builder.input(:meta_description))

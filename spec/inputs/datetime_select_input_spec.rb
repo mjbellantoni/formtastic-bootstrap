@@ -92,7 +92,7 @@ describe 'datetime select input' do
   describe ':labels option' do
     describe ':labels option' do
       it "should provide a message that :labels is not supported" do
-        pending ':labels is not supported'
+        skip ':labels is not supported'
       end
     end
 
