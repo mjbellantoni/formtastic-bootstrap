@@ -205,21 +205,6 @@ describe 'select input' do
     end
   end
 
-  describe "for a belongs_to association with :group_by => :author" do
-    it "should call author.posts" do
-      ::Author.stub(:reflect_on_all_associations).and_return { |macro| macro == :has_many ? [double('reflection', :klass => Post, :name => :posts)] : []}
-
-      [@freds_post].each { |post| post.stub(:to_label).and_return("Post - #{post.id}") }
-      @fred.should_receive(:posts)
-
-      with_deprecation_silenced do
-        concat(semantic_form_for(@new_post) do |builder|
-          concat(builder.input(:main_post, :as => :select, :group_by => :author ) )
-        end)
-      end
-    end
-  end
-
   describe "for a belongs_to association with :conditions" do
     before do
       ::Post.stub(:reflect_on_association).with(:author).and_return do
