@@ -52,9 +52,9 @@ guard :rspec, cmd: "bundle exec rspec" do
 
   # RSpec files
   rspec = dsl.rspec
-  watch(rspec.spec_helper) { rspec.spec_dir }
   watch(rspec.spec_support) { rspec.spec_dir }
   watch(rspec.spec_files)
+  watch(%r{^lib/formtastic-bootstrap/(.+)\.rb$}) { |m| "spec/#{m[1]}_spec.rb" }
 
   # Ruby files
   ruby = dsl.ruby
