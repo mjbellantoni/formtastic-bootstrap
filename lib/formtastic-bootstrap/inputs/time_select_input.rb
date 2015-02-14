@@ -4,7 +4,7 @@ module FormtasticBootstrap
       FRAGMENT_CLASSES = {
         :hour    => "col-xs-4",
         :minute  => "col-xs-4",
-        :secound => "col-xs-4"
+        :second => "col-xs-4"
       }
 
       include Base

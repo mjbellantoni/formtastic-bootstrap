@@ -926,7 +926,7 @@ describe 'FormtasticBootstrap::FormBuilder#input' do
         let(:formtastic_input) { double(:formtastic_input) }
         let(:formtastic_bootstrap_input) { double(:formtastic_bootstrap_input) }
 
-        before(:each) do
+        before do
           Rails.application.config.stub(:cache_classes).and_return(true)
         end
 

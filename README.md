@@ -185,7 +185,7 @@ Source contributions are very welcome!  Most of the recent work on this package 
  * As rich functionally as their Rails counterparts.
  * Extract into a standalone gem.
 * Tests
- * Get them passing!
+ * Fill in all pending specs
  * Refactor
  * More -- See if I'm making sure the Bootstrap classes are present.
 * Documentation

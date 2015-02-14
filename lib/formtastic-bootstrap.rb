@@ -1,4 +1,5 @@
 require "formtastic"
+require "formtastic/version"
 require "formtastic-bootstrap/engine" if defined?(::Rails) # For tests
 require "formtastic-bootstrap/helpers"
 require "formtastic-bootstrap/inputs"

@@ -14,7 +14,7 @@ module FbCustomMacros
 
     def it_should_have_bootstrap_controls_label_with(class_name)
       it "should have bootstrap controls wrapper with class '#{class_name}'" do
-        output_buffer.should have_tag("form span.form-wrapper label.#{class_name}")
+        output_buffer.should have_tag("form div.#{class_name} input")
       end
     end
 

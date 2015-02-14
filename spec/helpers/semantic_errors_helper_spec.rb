@@ -22,7 +22,7 @@ describe 'FormtasticBootstrap::FormBuilder#semantic_errors' do
 
     it 'should render an alert with an unordered list' do
       semantic_form_for(@new_post) do |builder|
-        builder.semantic_errors.should have_tag('.alert.alert-error ul.error-list li', @base_error)
+        builder.semantic_errors.should have_tag('.alert.alert-danger ul.error-list li', @base_error)
       end
     end
   end
@@ -34,9 +34,9 @@ describe 'FormtasticBootstrap::FormBuilder#semantic_errors' do
 
     it 'should render an unordered list' do
       semantic_form_for(@new_post) do |builder|
-        builder.semantic_errors.should have_tag('.alert.alert-error ul.error-list')
+        builder.semantic_errors.should have_tag('.alert.alert-danger ul.error-list')
         @base_errors.each do |error|
-          builder.semantic_errors.should have_tag('.alert.alert-error ul.error-list li', error)
+          builder.semantic_errors.should have_tag('.alert.alert-danger ul.error-list li', error)
         end
       end
     end
@@ -51,7 +51,7 @@ describe 'FormtasticBootstrap::FormBuilder#semantic_errors' do
     it 'should render an unordered list' do
       semantic_form_for(@new_post) do |builder|
         title_name = builder.send(:localized_string, :title, :title, :label) || builder.send(:humanized_attribute_name, :title)
-        builder.semantic_errors(:title).should have_tag('.alert.alert-error ul.error-list li', title_name << " " << @title_errors.to_sentence)
+        builder.semantic_errors(:title).should have_tag('.alert.alert-danger ul.error-list li', title_name << " " << @title_errors.to_sentence)
       end
     end
   end
@@ -65,8 +65,8 @@ describe 'FormtasticBootstrap::FormBuilder#semantic_errors' do
     it 'should render an unordered list' do
       semantic_form_for(@new_post) do |builder|
         title_name = builder.send(:localized_string, :title, :title, :label) || builder.send(:humanized_attribute_name, :title)
-        builder.semantic_errors(:title).should have_tag('.alert.alert-error ul.error-list li', title_name << " " << @title_errors.to_sentence)
-        builder.semantic_errors(:title).should have_tag('.alert.alert-error ul.error-list li', @base_error)
+        builder.semantic_errors(:title).should have_tag('.alert.alert-danger ul.error-list li', title_name << " " << @title_errors.to_sentence)
+        builder.semantic_errors(:title).should have_tag('.alert.alert-danger ul.error-list li', @base_error)
       end
     end
   end
@@ -91,7 +91,7 @@ describe 'FormtasticBootstrap::FormBuilder#semantic_errors' do
 
     it 'should render an unordered list with given class' do
       semantic_form_for(@new_post) do |builder|
-        builder.semantic_errors(:class => "awesome").should have_tag('.alert.alert-error.awesome ul.error-list li', @base_error)
+        builder.semantic_errors(:class => "awesome").should have_tag('.alert.alert-danger.awesome ul.error-list li', @base_error)
       end
     end
   end

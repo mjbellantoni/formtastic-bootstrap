@@ -37,7 +37,7 @@ module FormtasticBootstrap
 
       def wrapper_html_options
         super.tap do |options|
-          options[:class] = (options[:class].split - ["form-group"] + ["checkbox"]).join(" ")
+          options[:class] = (options[:class].split + ["checkbox"]).join(" ")
         end
       end
 

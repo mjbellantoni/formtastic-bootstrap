@@ -172,7 +172,7 @@ module CustomMacros
       end
     end
 
-    def it_should_apply_error_logic_for_input_type(type, inline_or_block = :inline)
+    def it_should_apply_error_logic_for_input_type(type, inline_or_block = :block)
       describe 'when there are errors on the object for this method' do
         before do
           @title_errors = ['must not be blank', 'must be longer than 10 characters', 'must be awesome']
@@ -203,7 +203,6 @@ module CustomMacros
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:title, :as => type))
           end)
-          # output_buffer.should have_tag('form div.error p.inline-errors')
           if inline_or_block == :inline
             output_buffer.should have_tag('form div.error span.help-inline')
           else
@@ -464,7 +463,7 @@ module CustomMacros
 
             describe "when the collection objects respond to #{label_method}" do
               before do
-                @fred.stub(:respond_to?).and_return { |m| m.to_s == label_method || m.to_s == 'id' }
+                @fred.stub(:respond_to?) { |m| m.to_s == label_method || m.to_s == 'id' }
                 ::Author.all.each { |a| a.stub(label_method).and_return('The Label Text') }
 
                 concat(semantic_form_for(@new_post) do |builder|

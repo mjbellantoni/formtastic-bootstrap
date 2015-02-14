@@ -8,8 +8,6 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
     @output_buffer = ''
     mock_everything
     @new_post.stub(:author).and_return(::Author.new)
-
-    Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
   end
 
   context 'outside a form_for block' do
@@ -30,16 +28,16 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
 
     it 'should respond to input' do
       semantic_fields_for(@new_post) do |nested_builder|
-        nested_builder.respond_to?(:input).should be_true
+        nested_builder.respond_to?(:input).should == true
       end
       semantic_fields_for(@new_post.author) do |nested_builder|
-        nested_builder.respond_to?(:input).should be_true
+        nested_builder.respond_to?(:input).should == true
       end
       semantic_fields_for(:author, @new_post.author) do |nested_builder|
-        nested_builder.respond_to?(:input).should be_true
+        nested_builder.respond_to?(:input).should == true
       end
       semantic_fields_for(:author, @hash_backed_author) do |nested_builder|
-        nested_builder.respond_to?(:input).should be_true
+        nested_builder.respond_to?(:input).should == true
       end
     end
   end
@@ -123,7 +121,7 @@ describe 'FormtasticBootstrap::FormBuilder#fields_for' do
     end
 
     it "should render the hidden input inside an div.hidden" do
-      output_buffer.should have_tag 'div.hidden div.input input#author_posts_attributes_0_id'
+      output_buffer.should have_tag 'div.hidden.input input#author_posts_attributes_0_id'
     end
   end
 

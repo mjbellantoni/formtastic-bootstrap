@@ -28,8 +28,8 @@ describe 'radio input' do
     it_should_use_the_collection_when_provided(:radio, 'input')
 
     it 'should generate a control label with text for the input' do
-      output_buffer.should have_tag('form div.form-group > label.control-label')
-      output_buffer.should have_tag('form div.form-group > label.control-label', /Author/)
+      output_buffer.should have_tag('form div.form-group label.control-label')
+      output_buffer.should have_tag('form div.form-group label.control-label', /Author/)
     end
 
     it 'should have one option with a "checked" attribute' do
@@ -102,7 +102,7 @@ describe 'radio input' do
     end
 
     describe 'and no object is given' do
-      before(:each) do
+      before do
         output_buffer.replace ''
         concat(semantic_form_for(:project, :url => 'http://test.host') do |builder|
           concat(builder.input(:author_id, :as => :radio, :collection => ::Author.all))
