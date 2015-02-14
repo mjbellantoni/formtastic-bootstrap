@@ -35,5 +35,5 @@ Rake::RDocTask.new do |rdoc|
 end
 
 # Added by devtools
-require 'devtools'
-Devtools.init_rake_tasks
+# require 'devtools'
+# Devtools.init_rake_tasks
