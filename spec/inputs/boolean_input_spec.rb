@@ -24,7 +24,7 @@ describe 'boolean input' do
   it 'should generate a label containing the input' do
     output_buffer.should_not have_tag('label.label')
     output_buffer.should have_tag('form div.form-group span.form-wrapper label', :count => 1)
-    output_buffer.should have_tag('form div.form-group span.form-wrapper label.checkbox', :count => 1)
+    output_buffer.should have_tag('form div.form-group span.form-wrapper label.control-label', :count => 1)
     output_buffer.should have_tag('form div.form-group span.form-wrapper label[@for="post_allow_comments"]')
     output_buffer.should have_tag('form div.form-group span.form-wrapper label', /Allow comments/)
     output_buffer.should have_tag('form div.form-group span.form-wrapper label input[@type="checkbox"]', :count => 1)
@@ -79,7 +79,7 @@ describe 'boolean input' do
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:allow_comments, :as => :boolean, :input_html => {:disabled => 'disabled'}))
     end)
-    output_buffer.should have_tag('form div.form-group label.checkbox input[@disabled="disabled"]', :count => 1)
+    output_buffer.should have_tag('form div.form-group label.control-label input[@disabled="disabled"]', :count => 1)
     output_buffer.should have_tag('form div.form-group input[@type="hidden"][@disabled="disabled"]', :count => 1)
   end
 
@@ -101,7 +101,7 @@ describe 'boolean input' do
   end
 
   it 'should generate a checked input if object.method returns checked value' do
-    @new_post.stub!(:allow_comments).and_return('yes')
+    @new_post.stub(:allow_comments).and_return('yes')
 
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'yes', :unchecked_value => 'no'))
@@ -111,7 +111,7 @@ describe 'boolean input' do
   end
 
   it 'should not generate a checked input if object.method returns unchecked value' do
-    @new_post.stub!(:allow_comments).and_return('no')
+    @new_post.stub(:allow_comments).and_return('no')
 
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'yes', :unchecked_value => 'no'))
@@ -121,7 +121,7 @@ describe 'boolean input' do
   end
 
   it 'should generate a checked input if object.method returns checked value' do
-    @new_post.stub!(:allow_comments).and_return('yes')
+    @new_post.stub(:allow_comments).and_return('yes')
 
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'yes', :unchecked_value => 'no'))
@@ -131,7 +131,7 @@ describe 'boolean input' do
   end
 
   it 'should not generate a checked input if object.method returns unchecked value' do
-    @new_post.stub!(:allow_comments).and_return('no')
+    @new_post.stub(:allow_comments).and_return('no')
 
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:allow_comments, :as => :boolean, :checked_value => 'yes', :unchecked_value => 'no'))

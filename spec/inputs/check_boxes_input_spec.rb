@@ -28,12 +28,12 @@ describe 'check_boxes input' do
     it_should_use_the_collection_when_provided(:check_boxes, 'input[@type="checkbox"]')
 
     it 'should generate a control label with text for the input' do
-      output_buffer.should have_tag('form div.form-group > label.control-label')
-      output_buffer.should have_tag('form div.form-group > label.control-label', /Posts/)
+      output_buffer.should have_tag('form div.form-group label.control-label')
+      output_buffer.should have_tag('form div.form-group label.control-label', /Posts/)
     end
 
     it 'should not link the label within the legend to any input' do
-      output_buffer.should_not have_tag('form div.form-group > label[@for^="author_post_ids_"]')
+      output_buffer.should_not have_tag('form div.form-group label.control-label[@for^="author_post_ids_"]')
     end
 
     it 'should not generate an ordered list with an li.choice for each choice' do
@@ -49,12 +49,8 @@ describe 'check_boxes input' do
       output_buffer.should_not have_tag("form div.form-group span.form-wrapper label input[@type='hidden'][@value='']")
     end
 
-    it 'should not render hidden inputs inside span.form-wrapper' do
-      output_buffer.should_not have_tag("form span.form-wrapper input[@type='hidden']")
-    end
-
     it 'should render one hidden input for each choice outside the ol' do
-      output_buffer.should have_tag("form div.form-group > input[@type='hidden']", :count => 1)
+      output_buffer.should have_tag("form div.form-group input[@type='hidden']", :count => 1)
     end
 
     describe "each choice" do
@@ -88,15 +84,11 @@ describe 'check_boxes input' do
       end
 
       it 'should have a hidden field with an empty array value for the collection to allow clearing of all checkboxes' do
-        output_buffer.should have_tag("form div.form-group > input[@type=hidden][@name='author[post_ids][]'][@value='']", :count => 1)
-      end
-
-      it 'the hidden field with an empty array value should be followed by the span.form-wrapper' do
-        output_buffer.should have_tag("form div.form-group > input[@type=hidden][@name='author[post_ids][]'][@value=''] + span.form-wrapper", :count => 1)
+        output_buffer.should have_tag("form div.form-group input[@type=hidden][@name='author[post_ids][]'][@value='']", :count => 1)
       end
 
       it 'should not have a hidden field with an empty string value for the collection' do
-        output_buffer.should_not have_tag("form div.form-group > input[@type=hidden][@name='author[post_ids]'][@value='']", :count => 1)
+        output_buffer.should_not have_tag("form div.form-group input[@type=hidden][@name='author[post_ids]'][@value='']", :count => 1)
       end
 
       it 'should have a checkbox and a hidden field for each post with :hidden_field => true' do
@@ -114,13 +106,13 @@ describe 'check_boxes input' do
       end
 
       it "should mark input as checked if it's the the existing choice" do
-        ::Post.all.include?(@fred.posts.first).should be_true
+        ::Post.all.include?(@fred.posts.first).should == true
         output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@checked='checked']")
       end
     end
 
     describe 'and no object is given' do
-      before(:each) do
+      before do
         output_buffer.replace ''
         concat(semantic_form_for(:project, :url => 'http://test.host') do |builder|
           concat(builder.input(:author_id, :as => :check_boxes, :collection => ::Author.all))
@@ -184,7 +176,7 @@ describe 'check_boxes input' do
       end
 
       it "should mark input as checked if it's the the existing choice" do
-        ::Post.all.include?(@fred.posts.first).should be_true
+        ::Post.all.include?(@fred.posts.first).should == true
         output_buffer.should have_tag("form div.form-group span.form-wrapper label input[@checked='checked']")
       end
 
@@ -200,7 +192,7 @@ describe 'check_boxes input' do
 
       describe "no disabled items" do
         before do
-          @new_post.stub!(:author_ids).and_return(nil)
+          @new_post.stub(:author_ids).and_return(nil)
 
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:authors, :as => :check_boxes, :disabled => nil))
@@ -214,7 +206,7 @@ describe 'check_boxes input' do
 
       describe "single disabled item" do
         before do
-          @new_post.stub!(:author_ids).and_return(nil)
+          @new_post.stub(:author_ids).and_return(nil)
 
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:authors, :as => :check_boxes, :disabled => @fred.id))
@@ -230,7 +222,7 @@ describe 'check_boxes input' do
 
       describe "multiple disabled items" do
         before do
-          @new_post.stub!(:author_ids).and_return(nil)
+          @new_post.stub(:author_ids).and_return(nil)
 
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:authors, :as => :check_boxes, :disabled => [@bob.id, @fred.id]))
@@ -253,7 +245,7 @@ describe 'check_boxes input' do
       before do
         ::I18n.backend.store_translations :en, :formtastic => { :labels => { :post => { :authors => "Translated!" }}}
         with_config :i18n_lookups_by_default, true do
-          @new_post.stub!(:author_ids).and_return(nil)
+          @new_post.stub(:author_ids).and_return(nil)
           concat(semantic_form_for(@new_post) do |builder|
             concat(builder.input(:authors, :as => :check_boxes))
           end)
@@ -272,7 +264,7 @@ describe 'check_boxes input' do
 
     describe "when :label option is set" do
       before do
-        @new_post.stub!(:author_ids).and_return(nil)
+        @new_post.stub(:author_ids).and_return(nil)
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:authors, :as => :check_boxes, :label => 'The authors'))
         end)
@@ -286,7 +278,7 @@ describe 'check_boxes input' do
     describe "when :label option is false" do
       before do
         @output_buffer = ''
-        @new_post.stub!(:author_ids).and_return(nil)
+        @new_post.stub(:author_ids).and_return(nil)
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:authors, :as => :check_boxes, :label => false))
         end)
@@ -304,7 +296,7 @@ describe 'check_boxes input' do
 
     describe "when :required option is true" do
       before do
-        @new_post.stub!(:author_ids).and_return(nil)
+        @new_post.stub(:author_ids).and_return(nil)
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:authors, :as => :check_boxes, :required => true))
         end)
@@ -350,9 +342,9 @@ describe 'check_boxes input' do
       end
 
       it 'to set the right input value' do
-        item = mock('item')
+        item = double('item')
         item.should_not_receive(:id)
-        item.stub!(:custom_value).and_return('custom_value')
+        item.stub(:custom_value).and_return('custom_value')
         item.should_receive(:custom_value).exactly(3).times
         @new_post.author.should_receive(:custom_value).exactly(1).times
         concat(semantic_form_for(@new_post) do |builder|

@@ -10,7 +10,7 @@ module FormtasticBootstrap
             label_html <<
             template.content_tag(:span, :class => 'form-wrapper') do
               input_content(&block) <<
-              hint_html <<
+              hint_html(:block) <<
               error_html(:block)
             end
           end

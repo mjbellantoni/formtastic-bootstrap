@@ -26,7 +26,7 @@ describe 'date select input' do
     it_should_apply_error_logic_for_input_type(:date_select)
 
     it 'should have a label with the label text inside the form-group' do
-      output_buffer.should have_tag('form div.form-group > label.control-label', /Publish at/)
+      output_buffer.should have_tag('form div.form-group label.control-label', /Publish at/)
       output_buffer.should have_tag('form div.form-group label.control-label[@for="post_publish_at"]')
     end
 
@@ -95,7 +95,7 @@ describe 'date select input' do
 
   describe ':labels option' do
     it "should provide a message that :labels is not supported" do
-      pending ':labels is not supported'
+      skip ':labels is not supported'
     end
   end
 

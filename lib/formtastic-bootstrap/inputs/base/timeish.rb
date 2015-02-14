@@ -11,6 +11,15 @@ module FormtasticBootstrap
           :second => "col-xs-1"
         }
 
+        FRAGMENT_PLACEHOLDERS = {
+          :year   => nil,
+          :month  => nil,
+          :day    => nil,
+          :hour   => nil,
+          :minute => nil,
+          :second => nil
+        }
+
         def to_html
           bootstrap_wrapping do
             hidden_fragments <<
@@ -45,12 +54,11 @@ module FormtasticBootstrap
         end
 
         def fragment_class(fragment)
-          options[:fragment_classes] || self.class::FRAGMENT_CLASSES[fragment]
+          (options[:fragment_classes] || self.class::FRAGMENT_CLASSES)[fragment.to_sym]
         end
 
         def fragment_placeholder(fragment)
-          # TODO This sets a useless placeholer right now.
-          "." + fragment_class(fragment)
+          (options[:fragment_placeholderes] || self.class::FRAGMENT_PLACEHOLDERS)[fragment.to_sym]
         end
 
       end

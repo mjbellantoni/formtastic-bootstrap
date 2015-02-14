@@ -17,8 +17,7 @@ describe "wrapped input" do
       let(:options) { { :append => "text appended in addon"} }
 
       it "should have the appended text to the input in an addon span" do
-        output_buffer.should have_tag("form div.input-group span.input-group-addon", "text appended in addon")
-        output_buffer.should_not have_tag("form div.input-group")
+        output_buffer.should have_tag("form div.input-group textarea + span.input-group-addon", "text appended in addon")
       end
     end
 
@@ -27,7 +26,7 @@ describe "wrapped input" do
 
       it "should have the prepended text to the input in an addon span" do
         output_buffer.should have_tag("form div.input-group span.input-group-addon", "text prepended in addon")
-        output_buffer.should_not have_tag("form div.input-group")
+        output_buffer.should have_tag("form div.input-group span.input-group-addon + textarea")
       end
     end
 
@@ -35,8 +34,9 @@ describe "wrapped input" do
       let(:options) { { :prepend => "text prepended in addon", :append => "text appended in addon"} }
 
       it "should have the prepended text to the input in an addon span" do
-        output_buffer.should have_tag("form div.input-group span.input-group-addon", "text appended in addon")
+        output_buffer.should have_tag("form div.input-group textarea + span.input-group-addon", "text appended in addon")
         output_buffer.should have_tag("form div.input-group span.input-group-addon", "text prepended in addon")
+        output_buffer.should have_tag("form div.input-group span.input-group-addon + textarea")
       end
     end
   end

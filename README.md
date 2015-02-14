@@ -17,7 +17,7 @@ This version of Formtastic Bootstrap should support the following:
 *Rails*
 
 * Rails 3.2.x
-* Rails 4.0.x
+* Rails 4.x.x
 
 *Formtastic*
 
@@ -28,11 +28,11 @@ This version of Formtastic Bootstrap should support the following:
 
 * 1.9.2
 * 1.9.3
-* 2.0.x
+* 2.x.x
 
 #### Installation
 
-Install the gem with 
+Install the gem with
 
     gem install formtastic-bootstrap
 
@@ -63,9 +63,9 @@ THIS SECTION IS OUT OF DATE.
 
 ### Overview
 
-In general, Formtastic creates very verbose HTML whereas 
+In general, Formtastic creates very verbose HTML whereas
 Bootstrap expects (ever) simpler HTML.  Every attempt has been
-made to generate the HTML expected by Bootstrap while still 
+made to generate the HTML expected by Bootstrap while still
 generating the rich HTML provided by Formtastic.  When there
 is a conflict, Bootstrap wins.
 
@@ -88,9 +88,9 @@ The gem also provides some "shim" CSS where Bootstrap is missing styles provided
 
 ### Other
 
-A lot of the code (especially the test suite) was copied 
-over from Formtastic and then beaten into submission.  I'm 
-sure you'll find some ugliness in there.  In general, I 
+A lot of the code (especially the test suite) was copied
+over from Formtastic and then beaten into submission.  I'm
+sure you'll find some ugliness in there.  In general, I
 mimicked the Formtastic code structure as much as possible.
 
 In particular:
@@ -144,7 +144,7 @@ use the ```:append_content``` or ```:prepend_content``` option.
     <% end %>
 
 ## Contributing
- 
+
 ### Contributors
 
 A big thank you [to all contributors](https://github.com/mjbellantoni/formtastic-bootstrap/contributors)!
@@ -185,7 +185,7 @@ Source contributions are very welcome!  Most of the recent work on this package 
  * As rich functionally as their Rails counterparts.
  * Extract into a standalone gem.
 * Tests
- * Get them passing!
+ * Fill in all pending specs
  * Refactor
  * More -- See if I'm making sure the Bootstrap classes are present.
 * Documentation

@@ -33,7 +33,6 @@ describe 'time select input' do
         output_buffer.should have_tag('select#post_publish_at_4i')
         output_buffer.should have_tag('select#post_publish_at_5i')
       end
-
     end
 
     describe "with :ignore_date => false" do
@@ -69,15 +68,9 @@ describe 'time select input' do
       end
 
       it 'should have a hidden input for day, month and year' do
-        output_buffer.should have_tag('input#post_publish_at_1i')
-        output_buffer.should have_tag('input#post_publish_at_2i')
-        output_buffer.should have_tag('input#post_publish_at_3i')
-      end
-
-      it 'should not have values in hidden inputs for day, month and year' do
-        output_buffer.should have_tag('input#post_publish_at_1i[@value=""]')
-        output_buffer.should have_tag('input#post_publish_at_2i[@value=""]')
-        output_buffer.should have_tag('input#post_publish_at_3i[@value=""]')
+        output_buffer.should have_tag('input#post_publish_at_1i[type="hidden"]')
+        output_buffer.should have_tag('input#post_publish_at_2i[type="hidden"]')
+        output_buffer.should have_tag('input#post_publish_at_3i[type="hidden"]')
       end
 
       it 'should have an select for hour and minute' do
@@ -124,7 +117,7 @@ describe 'time select input' do
 
   describe ':labels option' do
     it "should provide a message that :labels is not supported" do
-      pending ':labels is not supported'
+      skip ':labels is not supported'
     end
   end
 
@@ -140,6 +133,14 @@ describe 'time select input' do
       output_buffer.should have_tag('#form2_post_publish_at_4i')
       output_buffer.should have_tag('#form2_post_publish_at_5i')
     end
+  end
+
+  describe ':fragment_classes option' do
+    it "should define css classes added to hour/minute/second fragments"
+  end
+
+  describe ':fragment_placeholders option' do
+    it "should define css placeholders added to hour/minute/second fragments"
   end
 
   describe "when required" do

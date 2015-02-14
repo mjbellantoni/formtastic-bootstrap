@@ -36,10 +36,6 @@ describe 'hidden input' do
     output_buffer.should have_tag("form div.form-group span.form-wrapper input#post_secret[@type=\"hidden\"][@value=\"1\"]")
   end
 
-  it "should pass any explicitly specified value - using :value" do
-    output_buffer.should have_tag("form div.form-group span.form-wrapper input#post_author_id[@type=\"hidden\"][@value=\"99\"]")
-  end
-
   # Handle Formtastic :input_html options for consistency.
   it "should pass any explicitly specified value - using :input_html options" do
     output_buffer.should have_tag("form div.form-group span.form-wrapper input#post_published[@type=\"hidden\"][@value=\"true\"]")
@@ -54,9 +50,9 @@ describe 'hidden input' do
   end
 
   it "should not render inline errors" do
-    @errors = mock('errors')
-    @errors.stub!(:[]).with(errors_matcher(:secret)).and_return(["foo", "bah"])
-    @new_post.stub!(:errors).and_return(@errors)
+    @errors = double('errors')
+    @errors.stub(:[]).with(errors_matcher(:secret)).and_return(["foo", "bah"])
+    @new_post.stub(:errors).and_return(@errors)
 
     concat(semantic_form_for(@new_post) do |builder|
       concat(builder.input(:secret, :as => :hidden))

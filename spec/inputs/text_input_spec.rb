@@ -121,7 +121,7 @@ describe 'text input' do
   end
 
   context "when :autofocus is provided in :input_html" do
-    before(:each) do
+    before do
       concat(semantic_form_for(@new_post) do |builder|
         concat(builder.input(:title, :input_html => {:autofocus => true}))
       end)

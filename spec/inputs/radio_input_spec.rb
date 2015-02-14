@@ -28,8 +28,8 @@ describe 'radio input' do
     it_should_use_the_collection_when_provided(:radio, 'input')
 
     it 'should generate a control label with text for the input' do
-      output_buffer.should have_tag('form div.form-group > label.control-label')
-      output_buffer.should have_tag('form div.form-group > label.control-label', /Author/)
+      output_buffer.should have_tag('form div.form-group label.control-label')
+      output_buffer.should have_tag('form div.form-group label.control-label', /Author/)
     end
 
     it 'should have one option with a "checked" attribute' do
@@ -102,7 +102,7 @@ describe 'radio input' do
     end
 
     describe 'and no object is given' do
-      before(:each) do
+      before do
         output_buffer.replace ''
         concat(semantic_form_for(:project, :url => 'http://test.host') do |builder|
           concat(builder.input(:author_id, :as => :radio, :collection => ::Author.all))
@@ -142,7 +142,7 @@ describe 'radio input' do
       ::I18n.backend.store_translations :en, :formtastic => { :labels => { :post => { :authors => "Translated!" }}}
 
       with_config :i18n_lookups_by_default, true do
-        @new_post.stub!(:author_ids).and_return(nil)
+        @new_post.stub(:author_ids).and_return(nil)
         concat(semantic_form_for(@new_post) do |builder|
           concat(builder.input(:authors, :as => :radio))
         end)
@@ -161,7 +161,7 @@ describe 'radio input' do
 
   describe "when :label option is set" do
     before do
-      @new_post.stub!(:author_ids).and_return(nil)
+      @new_post.stub(:author_ids).and_return(nil)
       concat(semantic_form_for(@new_post) do |builder|
         concat(builder.input(:authors, :as => :radio, :label => 'The authors'))
       end)
@@ -175,7 +175,7 @@ describe 'radio input' do
   describe "when :label option is false" do
     before do
       @output_buffer = ''
-      @new_post.stub!(:author_ids).and_return(nil)
+      @new_post.stub(:author_ids).and_return(nil)
       concat(semantic_form_for(@new_post) do |builder|
         concat(builder.input(:authors, :as => :radio, :label => false))
       end)
@@ -194,7 +194,7 @@ describe 'radio input' do
 
   describe "when :required option is true" do
     before do
-      @new_post.stub!(:author_ids).and_return(nil)
+      @new_post.stub(:author_ids).and_return(nil)
       concat(semantic_form_for(@new_post) do |builder|
         concat(builder.input(:authors, :as => :radio, :required => true))
       end)
@@ -208,7 +208,7 @@ describe 'radio input' do
   describe "when :namespace is given on form" do
     before do
       @output_buffer = ''
-      @new_post.stub!(:author_ids).and_return(nil)
+      @new_post.stub(:author_ids).and_return(nil)
       concat(semantic_form_for(@new_post, :namespace => "custom_prefix") do |builder|
         concat(builder.input(:authors, :as => :radio, :label => ''))
       end)
