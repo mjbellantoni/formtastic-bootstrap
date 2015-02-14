@@ -34,14 +34,6 @@ describe 'string input' do
     it_should_apply_custom_for_to_label_when_input_html_id_provided(:string)
     it_should_apply_error_logic_for_input_type(:string)
 
-    # This doesn't get called anywhere!
-    def input_field_for_method_should_have_maxlength(method, maxlength)
-      concat(semantic_form_for(@new_post) do |builder|
-        concat(builder.input(method))
-      end)
-      output_buffer.should have_tag("form li input[@maxlength='#{maxlength}']")
-    end
-
     describe 'and its a ActiveModel' do
       let(:default_maxlength) { 50 }
 

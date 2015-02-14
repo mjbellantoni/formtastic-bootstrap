@@ -58,7 +58,7 @@ module FormtasticBootstrap
         end
 
         def fragment_placeholder(fragment)
-          (options[:fragment_placeholderes] || self.class::FRAGMENT_PLACEHOLDERS)[fragment.to_sym]
+          (options[:fragment_placeholders] || self.class::FRAGMENT_PLACEHOLDERS)[fragment.to_sym]
         end
 
       end
