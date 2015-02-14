@@ -22,6 +22,13 @@ RSpec.configure do |config|
     Formtastic::Helpers::FormHelper.builder = FormtasticBootstrap::FormBuilder
   end
   config.include FbCustomMacros
+
+  config.mock_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
+  config.expect_with :rspec do |c|
+    c.syntax = [:should, :expect]
+  end
 end
 
 # RSpec.configure do |config|
