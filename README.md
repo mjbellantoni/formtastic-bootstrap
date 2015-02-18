@@ -198,5 +198,5 @@ Source contributions are very welcome!  Most of the recent work on this package 
 
 ## Copyright
 
-Copyright (c) 2013 Matthew Bellantoni. See LICENSE.txt for further details.
+Copyright (c) 2013-2015 Matthew Bellantoni. See LICENSE.txt for further details.
 
