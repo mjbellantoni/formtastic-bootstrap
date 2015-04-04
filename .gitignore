@@ -9,7 +9,9 @@ doc
 .yardoc
 
 # bundler
-.bundle
+/.bundle
+/Gemfile.lock
+/vendor/bundle
 
 # rspec logs
 log
