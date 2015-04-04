@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('rake')
   s.add_development_dependency('tzinfo')
   s.add_development_dependency('bundler')
+  s.add_development_dependency('i18n', ["< 0.7.0"])
   s.add_development_dependency('nokogiri', ["< 1.6.0"])
   s.add_development_dependency('rspec_tag_matchers', ["~> 1.0"])
   s.add_development_dependency('ammeter', ["~> 0.2"])
