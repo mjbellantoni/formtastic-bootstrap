@@ -56,7 +56,7 @@ Add the following line to the top of your <tt>application.css</tt> file:
     # app/assets/stylesheets/application.css
     *= require formtastic-bootstrap
 
-Make sure you've already downloaded and installed Formtastic!
+Make sure you've already downloaded and installed Formtastic! Do *not* however require formtastic in your `application.css` file or you will have many bootstrap/formtastic-bootstrap styles overwritten. 
 
 
 ## Formtastic vs. Formtastic Bootstrap
