@@ -24,17 +24,19 @@ module FormtasticBootstrap
 
       def choice_html(choice)
         radio_wrapping do
+
           template.content_tag(:label,
             builder.radio_button(input_name, choice_value(choice), input_html_options.merge(choice_html_options(choice)).merge(:required => false)) <<
             choice_label(choice),
-            label_html_options.merge(choice_label_html_options(choice))
+            label_html_options.merge(choice_label_html_options(choice)),
+            :class => 'radio-inline'
           )
         end
       end
 
       def radio_wrapping(&block)
         class_name = "radio"
-        class_name += " radio-inline" if options[:inline]
+#        class_name += " radio-inline" if options[:inline]
         template.content_tag(:div,
           template.capture(&block).html_safe,
           :class => class_name
