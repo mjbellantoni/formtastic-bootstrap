@@ -16,7 +16,7 @@ module FormtasticBootstrap
       end
 
       def choice_html(choice)
-        checkbox_wrapping do
+        checkbox_wrapping(choice) do
           template.content_tag(:label,
             hidden_fields? ?
               check_box_with_hidden_input(choice) :
@@ -27,15 +27,26 @@ module FormtasticBootstrap
         end
       end
 
-      def checkbox_wrapping(&block)
-        class_name = "checkbox"
-        class_name += " checkbox-inline" if options[:inline]
+      def checkbox_wrapping(choice, &block)
         template.content_tag(:div,
           template.capture(&block).html_safe,
-          :class => class_name
+          checkbox_wrapping_html_options(choice)
         )
       end
 
+      def checkbox_wrapping_html_options(choice)
+        class_name = "checkbox"
+        class_name += " checkbox-inline" if options[:inline]
+        { :class => class_name }.merge(custom_checkbox_wrapping_html_options choice)
+      end
+
+      def custom_checkbox_wrapping_html_options(choice)
+        if (choice.is_a?(Array) && choice.size > 2 && choice.last[:wrapper_html].present?)
+          choice.last[:wrapper_html]
+        else
+          {}
+        end
+      end
     end
   end
 end
