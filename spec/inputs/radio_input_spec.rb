@@ -264,4 +264,26 @@ describe 'radio input' do
     end
   end
 
+  describe 'when collection contain wrapper_html' do
+    let(:collection) do
+      [
+        [ 'Foo', 1, { :wrapper_html => { 'data-id' => 1 } } ],
+        [ 'Bar', 2, { :wrapper_html => { 'data-id' => 2 } } ]
+      ]
+    end
+
+    before do
+      @output_buffer = ''
+      mock_everything
+
+      concat(semantic_form_for(:project) do |builder|
+        concat(builder.input(:author_id, :as => :radio, :collection => collection))
+      end)
+    end
+
+    it 'should output the correct labels' do
+      output_buffer.should have_tag('span.form-wrapper div.radio[@data-id="1"]')
+      output_buffer.should have_tag('span.form-wrapper div.radio[@data-id="2"]')
+    end
+  end
 end
